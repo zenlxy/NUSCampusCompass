@@ -4,20 +4,38 @@ import { Text, TextInput, Image, View, StyleSheet } from "react-native";
 export default function Index() {
   return (
     <View style={styles.container}>
-      <View>
-        <Image
-          source={require('../assets/images/logo.png')}
-          style={{ width: 200, height: 200 }}
-        />
-      </View>
-      <View style={styles.miniContainer}>
-        <TextInput style={styles.text} placeholder="Username" />
-      </View>
-      <View style={styles.miniContainer}>
-        <TextInput style={styles.text} placeholder="Password" />
-      </View>
+      <Logo />
+      <Username />
+      <Password />
     </View>
   );
+}
+
+const Logo = () => {
+  return (
+    <View>
+      <Image
+        source={require('../assets/images/logo.png')}
+        style={{ width: 180, height: 180 }}
+      />
+    </View>
+  )
+}
+
+const Username = () => {
+  return (
+    <View style={styles.username}>
+      <TextInput style={styles.text} placeholder="Username" />
+    </View>
+  )
+}
+
+const Password = () => {
+  return (
+    <View style={styles.password}>
+      <TextInput style={styles.text} placeholder="Password" />
+    </View>
+  )
 }
 
 const styles = StyleSheet.create({
@@ -25,16 +43,23 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    paddingTop: 150,
   },
-  miniContainer: {
-    flex: 1,
-    paddingTop: 10,
+  username: {
+    flex: 0,
+    paddingTop: 25,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  password: {
+    flex: 0,
+    paddingTop: 5,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   text: {
     fontSize: 20,
-    borderWidth: 1, // Border width
-    borderColor: 'black', // Border color
+    borderWidth: 1,
+    borderColor: 'black',
     borderRadius: 15,
     paddingLeft: 15,
     padding: 2,
