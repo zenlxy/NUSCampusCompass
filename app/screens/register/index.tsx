@@ -4,9 +4,10 @@ import { Text, TextInput, Image, View, StyleSheet } from "react-native";
 export default function Index() {
   return (
     <View style={styles.container}>
-      <Logo />
+      <Email />
       <Username />
       <Password />
+      <ConfirmPassword />
     </View>
   );
 }
@@ -37,7 +38,7 @@ const Password = () => {
 
 const ConfirmPassword = () => {
     return (
-      <View style={styles.password}>
+      <View style={styles.confirmpassword}>
         <TextInput style={styles.text} placeholder="Confirm Password" />
       </View>
     )
@@ -49,6 +50,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  email: {
+    flex: 0,
+    paddingTop: 25,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   username: {
     flex: 0,
     paddingTop: 25,
@@ -58,6 +65,12 @@ const styles = StyleSheet.create({
   password: {
     flex: 0,
     paddingTop: 5,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  confirmpassword: {
+    flex: 0,
+    paddingTop: 25,
     alignItems: 'center',
     justifyContent: 'center',
   },
