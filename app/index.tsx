@@ -10,9 +10,9 @@ const Stack = createStackNavigator();
 export default function Index() {
     return (
         <NavigationContainer independent={true}>
-            <Stack.Navigator initialRouteName="Register">
-                <Stack.Screen name="Register" component={Register} />
+            <Stack.Navigator initialRouteName="Login">
                 <Stack.Screen name="Login" component={Login} />
+                <Stack.Screen name="Register" component={Register} />
             </Stack.Navigator>
         </NavigationContainer>
     );
