@@ -2,11 +2,14 @@ import { Button, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 
-const RegisterButton = () => {
-    const navigation = useNavigation<StackNavigationProp<any>>();
+type RegisterButtonProps = {
+    onPress: () => void; // Define onPress as a function that returns void for type checking
+};
+
+const RegisterButton: React.FC<RegisterButtonProps> = ({ onPress }) => {
     return (
         <View>
-            <Button title="Register" onPress={() => navigation.navigate("Login")} />
+            <Button title="Register" onPress={onPress} />
         </View>
     )
 }
