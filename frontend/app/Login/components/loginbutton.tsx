@@ -1,15 +1,31 @@
-import { Button, View } from 'react-native';
+import { Button, View, StyleSheet } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
 
 const LoginButton = () => {
+    const navigation = useNavigation<StackNavigationProp<any>>();
     return (
-      <View>
-        <Button title="Login" onPress={handlePress} />
-      </View>
+      <View style={styles.loginbutton}>
+        <Button title="Login" onPress={() => navigation.navigate("Home")} />
+    </View>
     )
 }
-  
-const handlePress = () => {
-    console.log("I'm pressed");
-}
 
-  export default LoginButton;
+const styles = StyleSheet.create({
+  loginbutton: {
+    flex: 0,
+    paddingTop: 50,
+  },
+  text: {
+    fontSize: 20,
+    width: 200,
+    borderWidth: 1,
+    borderColor: 'black',
+    borderRadius: 15,
+    paddingLeft: 15,
+    padding: 2,
+    paddingRight: 60,
+  }
+})
+
+export default LoginButton;
