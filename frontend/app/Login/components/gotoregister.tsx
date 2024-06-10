@@ -11,21 +11,21 @@ const GoToRegister = () => {
     )
   }
   
-  const styles = StyleSheet.create({
-    gotoregister: {
-      flex: 0,
-      paddingTop: 50,
-    },
-    text: {
-      fontSize: 20,
-      width: 200,
-      borderWidth: 1,
-      borderColor: 'black',
-      borderRadius: 15,
-      paddingLeft: 15,
-      padding: 2,
-      paddingRight: 60,
-    }
-  })
+const styles = StyleSheet.create({
+  gotoregister: {
+    flex: 0,
+    paddingTop: 50,
+  },
+  text: {
+    fontSize: 20,
+    width: 200,
+    borderWidth: 1,
+    borderColor: 'black',
+    borderRadius: 15,
+    paddingLeft: 15,
+    padding: 2,
+    paddingRight: 60,
+  }
+})
   
 export default GoToRegister;
