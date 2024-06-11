@@ -3,18 +3,17 @@ import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 
 const LoginButton = () => {
-    const navigation = useNavigation<StackNavigationProp<any>>();
-    return (
-      <View style={styles.loginbutton}>
-        <Button title="Login" onPress={() => navigation.navigate("Home")} />
+  const navigation = useNavigation<StackNavigationProp<any>>();
+  return (
+    <View style={styles.loginbutton}>
+      <Button title="Login" onPress={() => navigation.navigate("Home")} />
     </View>
-    )
+  )
 }
 
 const styles = StyleSheet.create({
   loginbutton: {
     flex: 0,
-    paddingTop: 50,
   },
   text: {
     fontSize: 20,
