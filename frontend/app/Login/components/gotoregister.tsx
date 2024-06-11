@@ -3,18 +3,18 @@ import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 
 const GoToRegister = () => {
-    const navigation = useNavigation<StackNavigationProp<any>>();
-    return (
-      <View style={styles.gotoregister}>
-        <Button title="New user? Register here" onPress={() => navigation.navigate("Register")} />
-      </View>
-    )
-  }
-  
+  const navigation = useNavigation<StackNavigationProp<any>>();
+  return (
+    <View style={styles.gotoregister}>
+      <Button title="New user? Register here" onPress={() => navigation.navigate("Register")} />
+    </View>
+  )
+}
+
 const styles = StyleSheet.create({
   gotoregister: {
     flex: 0,
-    paddingTop: 50,
+    paddingTop: 20,
   },
   text: {
     fontSize: 20,
@@ -27,5 +27,5 @@ const styles = StyleSheet.create({
     paddingRight: 60,
   }
 })
-  
+
 export default GoToRegister;
