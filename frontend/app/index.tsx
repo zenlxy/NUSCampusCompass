@@ -13,7 +13,7 @@ export default function Index() {
     return (
         <NavigationContainer independent={true}>
             <AuthProvider>
-                <Stack.Navigator initialRouteName="Login">
+                <Stack.Navigator initialRouteName="Login" screenOptions={{ headerShown: true }}>
                     <Stack.Screen name="Login" component={Login} />
                     <Stack.Screen name="Register" component={Register} />
                     <Stack.Screen name="Home" component={Home} />
