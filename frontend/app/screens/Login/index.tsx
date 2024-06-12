@@ -1,7 +1,7 @@
 import { View, StyleSheet, Text, TextInput, Button, KeyboardAvoidingView } from "react-native";
 import Logo from './components/logo';
 import GoToRegister from './components/gotoregister';
-import { useAuth } from '../contexts/AuthContext';
+import { useAuth } from '../../contexts/AuthContext';
 import React, { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
@@ -43,7 +43,6 @@ const Login = () => {
     </KeyboardAvoidingView>
   );
 }
-
 
 const styles = StyleSheet.create({
   container: {

@@ -1,23 +1,118 @@
-import { View, StyleSheet } from "react-native";
+import { View, Image, Text, StyleSheet } from 'react-native';
 import { AuthProvider } from './contexts/AuthContext';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import Register from './Register';
-import Login from './Login';
-import Home from './Home';
-
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';   
+import Register from './screens/Register';
+import Login from './screens/Login';
+import Home from './screens/Home';
+import Map from './screens/Map';
+import Itinerary from './screens/Itinerary';
+import Chatbot from './screens/Chatbot';
+import Settings from './screens/Settings';
 
 const Stack = createStackNavigator();
+const Tab = createBottomTabNavigator();
+
+const BottomTabNavigator = () => {
+    return (
+        <Tab.Navigator screenOptions={{
+            ...Bar,
+            tabBarStyle: {
+                ...Bar.tabBarStyle,
+                position: 'absolute',
+            },
+        }}>
+            <Tab.Screen name="Home" component={Home} options={{
+                tabBarIcon: ({ focused }) => (
+                    <TabIcon focused={focused} source={require('../assets/images/home.png')} label="Home" />
+                ),
+            }} />
+            <Tab.Screen name="Map" component={Map} options={{
+                tabBarIcon: ({ focused }) => (
+                    <TabIcon focused={focused} source={require('../assets/images/map.png')} label="Map" />
+                ),
+            }} />
+            <Tab.Screen name="Itinerary" component={Itinerary} options={{
+                tabBarIcon: ({ focused }) => (
+                    <TabIcon focused={focused} source={require('../assets/images/itinerary.png')} label="Itinerary" />
+                ),
+            }} />
+            <Tab.Screen name="Chatbot" component={Chatbot} options={{
+                tabBarIcon: ({ focused }) => (
+                    <TabIcon focused={focused} source={require('../assets/images/map2.png')} label="Chatbot" />
+                ),
+            }} />
+            <Tab.Screen name="Settings" component={Settings} options={{
+                tabBarIcon: ({ focused }) => (
+                    <TabIcon focused={focused} source={require('../assets/images/settings.png')} label="Settings" />
+                ),
+            }} />
+        </Tab.Navigator>
+    );
+};
+
+const TabIcon = ({ focused, source, label }: { focused: boolean, source: any, label: string }) => (
+    <View style={styles.iconContainer}>
+        <Image
+            source={source}
+            resizeMode="contain"
+            style={{
+                ...styles.iconImage,
+                tintColor: focused ? '#e32f45' : '#748c94',
+            }}
+        />
+        <Text style={{
+            ...styles.iconLabel,
+            color: focused ? '#e32f45' : '#748c94',
+        }}>
+            {label}
+        </Text>
+    </View>
+);
+
+const Bar = {
+    tabBarShowLabel: false,
+    tabBarStyle: {
+        position: 'absolute',
+        bottom: 0,
+        left: 0,
+        right: 0,
+        elevation: 0,
+        backgroundColor: '#ffffff',
+        height: 90,
+    },
+};
+
+const styles = StyleSheet.create({
+    iconContainer: {
+        alignItems: 'center',
+    },
+    iconImage: {
+        width: 25,
+        height: 25,
+    },
+    iconLabel: {
+        fontSize: 12,
+    },
+});
+
+const StackNavigator = () => {
+    return (
+        <Stack.Navigator initialRouteName="Login" screenOptions={{ headerShown: false }}>
+            <Stack.Screen name="Login" component={Login} />
+            <Stack.Screen name="Register" component={Register} />
+            <Stack.Screen name="Home" component={BottomTabNavigator} /> 
+        </Stack.Navigator>
+    );
+};
+
 
 export default function Index() {
     return (
         <NavigationContainer independent={true}>
             <AuthProvider>
-                <Stack.Navigator initialRouteName="Login" screenOptions={{ headerShown: true }}>
-                    <Stack.Screen name="Login" component={Login} />
-                    <Stack.Screen name="Register" component={Register} />
-                    <Stack.Screen name="Home" component={Home} />
-                </Stack.Navigator>
+                <StackNavigator />
             </AuthProvider>
         </NavigationContainer>
     );
