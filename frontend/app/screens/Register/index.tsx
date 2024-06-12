@@ -4,7 +4,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import Logo from './components/logo';
 import RegisterButton from "./components/registerbutton";
 import React, { useState } from 'react';
-import { useAuth } from '../contexts/AuthContext';
+import { useAuth } from '../../contexts/AuthContext';
 
 const Register = () => {
     const [email, setEmail] = useState('');
