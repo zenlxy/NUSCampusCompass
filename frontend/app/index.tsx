@@ -40,7 +40,7 @@ const BottomTabNavigator = () => {
             }} />
             <Tab.Screen name="Chatbot" component={Chatbot} options={{
                 tabBarIcon: ({ focused }) => (
-                    <TabIcon focused={focused} source={require('../assets/images/map2.png')} label="Chatbot" />
+                    <TabIcon focused={focused} source={require('../assets/images/chatbot.png')} label="Chatbot" />
                 ),
             }} />
             <Tab.Screen name="Settings" component={Settings} options={{
@@ -59,12 +59,12 @@ const TabIcon = ({ focused, source, label }: { focused: boolean, source: any, la
             resizeMode="contain"
             style={{
                 ...styles.iconImage,
-                tintColor: focused ? '#e32f45' : '#748c94',
+                tintColor: focused ? '#127249' : '#748c94',
             }}
         />
         <Text style={{
             ...styles.iconLabel,
-            color: focused ? '#e32f45' : '#748c94',
+            color: focused ? '#127249' : '#748c94',
         }}>
             {label}
         </Text>
