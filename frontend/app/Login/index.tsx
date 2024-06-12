@@ -1,4 +1,4 @@
-import { View, StyleSheet, Text, TextInput, Button } from "react-native";
+import { View, StyleSheet, Text, TextInput, Button, KeyboardAvoidingView } from "react-native";
 import Logo from './components/logo';
 import GoToRegister from './components/gotoregister';
 import { useAuth } from '../contexts/AuthContext';
@@ -21,7 +21,7 @@ const Login = () => {
     }
   }
   return (
-    <View style={styles.container}>
+    <KeyboardAvoidingView style={styles.container} behavior="padding">
       <Logo />
       <View style={styles.textContainer}>
         <Text style={styles.label}>Email</Text>
@@ -35,11 +35,12 @@ const Login = () => {
         <TextInput style={styles.text}
           placeholder="Password"
           value={password}
-          onChangeText={setPassword} />
+          onChangeText={setPassword}
+          secureTextEntry />
       </View>
       <Button title="Login" onPress={handleLogin} />
       <GoToRegister />
-    </View>
+    </KeyboardAvoidingView>
   );
 }
 

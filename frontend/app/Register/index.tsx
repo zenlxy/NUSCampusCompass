@@ -1,4 +1,4 @@
-import { Text, TextInput, Image, View, Button, TouchableOpacity, StyleSheet } from "react-native";
+import { Text, TextInput, Image, View, Button, TouchableOpacity, StyleSheet, KeyboardAvoidingView } from "react-native";
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import Logo from './components/logo';
@@ -25,7 +25,7 @@ const Register = () => {
         }
     }
     return (
-        <View style={styles.container}>
+        <KeyboardAvoidingView style={styles.container} behavior="padding">
             <Logo />
             <View style={styles.textContainer}>
                 <Text style={styles.label}>Email</Text>
@@ -39,17 +39,19 @@ const Register = () => {
                 <TextInput style={styles.text}
                     placeholder="Password"
                     value={password}
-                    onChangeText={setPassword} />
+                    onChangeText={setPassword}
+                    secureTextEntry />
             </View>
             <View style={styles.textContainer}>
                 <Text style={styles.label}>Confirm Password</Text>
                 <TextInput style={styles.text}
                     placeholder="Confirm Password"
                     value={confirmPassword}
-                    onChangeText={setConfirmPassword} />
+                    onChangeText={setConfirmPassword}
+                    secureTextEntry />
             </View>
             <Button title="Register" onPress={handleSignUp} />
-        </View>
+        </KeyboardAvoidingView>
     )
 }
 
