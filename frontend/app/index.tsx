@@ -99,14 +99,25 @@ const styles = StyleSheet.create({
 
 const StackNavigator = () => {
     return (
-        <Stack.Navigator initialRouteName="Login" screenOptions={{ headerShown: false }}>
-            <Stack.Screen name="Login" component={Login} />
-            <Stack.Screen name="Register" component={Register} />
-            <Stack.Screen name="Home" component={BottomTabNavigator} /> 
+        <Stack.Navigator initialRouteName="Login">
+            <Stack.Screen
+                name="Login"
+                component={Login}
+                options={{ headerShown: true }}
+            />
+            <Stack.Screen
+                name="Register"
+                component={Register}
+                options={{ headerShown: true }}
+            />
+            <Stack.Screen
+                name="Home"
+                component={BottomTabNavigator}
+                options={{ headerShown: false }}
+            />
         </Stack.Navigator>
     );
 };
-
 
 export default function Index() {
     return (
