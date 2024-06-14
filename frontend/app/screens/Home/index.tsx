@@ -10,15 +10,15 @@ const Home = () => {
 }
 
 const Welcome = () => {
-  return (
+    return (
         <View style={styles.welcome}>
-            <Text style={styles.welcometext}>Welcome back, {auth.currentUser?.email}!</Text>
             <Image
                 source={require('../../../assets/images/logo.png')}
                 style={{ width: 150, height: 150 }}
             />
+            <Text style={styles.welcometext}>Welcome back, {auth.currentUser?.email}!</Text>
         </View>
-        );
+    );
 }
 
 
@@ -37,7 +37,9 @@ const styles = StyleSheet.create({
     },
     welcometext: {
         fontSize: 20,
-        marginBottom: 30,
+        marginTop: 30,
+        fontFamily: 'Arial Rounded MT Bold',
+        textAlign: 'center',
     }
 })
 
