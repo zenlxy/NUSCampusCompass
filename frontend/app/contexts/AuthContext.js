@@ -3,7 +3,7 @@ import { auth } from '../../config/firebase';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
 
 // Create a context for authentication
-const AuthContext = createContext();
+export const AuthContext = createContext();
 
 // Export the custom hook to use auth context
 export const useAuth = () => useContext(AuthContext);
