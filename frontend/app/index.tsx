@@ -2,7 +2,7 @@ import { View, Image, Text, StyleSheet } from 'react-native';
 import { AuthProvider } from './contexts/AuthContext';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';   
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Register from './screens/Register';
 import Login from './screens/Login';
 import Home from './screens/Home';
@@ -23,7 +23,7 @@ const BottomTabNavigator = () => {
                 position: 'absolute',
             },
         }}>
-            <Tab.Screen name="Home" component={Home} options={{
+            <Tab.Screen name="Home Page" component={Home} options={{
                 tabBarIcon: ({ focused }) => (
                     <TabIcon focused={focused} source={require('../assets/images/home.png')} label="Home" />
                 ),
