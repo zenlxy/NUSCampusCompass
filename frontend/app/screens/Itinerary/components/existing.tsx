@@ -3,9 +3,10 @@ import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 
 const ExistingButton = () => {
+    const navigation = useNavigation<StackNavigationProp<any>>();
     return (
         <View style={styles.container}>
-            <TouchableOpacity onPress={() => console.log("Existing pressed")} style={styles.button}>
+            <TouchableOpacity onPress={() => navigation.navigate("Existing Itineraries")} style={styles.button}>
                 <Text style={styles.text}>Existing Itineraries</Text>
             </TouchableOpacity>
         </View>
