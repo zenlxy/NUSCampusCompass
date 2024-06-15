@@ -3,9 +3,10 @@ import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 
 const CreateButton = () => {
+    const navigation = useNavigation<StackNavigationProp<any>>();
     return (
         <View style={styles.container}>
-            <TouchableOpacity onPress={() => console.log("Create pressed")} style={styles.button}>
+            <TouchableOpacity onPress={() => navigation.navigate("Build Your Own")} style={styles.button}>
                 <Text style={styles.text}>Build Your Own</Text>
             </TouchableOpacity>
         </View>
