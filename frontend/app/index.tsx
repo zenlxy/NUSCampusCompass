@@ -20,9 +20,9 @@ const ItineraryStack = createStackNavigator();
 
 const ItineraryStackScreen = () => (
     <ItineraryStack.Navigator>
-        <ItineraryStack.Screen name="Main" component={Itinerary} options={{ headerShown: false }} />
+        <ItineraryStack.Screen name=" " component={Itinerary} options={{ headerShown: false }} />
         <ItineraryStack.Screen name="Existing Itineraries" component={Existing} />
-        <ItineraryStack.Screen name="Build Your Own" component={Build} />
+        <ItineraryStack.Screen name="  " component={Build} options={{ headerTransparent: true }} />
         <ItineraryStack.Screen name="Recommended Tours" component={Recommended} />
     </ItineraryStack.Navigator>
 );
