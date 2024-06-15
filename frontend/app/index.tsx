@@ -10,9 +10,22 @@ import Map from './screens/Map';
 import Itinerary from './screens/Itinerary';
 import Chatbot from './screens/Chatbot';
 import Settings from './screens/Settings';
+import Existing from './screens/Itinerary/screens/existing';
+import Build from './screens/Itinerary/screens/build';
+import Recommended from './screens/Itinerary/screens/recommended';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
+const ItineraryStack = createStackNavigator();
+
+const ItineraryStackScreen = () => (
+    <ItineraryStack.Navigator>
+        <ItineraryStack.Screen name="Main" component={Itinerary} options={{ headerShown: false }} />
+        <ItineraryStack.Screen name="Existing Itineraries" component={Existing} />
+        <ItineraryStack.Screen name="Build Your Own" component={Build} />
+        <ItineraryStack.Screen name="Recommended Tours" component={Recommended} />
+    </ItineraryStack.Navigator>
+);
 
 const BottomTabNavigator = () => {
     return (
@@ -33,7 +46,7 @@ const BottomTabNavigator = () => {
                     <TabIcon focused={focused} source={require('../assets/images/map.png')} label="Map" />
                 ),
             }} />
-            <Tab.Screen name="Itinerary" component={Itinerary} options={{
+            <Tab.Screen name="Itinerary" component={ItineraryStackScreen} options={{
                 tabBarIcon: ({ focused }) => (
                     <TabIcon focused={focused} source={require('../assets/images/itinerary.png')} label="Itinerary" />
                 ),
