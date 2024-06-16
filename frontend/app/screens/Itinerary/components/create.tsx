@@ -6,7 +6,7 @@ const CreateButton = () => {
     const navigation = useNavigation<StackNavigationProp<any>>();
     return (
         <View style={styles.container}>
-            <TouchableOpacity onPress={() => navigation.navigate("  ")} style={styles.button}>
+            <TouchableOpacity onPress={() => navigation.navigate("Build Your Own")} style={styles.button}>
                 <Text style={styles.text}>Build Your Own</Text>
             </TouchableOpacity>
         </View>
