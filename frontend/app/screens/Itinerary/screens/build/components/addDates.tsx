@@ -1,8 +1,9 @@
-import { TouchableOpacity, Text, View, StyleSheet } from 'react-native';
+import { Button, Text, View, StyleSheet, TextInput } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { useState } from 'react';
 import DateTimePicker from '@react-native-community/datetimepicker';
+import { format, eachDayOfInterval } from 'date-fns';
 
 const AddDatesButton = () => {
     const navigation = useNavigation<StackNavigationProp<any>>();
@@ -10,6 +11,7 @@ const AddDatesButton = () => {
     const [endDate, setEndDate] = useState(new Date());
     const [showStartPicker, setShowStartPicker] = useState(true);
     const [showEndPicker, setShowEndPicker] = useState(true);
+    const datesInRange = eachDayOfInterval({ start: new Date(startDate), end: new Date(endDate) });
     return (
         <View style={styles.bigContainer}>
             <View style={styles.container}>
@@ -38,13 +40,28 @@ const AddDatesButton = () => {
                     }}
                 />
             </View>
+            {datesInRange.map((date) => {
+                const dateKey = format(date, 'yyyy-MM-dd');
+                return (
+                    <View key={dateKey} style={styles.datePickerContainer}>
+                        <Text style={styles.text}>{format(date, 'do MMM')}</Text>
+                        <View style={styles.container}>
+                            <TextInput
+                                placeholder='Add Place'
+                                style={styles.input}
+                            />
+                            <Button title="Add" onPress={() => console.log('add place')} />
+                        </View>
+                    </View>
+                );
+            })}
         </View>
     )
 }
 
 const styles = StyleSheet.create({
     bigContainer: {
-        marginTop: 40,
+        marginTop: 20,
     },
     container: {
         width: 'auto',
@@ -65,10 +82,26 @@ const styles = StyleSheet.create({
     text: {
         fontSize: 17,
         color: 'black',
-        fontFamily: 'Rubik'
+        fontFamily: 'Rubik',
+        paddingLeft: 20,
+        paddingTop: 20,
     },
     date: {
         paddingTop: 5,
+    },
+    datePickerContainer: {
+        flexDirection: 'column',
+        marginBottom: 20,
+    },
+    input: {
+        paddingLeft: 15,
+        borderColor: 'black',
+        borderStyle: 'solid',
+        borderWidth: 1,
+        width: 280,
+        borderRadius: 20,
+        height: 30,
+        fontSize: 15,
     }
 })
 
