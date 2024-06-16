@@ -27,7 +27,7 @@ function Title() {
                 <View style={styles.displayContainer}>
                     <Text style={styles.text}>{text}</Text>
                     <TouchableOpacity onPress={() => setIsEditing(true)} style={styles.iconContainer}>
-                        <Icon name="pencil" size={20} color="#000" />
+                        <Icon name="pencil" size={20} color="black" />
                     </TouchableOpacity>
                 </View>
             )}
@@ -37,8 +37,8 @@ function Title() {
 
 const styles = StyleSheet.create({
     container: {
-        paddingLeft: 50,
-        paddingTop: 12,
+        paddingLeft: 20,
+        paddingTop: 10,
     },
     displayContainer: {
         flexDirection: 'row',
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
         borderBottomColor: '#90B8B8',
     },
     iconContainer: {
-        paddingLeft: 20,
+        paddingLeft: 10,
     },
 });
 
