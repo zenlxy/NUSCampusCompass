@@ -8,7 +8,7 @@ const BackButton = () => {
     return (
         <View style={styles.container}>
             <TouchableOpacity onPress={() => navigation.navigate("Main")}>
-                <Icon name="arrow-left" size={20} color="blue" />
+                <Icon name="arrow-left" size={20} color="#047bff" />
             </ TouchableOpacity>
         </View>
     )
