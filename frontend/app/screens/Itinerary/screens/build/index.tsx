@@ -6,19 +6,19 @@ import BackButton from './components/backButton';
 
 const Build = () => {
     return (
-        <ScrollView style={styles.scrollcontainer}>
+        <View style={styles.bigcontainer}>
             <View style={styles.container}>
                 <BackButton />
                 <Title />
             </View>
             <AddDatesButton />
             <SubmitButton />
-        </ScrollView>
+        </View>
     );
 };
 
 const styles = StyleSheet.create({
-    scrollcontainer: {
+    bigcontainer: {
         marginBottom: 90,
     },
     container: {

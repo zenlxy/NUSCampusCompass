@@ -1,10 +1,11 @@
-import { Button, Text, View, StyleSheet, TextInput, FlatList, ListRenderItem, TouchableOpacity } from 'react-native';
+import { Button, Text, View, StyleSheet, TextInput, FlatList, ListRenderItem, TouchableOpacity, ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { useState, ReactNode } from 'react';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { format, eachDayOfInterval } from 'date-fns';
 import places from '../../../../../data/Places';
+import Itinerary from '../../..';
 
 type Place = {
     placeId: number;
@@ -21,11 +22,28 @@ const AddDatesButton = () => {
     const [startDate, setStartDate] = useState(new Date());
     const [showStartPicker, setShowStartPicker] = useState(true);
     const [userInput, setUserInput] = useState("");
+    const [toAdd, setToAdd] = useState<Place>(places[1]);
+    const [itinerary, setItinerary] = useState<Place[]>([]);
+    const itineraryList: ListRenderItem<Place> = ({ item }) => {
+        return (
+            <View style={styles.itineraryItem}>
+                <Text>{item.name}</Text>
+                <Button title="Delete" color="red" onPress={() => handleDeletePlace(item.placeId)} />
+            </View>
+        );
+        return null;
+    };
+    const handleDeletePlace = (placeId: number) => {
+        setItinerary(itinerary.filter(place => place.placeId !== placeId));
+    };
     const filterData: ListRenderItem<Place> = ({ item }) => {
         if (userInput === "") {
             return (
                 <View style={styles.place}>
-                    <TouchableOpacity onPress={() => setUserInput(item.name)}>
+                    <TouchableOpacity onPress={() => {
+                        setUserInput(item.name);
+                        setToAdd(item);
+                    }}>
                         <Text>{item.name}</Text>
                     </TouchableOpacity>
                 </View>
@@ -34,7 +52,10 @@ const AddDatesButton = () => {
         if (item.name.toLowerCase().includes(userInput.toLowerCase())) {
             return (
                 <View style={styles.place}>
-                    <TouchableOpacity onPress={() => setUserInput(item.name)}>
+                    <TouchableOpacity onPress={() => {
+                        setUserInput(item.name);
+                        setToAdd(item);
+                    }}>
                         <Text>{item.name}</Text>
                     </TouchableOpacity>
                 </View>
@@ -65,9 +86,15 @@ const AddDatesButton = () => {
                         onChangeText={(text) => setUserInput(text)}
                         value={userInput}
                     />
-                    <Button title="Add" onPress={() => console.log('add place')} />
+                    <Button title="Add" onPress={() => {
+                        setItinerary([...itinerary, toAdd]);
+                        setUserInput("");
+                    }} />
                 </View>
                 <FlatList data={places} renderItem={filterData} />
+                <ScrollView>
+                    <FlatList data={itinerary} renderItem={itineraryList} />
+                </ScrollView>
             </View>
         </View>
     )
@@ -127,6 +154,13 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         justifyContent: 'center',
         marginBottom: 5,
+    },
+    itineraryItem: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        paddingLeft: 20,
+        paddingRight: 10,
     }
 })
 
