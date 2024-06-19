@@ -1,21 +1,51 @@
-import { Button, Text, View, StyleSheet, TextInput } from 'react-native';
+import { Button, Text, View, StyleSheet, TextInput, FlatList, ListRenderItem, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import React, { useState } from 'react';
+import React, { useState, ReactNode } from 'react';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { format, eachDayOfInterval } from 'date-fns';
+import places from '../../../../../data/Places';
+
+type Place = {
+    placeId: number;
+    name: string;
+    description: string;
+    history: string;
+    funFacts: string;
+    address: string;
+    coordinates: string;
+};
 
 const AddDatesButton = () => {
     const navigation = useNavigation<StackNavigationProp<any>>();
     const [startDate, setStartDate] = useState(new Date());
-    const [endDate, setEndDate] = useState(new Date());
     const [showStartPicker, setShowStartPicker] = useState(true);
-    const [showEndPicker, setShowEndPicker] = useState(true);
-    const datesInRange = eachDayOfInterval({ start: new Date(startDate), end: new Date(endDate) });
+    const [userInput, setUserInput] = useState("");
+    const filterData: ListRenderItem<Place> = ({ item }) => {
+        if (userInput === "") {
+            return (
+                <View style={styles.place}>
+                    <TouchableOpacity onPress={() => setUserInput(item.name)}>
+                        <Text>{item.name}</Text>
+                    </TouchableOpacity>
+                </View>
+            );
+        }
+        if (item.name.toLowerCase().includes(userInput.toLowerCase())) {
+            return (
+                <View style={styles.place}>
+                    <TouchableOpacity onPress={() => setUserInput(item.name)}>
+                        <Text>{item.name}</Text>
+                    </TouchableOpacity>
+                </View>
+            )
+        }
+        return null;
+    };
     return (
         <View style={styles.bigContainer}>
             <View style={styles.container}>
-                <Text>Select Start Date:</Text>
+                <Text>Select Date:</Text>
                 <DateTimePicker
                     value={startDate}
                     mode="date"
@@ -27,52 +57,36 @@ const AddDatesButton = () => {
                     style={styles.date}
                 />
             </View>
-            <View style={styles.container}>
-                <Text>Select End Date:</Text>
-                <DateTimePicker
-                    value={endDate}
-                    mode="date"
-                    display="default"
-                    minimumDate={startDate}
-                    onChange={(event, date) => {
-                        setShowEndPicker(true);
-                        setEndDate(date || endDate);
-                    }}
-                />
+            <View style={styles.datePickerContainer}>
+                <View style={styles.container}>
+                    <TextInput
+                        placeholder='Add Place'
+                        style={styles.input}
+                        onChangeText={(text) => setUserInput(text)}
+                        value={userInput}
+                    />
+                    <Button title="Add" onPress={() => console.log('add place')} />
+                </View>
+                <FlatList data={places} renderItem={filterData} />
             </View>
-            {datesInRange.map((date) => {
-                const dateKey = format(date, 'yyyy-MM-dd');
-                return (
-                    <View key={dateKey} style={styles.datePickerContainer}>
-                        <Text style={styles.text}>{format(date, 'do MMM')}</Text>
-                        <View style={styles.container}>
-                            <TextInput
-                                placeholder='Add Place'
-                                style={styles.input}
-                            />
-                            <Button title="Add" onPress={() => console.log('add place')} />
-                        </View>
-                    </View>
-                );
-            })}
         </View>
     )
 }
 
 const styles = StyleSheet.create({
     bigContainer: {
-        marginTop: 20,
+        marginTop: 10,
     },
     container: {
         width: 'auto',
-        justifyContent: 'center',
+        paddingLeft: 20,
         alignItems: 'center',
-        marginTop: 10,
+        marginTop: 5,
         flexDirection: 'row',
     },
     button: {
         backgroundColor: '#90B8B8',
-        width: '70%',
+        width: '75%',
         justifyContent: 'center',
         alignItems: 'center',
         height: 50,
@@ -87,11 +101,11 @@ const styles = StyleSheet.create({
         paddingTop: 20,
     },
     date: {
-        paddingTop: 5,
+        paddingTop: 10,
     },
     datePickerContainer: {
         flexDirection: 'column',
-        marginBottom: 20,
+        marginBottom: 10,
     },
     input: {
         paddingLeft: 15,
@@ -102,6 +116,17 @@ const styles = StyleSheet.create({
         borderRadius: 20,
         height: 30,
         fontSize: 15,
+        paddingRight: 15,
+    },
+    place: {
+        paddingLeft: 10,
+        backgroundColor: "white",
+        width: '80%',
+        marginLeft: 20,
+        height: 30,
+        borderRadius: 10,
+        justifyContent: 'center',
+        marginBottom: 5,
     }
 })
 
