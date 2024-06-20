@@ -3,10 +3,7 @@ import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { useState, ReactNode } from 'react';
 import DateTimePicker from '@react-native-community/datetimepicker';
-import { format, eachDayOfInterval } from 'date-fns';
 import places from '../../../../../data/Places';
-import Itinerary from '../../..';
-
 type Place = {
     placeId: number;
     name: string;
@@ -82,6 +79,9 @@ const AddDatesButton = () => {
                 />
             </View>
             <View style={styles.datePickerContainer}>
+                <View style={styles.basic}>
+                    <Text>Add Place</Text>
+                </View>
                 <View style={styles.container}>
                     <TextInput
                         placeholder='Add Place'
@@ -94,7 +94,9 @@ const AddDatesButton = () => {
                         setUserInput("");
                     }} />
                 </View>
-                <FlatList data={places} renderItem={filterData} />
+                <View style={styles.basic}>
+                    <FlatList data={places} renderItem={filterData} />
+                </View>
             </View>
             <FlatList data={itinerary} renderItem={itineraryList} />
         </View>
@@ -104,12 +106,12 @@ const AddDatesButton = () => {
 const styles = StyleSheet.create({
     bigContainer: {
         marginTop: 10,
+        justifyContent: 'center',
     },
     container: {
         width: 'auto',
-        paddingLeft: 20,
         alignItems: 'center',
-        marginTop: 5,
+        justifyContent: 'center',
         flexDirection: 'row',
     },
     button: {
@@ -133,15 +135,17 @@ const styles = StyleSheet.create({
     },
     datePickerContainer: {
         flexDirection: 'column',
-        marginBottom: 10,
-        height: 150,
+        paddingBottom: 35,
+        height: 130,
+        justifyContent: 'center',
+        paddingTop: 25,
     },
     input: {
         paddingLeft: 15,
         borderColor: 'black',
         borderStyle: 'solid',
         borderWidth: 1,
-        width: 280,
+        width: 300,
         borderRadius: 20,
         height: 30,
         fontSize: 15,
@@ -151,7 +155,6 @@ const styles = StyleSheet.create({
         paddingLeft: 10,
         backgroundColor: "white",
         width: '80%',
-        marginLeft: 20,
         height: 30,
         borderRadius: 10,
         justifyContent: 'center',
@@ -163,7 +166,6 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         paddingLeft: 10,
         paddingRight: 10,
-        paddingBottom: 10,
     },
     rankContainer: {
         backgroundColor: '#8daba8',
@@ -179,6 +181,9 @@ const styles = StyleSheet.create({
     itemText: {
         width: 250,
         paddingLeft: 5,
+    },
+    basic: {
+        marginLeft: 20,
     }
 })
 
