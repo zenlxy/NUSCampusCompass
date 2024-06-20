@@ -25,6 +25,24 @@ const places = [
         funFacts: "1) Virtual Exhibitions: The NUS Museum has developed virtual exhibitions and digital resources that allow global audiences to access its collections and learn about Southeast Asian art and culture remotely. 2) Artist-in-Residence Program: The museum hosts an Artist-in-Residence program, inviting contemporary artists to create and exhibit new works that engage with its collections and themes, fostering creative dialogue between traditional and contemporary art practices.",
         address: "",
         coordinates: "",
+    },
+    {
+        placeId: 4,
+        name: "Yong Siew Toh Conservatory of Music",
+        description: "The Yong Siew Toh Conservatory of Music at NUS is Singapore's premier institution for music education, fostering a vibrant community of talented musicians and educators. It offers a wide range of performances, including classical and contemporary music concerts, often featuring students, faculty, and international artists. The conservatory is known for its state-of-the-art facilities and a dynamic, multicultural environment that enriches both the campus and the broader community.",
+        history: "The Yong Siew Toh Conservatory of Music (YSTCM) at the National University of Singapore was founded in 2003 through a significant donation from the Yong Loo Lin Trust. Named after Yong Siew Toh, a passionate advocate for music, the conservatory was established to provide top-tier music education in Asia. It has since grown to become a leading institution in the region, renowned for its rigorous academic programs, world-class faculty, and vibrant cultural contributions.",
+        funFacts: "1) Dinosaur Concert Hall: The Conservatory’s concert hall, often referred to as \"Orchestra Hall,\" is designed to resemble the shape of a dinosaur egg from an aerial view. This unique design enhances the hall's acoustics, making it an ideal venue for performances ranging from solo recitals to full orchestral concerts. 2) Global Reach and Prestige: YSTCM is not only a cornerstone of Singapore’s music scene but also a recognized name on the global stage. It has partnerships with prestigious institutions worldwide, including the Peabody Institute at Johns Hopkins University, allowing students to participate in exchange programs and collaborative projects with renowned international musicians.",
+        address: "",
+        coordinates: "",
+    },
+    {
+        placeId: 5,
+        name: "Flavours @ UTown",
+        description: "Flavours @ UTown is a popular dining venue located in University Town (UTown) at the National University of Singapore. It offers a diverse range of food options, including local Singaporean delights and international cuisines, catering to the diverse tastes of students, staff, and visitors. The spacious and vibrant setting, with indoor and outdoor seating, makes it an ideal spot for enjoying meals and socializing within the dynamic UTown community.",
+        history: "Flavours @ UTown opened as part of the larger development of University Town (UTown) at the National University of Singapore, which was inaugurated in 2011. As one of the key dining venues in UTown, Flavours was established to provide a convenient and diverse dining experience that reflects the multicultural fabric of the NUS community. Over the years, it has become a popular gathering spot, known for its variety of food stalls and its role in fostering a lively campus atmosphere.",
+        funFacts: "1) Eco-Friendly Initiatives: The dining venue is part of NUS’s commitment to sustainability. Many of the food vendors at Flavours participate in eco-friendly practices, such as minimizing plastic use, offering reusable dining ware, and supporting the campus's zero-waste initiatives. This aligns with NUS's broader sustainability goals and efforts to reduce the environmental footprint. 2) Study and Social Space: Beyond just dining, Flavours @ UTown is a popular spot for students to study and hang out. Its spacious seating areas with comfortable arrangements make it an ideal place for group discussions, solo studying, or simply relaxing between classes. The venue often buzzes with the energy of students engaging in lively conversations or unwinding after a busy day.",
+        address: "",
+        coordinates: "",
     }
 ];
 

@@ -6,20 +6,20 @@ import BackButton from './components/backButton';
 
 const Build = () => {
     return (
-        <View style={styles.bigcontainer}>
+        <ScrollView style={styles.bigcontainer}>
             <View style={styles.container}>
                 <BackButton />
                 <Title />
             </View>
             <AddDatesButton />
             <SubmitButton />
-        </View>
+        </ScrollView>
     );
 };
 
 const styles = StyleSheet.create({
     bigcontainer: {
-        marginBottom: 90,
+        marginBottom: 93,
     },
     container: {
         flexDirection: "row",
