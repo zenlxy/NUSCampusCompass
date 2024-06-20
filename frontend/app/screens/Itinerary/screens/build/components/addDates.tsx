@@ -24,10 +24,13 @@ const AddDatesButton = () => {
     const [userInput, setUserInput] = useState("");
     const [toAdd, setToAdd] = useState<Place>(places[1]);
     const [itinerary, setItinerary] = useState<Place[]>([]);
-    const itineraryList: ListRenderItem<Place> = ({ item }) => {
+    const itineraryList: ListRenderItem<Place> = ({ item, index }) => {
         return (
             <View style={styles.itineraryItem}>
-                <Text>{item.name}</Text>
+                <View style={styles.rankContainer}>
+                    <Text style={styles.rank}>{index + 1}</Text>
+                </View>
+                <Text style={styles.itemText}>{item.name}</Text>
                 <Button title="Delete" color="red" onPress={() => handleDeletePlace(item.placeId)} />
             </View>
         );
@@ -92,10 +95,8 @@ const AddDatesButton = () => {
                     }} />
                 </View>
                 <FlatList data={places} renderItem={filterData} />
-                <ScrollView>
-                    <FlatList data={itinerary} renderItem={itineraryList} />
-                </ScrollView>
             </View>
+            <FlatList data={itinerary} renderItem={itineraryList} />
         </View>
     )
 }
@@ -133,6 +134,7 @@ const styles = StyleSheet.create({
     datePickerContainer: {
         flexDirection: 'column',
         marginBottom: 10,
+        height: 150,
     },
     input: {
         paddingLeft: 15,
@@ -159,8 +161,24 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
-        paddingLeft: 20,
+        paddingLeft: 10,
         paddingRight: 10,
+        paddingBottom: 10,
+    },
+    rankContainer: {
+        backgroundColor: '#8daba8',
+        width: 30,
+        borderRadius: 20,
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: 30,
+    },
+    rank: {
+        fontSize: 15,
+    },
+    itemText: {
+        width: 250,
+        paddingLeft: 5,
     }
 })
 
