@@ -35,13 +35,18 @@ const AddDatesButton = () => {
         setText(inputValue);
     };
     const handleSave = async () => {
-        let doc = await addDoc(itineraryRef, {
-            itinerary,
-            startDate,
-            userId: user.uid,
-        });
-        if (doc && doc.id) {
-            navigation.navigate("Main");
+        if (itinerary.length > 0) {
+            let doc = await addDoc(itineraryRef, {
+                text,
+                itinerary,
+                startDate,
+                userId: user.uid,
+            });
+            if (doc && doc.id) {
+                navigation.navigate("Main");
+            }
+        } else {
+            alert("Itinerary cannot be empty. Please add at least one item.");
         }
     };
     const itineraryList: ListRenderItem<Place> = ({ item, index }) => {
