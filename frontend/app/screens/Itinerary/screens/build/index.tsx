@@ -1,25 +1,17 @@
-import { View, StyleSheet } from 'react-native';
-import Title from './components/title';
+import { View, StyleSheet, ScrollView } from 'react-native';
 import AddDatesButton from './components/addDates';
-import SubmitButton from './components/submitButton';
-import BackButton from './components/backButton';
 
 const Build = () => {
     return (
-        <View>
-            <View style={styles.container}>
-                <BackButton />
-                <Title />
-            </View>
+        <ScrollView style={styles.bigcontainer}>
             <AddDatesButton />
-            <SubmitButton />
-        </View>
+        </ScrollView>
     );
 };
 
 const styles = StyleSheet.create({
-    container: {
-        flexDirection: "row",
+    bigcontainer: {
+        marginBottom: 93,
     }
 })
 
