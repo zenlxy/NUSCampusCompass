@@ -4,7 +4,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import React, { useState, ReactNode } from 'react';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import places from '../../../../../data/Places';
-import { addDoc } from 'firebase/firestore';
+import { addDoc, getDocs, query, where } from 'firebase/firestore';
 import { itineraryRef } from '@/config/firebase';
 import { useAuth } from '../../../../../contexts/AuthContext';
 import Icon from '@expo/vector-icons/FontAwesome6';
@@ -36,14 +36,20 @@ const AddDatesButton = () => {
     };
     const handleSave = async () => {
         if (itinerary.length > 0) {
-            let doc = await addDoc(itineraryRef, {
-                text,
-                itinerary,
-                startDate,
-                userId: user.uid,
-            });
-            if (doc && doc.id) {
-                navigation.navigate("Main");
+            const q = query(itineraryRef, where("text", "==", text));
+            const querySnapshot = await getDocs(q);
+            if (querySnapshot.empty) {
+                let doc = await addDoc(itineraryRef, {
+                    text,
+                    itinerary,
+                    startDate,
+                    userId: user.uid,
+                });
+                if (doc && doc.id) {
+                    navigation.navigate("Main");
+                }
+            } else {
+                alert("An itinerary with this title already exists. Please rename with a unique title.");
             }
         } else {
             alert("Itinerary cannot be empty. Please add at least one item.");
