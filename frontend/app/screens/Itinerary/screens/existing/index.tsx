@@ -4,10 +4,35 @@ import { getDocs, query, where, deleteDoc, doc } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react';
 import { View, FlatList, ListRenderItem, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import Icon from '@expo/vector-icons/FontAwesome6';
+import { useNavigation } from 'expo-router';
+import { StackNavigationProp } from '@react-navigation/stack';
+
+type Place = {
+    placeId: number;
+    name: string;
+    description: string;
+    history: string;
+    funFacts: string;
+    address: string;
+    coordinates: string;
+};
+type RootStackParamList = {
+    Main: undefined;
+    'Existing Itineraries': undefined;
+    'Build Your Own': undefined;
+    'Recommended Tours': undefined;
+    'Edit Itinerary': {
+        itineraryId: string;
+        date: Date;
+        title: string;
+        places: Place[];
+    };
+};
 
 const Existing = () => {
     const [trips, setTrips] = useState([]);
     const { user } = useAuth();
+    const navigation = useNavigation<StackNavigationProp<any>>();
     const fetchTrips = async () => {
         const q = query(itineraryRef, where("userId", "==", user.uid));
         const querySnapshot = await getDocs(q);
@@ -24,10 +49,6 @@ const Existing = () => {
 
     const handleStart = () => {
         console.log('Start Trip');
-    };
-
-    const handleEdit = () => {
-        console.log('Edit Trip');
     };
 
     const handleDelete = async (id: string) => {
@@ -48,7 +69,14 @@ const Existing = () => {
                     <TouchableOpacity style={styles.button} onPress={handleStart}>
                         <Text>Start</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={[styles.button, { marginBottom: 10 }]} onPress={handleEdit}>
+                    <TouchableOpacity style={[styles.button, { marginBottom: 10 }]} onPress={() => {
+                        navigation.navigate("Edit Itinerary", {
+                            itineraryId: item.id,
+                            date: item.startDate,
+                            title: item.text,
+                            itinerary: item.itinerary,
+                        });
+                    }}>
                         <Text>Edit</Text>
                     </TouchableOpacity>
                 </View>

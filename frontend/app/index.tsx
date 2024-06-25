@@ -25,6 +25,7 @@ const ItineraryStackScreen = () => (
         <ItineraryStack.Screen name="Existing Itineraries" component={Existing} />
         <ItineraryStack.Screen name="Build Your Own" component={Build} options={{ headerShown: false }} />
         <ItineraryStack.Screen name="Recommended Tours" component={Recommended} />
+        <ItineraryStack.Screen name="Edit Itinerary" component={Edit} options={{ headerShown: false }} />
     </ItineraryStack.Navigator>
 );
 

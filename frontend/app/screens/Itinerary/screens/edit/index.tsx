@@ -8,6 +8,7 @@ import { useAuth } from '../../../../contexts/AuthContext';
 import Icon from '@expo/vector-icons/FontAwesome6';
 import { useNavigation } from 'expo-router';
 import { StackNavigationProp } from '@react-navigation/stack';
+import { RouteProp, useRoute } from '@react-navigation/native';
 
 type Place = {
     placeId: number;
@@ -19,16 +20,33 @@ type Place = {
     coordinates: string;
 };
 
+type RootStackParamList = {
+    Main: undefined;
+    'Existing Itineraries': undefined;
+    'Build Your Own': undefined;
+    'Recommended Tours': undefined;
+    'Edit Itinerary': {
+        itineraryId: string;
+        date: Date;
+        title: string;
+        places: Place[];
+    };
+};
+
+type EditItineraryScreenRouteProp = RouteProp<RootStackParamList, 'Edit Itinerary'>;
+
 const Edit = () => {
     const navigation = useNavigation<StackNavigationProp<any>>();
-    const [startDate, setStartDate] = useState(new Date());
+    const route = useRoute<EditItineraryScreenRouteProp>();
+    const { itineraryId, date, title, places: initialItinerary } = route.params;
+    const [startDate, setStartDate] = useState(new Date(date));
     const [showStartPicker, setShowStartPicker] = useState(true);
     const [userInput, setUserInput] = useState("");
     const [toAdd, setToAdd] = useState<Place>(places[1]);
-    const [itinerary, setItinerary] = useState<Place[]>([]);
+    const [itinerary, setItinerary] = useState<Place[]>(initialItinerary);
     const { user } = useAuth();
     const [isEditing, setIsEditing] = useState(false);
-    const [text, setText] = useState('Rename with Title');
+    const [text, setText] = useState(title);
     const [inputValue, setInputValue] = useState(text);
     const handleBlur = () => {
         setIsEditing(false);
@@ -101,7 +119,7 @@ const Edit = () => {
         <View style={styles.bigContainer}>
             <View style={styles.headercontainer}>
                 <View style={styles.backcontainer}>
-                    <TouchableOpacity onPress={() => navigation.navigate("Main")}>
+                    <TouchableOpacity onPress={() => navigation.navigate("Existing Itineraries")}>
                         <Icon name="arrow-left" size={20} color="#047bff" />
                     </ TouchableOpacity>
                 </View>
