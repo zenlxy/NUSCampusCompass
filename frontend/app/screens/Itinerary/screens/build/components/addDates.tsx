@@ -9,6 +9,11 @@ import { itineraryRef } from '@/config/firebase';
 import { useAuth } from '../../../../../contexts/AuthContext';
 import Icon from '@expo/vector-icons/FontAwesome6';
 
+type Coordinates = {
+    latitude: number;
+    longitude: number;
+};
+
 type Place = {
     placeId: number;
     name: string;
@@ -16,7 +21,7 @@ type Place = {
     history: string;
     funFacts: string;
     address: string;
-    coordinates: string;
+    coordinates: Coordinates;
 };
 
 const AddDatesButton = () => {
