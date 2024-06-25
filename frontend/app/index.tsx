@@ -13,6 +13,7 @@ import Settings from './screens/Settings';
 import Existing from './screens/Itinerary/screens/existing';
 import Build from './screens/Itinerary/screens/build';
 import Recommended from './screens/Itinerary/screens/recommended';
+import Edit from './screens/Itinerary/screens/edit';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
