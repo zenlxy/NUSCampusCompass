@@ -10,7 +10,8 @@ import Icon from '@expo/vector-icons/FontAwesome6';
 const locationsOfInterest = places.map((place: Place) => ({
   name: place.name,
   location: place.coordinates,
-  description: place.description
+  description: place.description,
+  images: place.images,
 }));
 
 function Map() {
@@ -36,9 +37,9 @@ function Map() {
     return locationsOfInterest.map((item, index) => (
       <Marker
         key={index}
-        coordinate={item.location || { latitude: 0, longitude: 0 }} // default value for the coordinate prop
+        coordinate={item.location || { latitude: 0, longitude: 0 }} // Default value for the coordinate prop
         onPress={() => {
-          setSelectedLocation(item);
+          setSelectedLocation({ ...item, placeId: index }); // Add the missing placeId property
           setModalVisible(true);
         }}
       >
@@ -88,6 +89,9 @@ function Map() {
                 <ScrollView>
                   <Text style={styles.modalTitle}>{selectedLocation.name}</Text>
                   <Text style={styles.modalDescription}>{selectedLocation.description}</Text>
+                  {(selectedLocation.images ?? []).map((image, index) => {
+                    return <Image key={index} source={{ uri: image.source }} style={styles.modalImage} />;
+                  })}
                   <Button title="Get Directions" onPress={() => selectedLocation.coordinates && handleDirections(selectedLocation.coordinates)} />
                   <Button title="Close" onPress={() => setModalVisible(false)} />
                 </ScrollView>
@@ -199,7 +203,7 @@ const styles = StyleSheet.create({
   },
   modalImage: {
     width: '100%',
-    height: 200,
+    height: 150,
     marginBottom: 10,
   },
 });

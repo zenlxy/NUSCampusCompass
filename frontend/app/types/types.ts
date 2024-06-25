@@ -6,7 +6,7 @@ export type Coordinates = {
 };
 
 export type Image = {
-    source: string;
+    source: any;
 };
 
 
@@ -18,13 +18,14 @@ export type Itinerary = {
 };
 
 export type Place = {
-    placeId?: number;
-    name?: string;
+    placeId: number;
+    name: string;
     description?: string;
     history?: string;
     funFacts?: string;
     address?: string;
     coordinates?: Coordinates;
+    images?: Image[]; 
 };
 
 export type RootStackParamList = {
