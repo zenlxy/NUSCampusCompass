@@ -4,25 +4,11 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import React, { useState, ReactNode } from 'react';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import places from '../../../../../data/Places';
-import { addDoc, getDocs, query, where } from 'firebase/firestore';
+import { Timestamp, addDoc, getDocs, query, where } from 'firebase/firestore';
 import { itineraryRef } from '@/config/firebase';
 import { useAuth } from '../../../../../contexts/AuthContext';
 import Icon from '@expo/vector-icons/FontAwesome6';
-
-type Coordinates = {
-    latitude: number;
-    longitude: number;
-};
-
-type Place = {
-    placeId: number;
-    name: string;
-    description: string;
-    history: string;
-    funFacts: string;
-    address: string;
-    coordinates: Coordinates;
-};
+import { Place, RootStackParamList, Coordinates, Itinerary } from '@/app/types/types';
 
 const AddDatesButton = () => {
     const navigation = useNavigation<StackNavigationProp<any>>();
@@ -47,7 +33,7 @@ const AddDatesButton = () => {
                 let doc = await addDoc(itineraryRef, {
                     text,
                     itinerary,
-                    startDate,
+                    startDate: Timestamp.fromDate(startDate),
                     userId: user.uid,
                 });
                 if (doc && doc.id) {
@@ -136,9 +122,11 @@ const AddDatesButton = () => {
                     value={startDate}
                     mode="date"
                     display="default"
-                    onChange={(event, date) => {
+                    onChange={(event, selectedDate) => {
                         setShowStartPicker(true);
-                        setStartDate(date || startDate);
+                        if (selectedDate) { // Ensure the selectedDate is valid
+                            setStartDate(selectedDate);
+                        }
                     }}
                     style={styles.date}
                 />

@@ -1,8 +1,8 @@
 import { Button, Text, View, StyleSheet, TextInput, FlatList, ListRenderItem, TouchableOpacity, ScrollView } from 'react-native';
-import React, { useState, ReactNode } from 'react';
+import React, { useState, ReactNode, useEffect } from 'react';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import places from '../../../../data/Places';
-import { addDoc, getDocs, query, where } from 'firebase/firestore';
+import { addDoc, doc, getDocs, onSnapshot, query, setDoc, where, Timestamp } from 'firebase/firestore';
 import { itineraryRef } from '@/config/firebase';
 import { useAuth } from '../../../../contexts/AuthContext';
 import Icon from '@expo/vector-icons/FontAwesome6';
@@ -16,37 +16,33 @@ type EditItineraryScreenRouteProp = RouteProp<RootStackParamList, 'Edit Itinerar
 const Edit = () => {
     const navigation = useNavigation<StackNavigationProp<any>>();
     const route = useRoute<EditItineraryScreenRouteProp>();
-    const { itineraryId, date, title, places: initialItinerary } = route.params;
-    const [startDate, setStartDate] = useState(new Date(date));
+    const { iti } = route.params;
+    const initialStartDate = iti?.startDate ? new Date(iti.startDate.toDate()) : new Date();
+    console.log(initialStartDate);
+    const [start, setStart] = useState<Date>(isNaN(initialStartDate.getTime()) ? new Date() : initialStartDate);
     const [showStartPicker, setShowStartPicker] = useState(true);
     const [userInput, setUserInput] = useState("");
     const [toAdd, setToAdd] = useState<Place>(places[1]);
-    const [itinerary, setItinerary] = useState<Place[]>(initialItinerary);
+    const [itinerary, setItinerary] = useState<Place[]>(iti?.itinerary || []);
     const { user } = useAuth();
     const [isEditing, setIsEditing] = useState(false);
-    const [text, setText] = useState(title);
+    const [text, setText] = useState(iti?.text || "");
     const [inputValue, setInputValue] = useState(text);
+
     const handleBlur = () => {
         setIsEditing(false);
         setText(inputValue);
     };
+
     const handleSave = async () => {
         if (itinerary.length > 0) {
-            const q = query(itineraryRef, where("text", "==", text));
-            const querySnapshot = await getDocs(q);
-            if (querySnapshot.empty) {
-                let doc = await addDoc(itineraryRef, {
-                    text,
-                    itinerary,
-                    startDate,
-                    userId: user.uid,
-                });
-                if (doc && doc.id) {
-                    navigation.navigate("Main");
-                }
-            } else {
-                alert("An itinerary with this title already exists. Please rename with a unique title.");
-            }
+            const itineraryDocRef = doc(itineraryRef, iti.id);
+            await setDoc(itineraryDocRef, {
+                startDate: Timestamp.fromDate(start),
+                text: text,
+                itinerary: itinerary,
+            }, { merge: true });
+            navigation.navigate("Existing Itineraries");
         } else {
             alert("Itinerary cannot be empty. Please add at least one item.");
         }
@@ -124,12 +120,14 @@ const Edit = () => {
             <View style={styles.container}>
                 <Text>Select Date:</Text>
                 <DateTimePicker
-                    value={startDate}
+                    value={start}
                     mode="date"
                     display="default"
-                    onChange={(event, date) => {
-                        setShowStartPicker(true);
-                        setStartDate(date || startDate);
+                    onChange={(event, selecteddate) => {
+                        setShowStartPicker(false);
+                        if (selecteddate) {
+                            setStart(selecteddate);
+                        }
                     }}
                     style={styles.date}
                 />
