@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { TextInput, Text, Image, TouchableOpacity, StyleSheet, View, Modal, ScrollView, Button } from 'react-native';
+import { TextInput, Text, Image, TouchableOpacity, StyleSheet, View, Modal, ScrollView, Button, Platform, Linking } from 'react-native';
 import * as Location from 'expo-location';
 import { UserLocationContext } from '../../contexts/UserLocationContext';
 import { Coordinates, Place } from '@/app/types/types';
@@ -49,8 +49,13 @@ function Map() {
   };
 
   const handleDirections = (destination: Coordinates) => {
-    // Handle directions logic here, e.g., using a navigation app
+    console.log('Opening directions to:', destination);
+    const { latitude, longitude } = destination;
+    const url = `http://maps.apple.com/?daddr=${latitude},${longitude}`;
+    console.log('URL:', url);
+    Linking.openURL(url);
   };
+  
 
   return (
     <UserLocationContext.Provider value={{ location, setLocation } as any}>
