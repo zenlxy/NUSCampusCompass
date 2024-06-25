@@ -15,8 +15,8 @@ const AppMapView = () => {
                 initialRegion={{
                     latitude: location?.coords?.latitude || 1.3521,
                     longitude: location?.coords?.longitude || 103.8198,
-                    latitudeDelta: 0.0422,
-                    longitudeDelta: 0.0421,
+                    latitudeDelta: 0.0122,
+                    longitudeDelta: 0.0121,
                 }} 
             >
                 <Marker
