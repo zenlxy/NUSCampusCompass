@@ -1,28 +1,28 @@
 import React, { useEffect, useState } from 'react';
-import MapView, {PROVIDER_DEFAULT, PROVIDER_GOOGLE} from 'react-native-maps';
+import MapView, { PROVIDER_DEFAULT, PROVIDER_GOOGLE } from 'react-native-maps';
 import { TextInput, Image, TouchableOpacity, StyleSheet, View, Platform } from 'react-native';
 import * as Location from 'expo-location';
 
 
 const Map = () => {
   return (
-      <View style={styles.container}>
-          <Maps />
-          <View style={styles.searchAndFilterContainer}>
-            <Search />
-            <Filter />
-          </View>
+    <View style={styles.container}>
+      <Maps />
+      <View style={styles.searchAndFilterContainer}>
+        <Search />
+        <Filter />
       </View>
+    </View>
   );
 }
 
 const Maps = () => {
-    return (
-        <View style={styles.container}>
-            <MapView 
-            style={styles.map} />
-        </View>
-    );
+  return (
+    <View style={styles.container}>
+      <MapView
+        style={styles.map} />
+    </View>
+  );
 };
 
 const Search = () => {
@@ -40,7 +40,7 @@ const Search = () => {
           style={styles.searchButton}
         />
       </TouchableOpacity>
-      </View>
+    </View>
   );
 }
 
