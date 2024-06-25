@@ -1,12 +1,15 @@
+import { Timestamp } from "firebase/firestore";
+
 export type Coordinates = {
     latitude: number,
     longitude: number,
 };
 
 export type Itinerary = {
+    id: string,
     itinerary: Place[],
     text: string,
-    startDate: Date,
+    startDate: Timestamp,
 };
 
 export type Place = {
@@ -25,9 +28,6 @@ export type RootStackParamList = {
     'Build Your Own': undefined;
     'Recommended Tours': undefined;
     'Edit Itinerary': {
-        itineraryId: string;
-        date: Date;
-        title: string;
-        places: Place[];
+        iti: Itinerary,
     };
 };
