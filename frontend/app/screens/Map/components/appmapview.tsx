@@ -6,7 +6,7 @@ import { useContext } from 'react';
 import { Region } from 'react-native-maps';
 
 const AppMapView = () => {
-    const { location, setLocation } = useContext(UserLocationContext);
+    const { location, setLocation } = useContext<any>(UserLocationContext);
     return location?.coords?.latitude && (
         <View>
             <MapView
