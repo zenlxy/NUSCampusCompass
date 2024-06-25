@@ -97,7 +97,7 @@ function Map() {
                   {(selectedLocation.images ?? []).map((image, index) => {
                     return <Image key={index} source={{ uri: image.source }} style={styles.modalImage} />;
                   })}
-                  <Button title="Get Directions" onPress={() => selectedLocation.coordinates && handleDirections(selectedLocation.coordinates)} />
+                  <Button title="Get Directions" onPress={() => selectedLocation.coordinates && handleDirections(selectedLocation.coordinates)}/>
                   <Button title="Close" onPress={() => setModalVisible(false)} />
                 </ScrollView>
               </View>
