@@ -49,9 +49,7 @@
       }
     },
     "owner": "jpowcm",
-    "runtimeVersion": {
-      "policy": "appVersion"
-    },
+    "runtimeVersion": "1.0.0",
     "updates": {
       "url": "https://u.expo.dev/68068a48-1ce8-4952-85cc-20060eea0834"
     }
