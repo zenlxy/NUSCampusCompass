@@ -1,9 +1,10 @@
-import MapView from 'react-native-maps';
+import MapView, { Marker } from 'react-native-maps';
 import { StyleSheet, View } from 'react-native';
 import * as Location from 'expo-location';
 import { UserLocationContext } from '../../../contexts/UserLocationContext';
 import { useContext } from 'react';
 import { Region } from 'react-native-maps';
+import Icon from '@expo/vector-icons/FontAwesome6';
 
 const AppMapView = () => {
     const { location, setLocation } = useContext<any>(UserLocationContext);
@@ -12,11 +13,21 @@ const AppMapView = () => {
             <MapView
                 style={styles.map} 
                 initialRegion={{
-                    latitude: location?.coords?.latitude || 37.78825,
-                    longitude: location?.coords?.longitude || -122.4324,
-                    latitudeDelta: 0.0922,
+                    latitude: location?.coords?.latitude || 1.3521,
+                    longitude: location?.coords?.longitude || 103.8198,
+                    latitudeDelta: 0.0422,
                     longitudeDelta: 0.0421,
-                }} />
+                }} 
+            >
+                <Marker
+                    coordinate={{
+                        latitude: location?.coords?.latitude,
+                        longitude: location?.coords?.longitude
+                    }}
+                > 
+                    <Icon name="location-dot" size={30} color="#047bff" />
+                </Marker>
+            </MapView>
         </View>
     )
 }
