@@ -1,6 +1,8 @@
-import React from 'react';
-import MapView from 'react-native-maps';
-import { TextInput, Image, TouchableOpacity, StyleSheet, View } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import MapView, {PROVIDER_DEFAULT, PROVIDER_GOOGLE} from 'react-native-maps';
+import { TextInput, Image, TouchableOpacity, StyleSheet, View, Platform } from 'react-native';
+import * as Location from 'expo-location';
+
 
 const Map = () => {
   return (
@@ -17,7 +19,8 @@ const Map = () => {
 const Maps = () => {
     return (
         <View style={styles.container}>
-            <MapView style={styles.map} />
+            <MapView 
+            style={styles.map} />
         </View>
     );
 };
