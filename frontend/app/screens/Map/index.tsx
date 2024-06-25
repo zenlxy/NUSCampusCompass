@@ -1,27 +1,43 @@
-import React, { useEffect, useState } from 'react';
-import MapView, { PROVIDER_DEFAULT, PROVIDER_GOOGLE } from 'react-native-maps';
-import { TextInput, Image, TouchableOpacity, StyleSheet, View, Platform } from 'react-native';
+import React, { useContext, useEffect, useState } from 'react';
+import { TextInput, Image, TouchableOpacity, StyleSheet, View } from 'react-native';
 import * as Location from 'expo-location';
-
+import { UserLocationContext } from '../../contexts/UserLocationContext';
+import AppMapView from './components/appmapview';
 
 const Map = () => {
-  return (
-    <View style={styles.container}>
-      <Maps />
-      <View style={styles.searchAndFilterContainer}>
-        <Search />
-        <Filter />
-      </View>
-    </View>
-  );
-}
+  const [location, setLocation] = useState<Location.LocationObject | null>(null);
+  const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
-const Maps = () => {
+  useEffect(() => {
+    (async () => {
+      
+      let { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== 'granted') {
+        setErrorMsg('Permission to access location was denied');
+        return;
+      }
+
+      let location = await Location.getCurrentPositionAsync({});
+      setLocation(location);
+      console.log(location);
+    })();
+  }, []);
+
+  let text = 'Waiting..';
+  if (errorMsg) {
+    text = errorMsg;
+  } else if (location) {
+    text = JSON.stringify(location);
+  }
+
   return (
+    <UserLocationContext.Provider value={{location, setLocation} as any}>
     <View style={styles.container}>
-      <MapView
-        style={styles.map} />
+      <AppMapView />
+      <Search />
+      <Filter />
     </View>
+    </UserLocationContext.Provider> 
   );
 };
 
@@ -61,14 +77,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  map: {
-    width: '100%',
-    height: '100%',
-  },
   searchContainer: {
     position: 'absolute',
-    top: 2,
-    left: 5,
+    top: 10,
+    left: 10,
     width: '85%',
     flexDirection: 'row',
     backgroundColor: 'white',
@@ -90,11 +102,11 @@ const styles = StyleSheet.create({
   },
   filterContainer: {
     position: 'absolute',
-    top: 15,
+    top: 17,
     right: 10,
   },
   filterButton: {
-    padding: 0,
+    padding: 5,
   },
   filterIcon: {
     width: 20,
