@@ -3,7 +3,7 @@ import { itineraryRef } from '@/config/firebase';
 import { getDocs, query, where } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 import { View, FlatList, ListRenderItem, StyleSheet, Text, TouchableOpacity } from 'react-native';
-import { green } from 'react-native-reanimated/lib/typescript/reanimated2/Colors';
+import Icon from '@expo/vector-icons/FontAwesome6';
 
 const Existing = () => {
     const [trips, setTrips] = useState([]);
@@ -30,6 +30,10 @@ const Existing = () => {
         console.log('Edit Trip');
     };
 
+    const handleDelete = () => {
+        console.log("Delete Trip");
+    };
+
     const itineraryList: ListRenderItem<any> = ({ item, index }) => {
         return (
             <View style={styles.container}>
@@ -42,6 +46,9 @@ const Existing = () => {
                         <Text>Edit</Text>
                     </TouchableOpacity>
                 </View>
+                <TouchableOpacity style={styles.delete} onPress={handleDelete}>
+                    <Icon name='trash' size={20} color='red' />
+                </TouchableOpacity>
             </View>
         );
         return null;
@@ -59,7 +66,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         flexDirection: 'row',
         backgroundColor: '#90B8B8',
-        marginHorizontal: 20,
+        marginLeft: 20,
+        marginRight: 50,
         marginTop: 20,
         borderRadius: 20,
     },
@@ -78,7 +86,13 @@ const styles = StyleSheet.create({
         color: 'black',
         fontFamily: 'Arial Bold',
         marginLeft: 20,
-        width: 240,
+        width: 220,
+    },
+    delete: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 10,
+        width: 60,
     },
 })
 
