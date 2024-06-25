@@ -14,9 +14,6 @@
     },
     "ios": {
       "supportsTablet": true,
-      "config": {
-        "googleMapsApiKey": "AIzaSyAyNjAn5JpIoe5w9a6KhdsIkNruI89x3fM"
-      },
       "bundleIdentifier": "com.jpowcm.NUSCampusCompass"
     },
     "android": {
