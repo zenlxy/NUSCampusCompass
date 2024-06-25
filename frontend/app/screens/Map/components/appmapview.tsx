@@ -7,14 +7,14 @@ import { Region } from 'react-native-maps';
 
 const AppMapView = () => {
     const { location, setLocation } = useContext<any>(UserLocationContext);
-    return location?.coords?.latitude && (
+    return location?.latitude && (
         <View>
             <MapView
                 style={styles.map} 
                 initialRegion={{
-                    latitude: location?.coords?.latitude || 37.78825,
-                    longitude: location?.coords?.longitude || -122.4324,
-                    latitudeDelta: 0.0922,
+                    latitude: location?.latitude,
+                    longitude: location?.longitude,
+                    latitudeDelta: 0.0422,
                     longitudeDelta: 0.0421,
                 }} />
         </View>
