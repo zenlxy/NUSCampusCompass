@@ -9,29 +9,7 @@ import Icon from '@expo/vector-icons/FontAwesome6';
 import { useNavigation } from 'expo-router';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RouteProp, useRoute } from '@react-navigation/native';
-
-type Place = {
-    placeId: number;
-    name: string;
-    description: string;
-    history: string;
-    funFacts: string;
-    address: string;
-    coordinates: string;
-};
-
-type RootStackParamList = {
-    Main: undefined;
-    'Existing Itineraries': undefined;
-    'Build Your Own': undefined;
-    'Recommended Tours': undefined;
-    'Edit Itinerary': {
-        itineraryId: string;
-        date: Date;
-        title: string;
-        places: Place[];
-    };
-};
+import { Place, RootStackParamList, Coordinates, Itinerary } from '@/app/types/types';
 
 type EditItineraryScreenRouteProp = RouteProp<RootStackParamList, 'Edit Itinerary'>;
 
