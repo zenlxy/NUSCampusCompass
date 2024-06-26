@@ -1,3 +1,13 @@
+
+const images = {
+    'LKCNHM': require('../../assets/images/LKCNHM.png'),
+    'UCC': require('../../assets/images/UCC.png'),
+    'Museum': require('../../assets/images/Museum.png'),
+    'Museum2': require('../../assets/images/Museum2.png'),
+    'YSTCM': require('../../assets/images/YSTCM.png'),
+    'Flavours': require('../../assets/images/Flavours.png')
+  };
+  
 const places = [
     {
         placeId: 1,
@@ -9,7 +19,10 @@ const places = [
         coordinates: {
             latitude: 1.301667,
             longitude: 103.773611
-        }
+        },
+        images: [
+            { source: require('../../assets/images/LKCNHM.png') }
+        ]
     },
     {
         placeId: 2,
@@ -21,7 +34,10 @@ const places = [
         coordinates: {
             latitude: 1.3018,
             longitude: 103.7718
-        }
+        },
+        images: [
+            { source: require('../../assets/images/UCC.png') }
+        ]
     },
     {
         placeId: 3,
@@ -33,7 +49,11 @@ const places = [
         coordinates:{
             latitude: 1.3017,
             longitude: 103.7722
-        }
+        },
+        images: [
+            { source: require('../../assets/images/Museum.png') },
+            { source: require('../../assets/images/Museum2.png') }
+        ]
     },
     {
         placeId: 4,
@@ -45,7 +65,10 @@ const places = [
         coordinates: {
             latitude: 1.3024,
             longitude: 103.7730
-        }
+        },
+        images: [
+            { source: require('../../assets/images/YSTCM.png') }
+        ]
     },
     {
         placeId: 5,
@@ -57,8 +80,11 @@ const places = [
         coordinates: {
             latitude: 1.3046,
             longitude: 103.7727
-        }
+        },
+        images: [
+            { source: require('../../assets/images/Flavours.png') }
+        ]
     }
 ];
 
-export default places;
+export { images, places };

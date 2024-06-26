@@ -1,27 +1,27 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { TextInput, Image, TouchableOpacity, StyleSheet, View } from 'react-native';
+import { TextInput, Text, Image, TouchableOpacity, StyleSheet, View, Modal, ScrollView, Button, Platform, Linking } from 'react-native';
 import * as Location from 'expo-location';
 import { UserLocationContext } from '../../contexts/UserLocationContext';
-import AppMapView from './components/appmapview';
 import { Coordinates, Place } from '@/app/types/types';
-import places from '@/app/data/Places';
-import MapView, { Marker } from 'react-native-maps';
+import { places, images } from '@/app/data/Places';
+import MapView, { Marker, Callout } from 'react-native-maps';
 import Icon from '@expo/vector-icons/FontAwesome6';
 
 const locationsOfInterest = places.map((place: Place) => ({
-  title: place.name,
+  name: place.name,
   location: place.coordinates,
   description: place.description,
+  images: place.images,
 }));
-
 
 function Map() {
   const [location, setLocation] = useState<Location.LocationObject | null>(null);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
+  const [selectedLocation, setSelectedLocation] = useState<Place | null>(null);
+  const [modalVisible, setModalVisible] = useState(false);
 
   useEffect(() => {
     (async () => {
-
       let { status } = await Location.requestForegroundPermissionsAsync();
       if (status !== 'granted') {
         setErrorMsg('Permission to access location was denied');
@@ -30,56 +30,78 @@ function Map() {
 
       let location = await Location.getCurrentPositionAsync({});
       setLocation(location);
-      console.log(location);
     })();
   }, []);
 
-  let text = 'Waiting..';
-  if (errorMsg) {
-    text = errorMsg;
-  } else if (location) {
-    text = JSON.stringify(location);
-  }
-
   const showLocationsOfInterest = () => {
-    return locationsOfInterest.map((item, index) => {
-      return (
-        <Marker
-          key={index}
-          coordinate={item.location}
-          title={item.title}
-          description={item.description}
-        >
+    return locationsOfInterest.map((item, index) => (
+      <Marker
+        key={index}
+        coordinate={item.location || { latitude: 0, longitude: 0 }} // Default value for the coordinate prop
+        onPress={() => {
+          setSelectedLocation({ ...item, placeId: index}); // Add the missing imageKeys property
+          setModalVisible(true);
+        }}
+      >
         <Icon name="location-dot" size={25} color="red" />
-        </Marker>
-      )
-    });
-  }
+      </Marker>
+    ));
+  };
+
+  const handleDirections = (destination: Coordinates) => {
+    console.log('Opening directions to:', destination);
+    const { latitude, longitude } = destination;
+    const url = `http://maps.apple.com/?daddr=${latitude},${longitude}`;
+    console.log('URL:', url);
+    Linking.openURL(url);
+  };
   
+
   return (
     <UserLocationContext.Provider value={{ location, setLocation } as any}>
       <View style={styles.container}>
-      <MapView
-                style={styles.map} 
-                initialRegion={{
-                    latitude: location?.coords?.latitude || 1.3020,
-                    longitude: location?.coords?.longitude || 103.7730,
-                    latitudeDelta: 0.005,
-                    longitudeDelta: 0.005,
-                }} 
-            >
-                <Marker
-                  coordinate={{
-                    latitude: location?.coords?.latitude || 0,
-                    longitude: location?.coords?.longitude || 0
-                  }}
-                > 
-                  <Icon name="location-dot" size={25} color="#047bff" />
-                </Marker>
-                {showLocationsOfInterest()}
-            </MapView>
+        <MapView
+          style={styles.map}
+          initialRegion={{
+            latitude: location?.coords?.latitude || 1.3020,
+            longitude: location?.coords?.longitude || 103.7730,
+            latitudeDelta: 0.005,
+            longitudeDelta: 0.005,
+          }}
+        >
+          <Marker
+            coordinate={{
+              latitude: location?.coords?.latitude || 0,
+              longitude: location?.coords?.longitude || 0,
+            }}
+          >
+            <Icon name="location-dot" size={25} color="#047bff" />
+          </Marker>
+          {showLocationsOfInterest()}
+        </MapView>
         <Search />
         <Filter />
+
+        {selectedLocation && (
+          <Modal
+            animationType="slide"
+            transparent={true}
+            visible={modalVisible}
+            onRequestClose={() => setModalVisible(false)}
+          >
+            <View style={styles.modalContainer}>
+              <View style={styles.modalContent}>
+                <ScrollView>
+                  <Text style={styles.modalTitle}>{selectedLocation.name}</Text>
+                  <Text style={styles.modalDescription}>{selectedLocation.description}</Text>
+                  <Image source={selectedLocation.images[0].source} style={styles.modalImage} />
+                  <Button title="Get Directions" onPress={() => selectedLocation.coordinates && handleDirections(selectedLocation.coordinates)}/>
+                  <Button title="Close" onPress={() => setModalVisible(false)} />
+                </ScrollView>
+              </View>
+            </View>
+          </Modal>
+        )}
       </View>
     </UserLocationContext.Provider>
   );
@@ -102,7 +124,7 @@ const Search = () => {
       </TouchableOpacity>
     </View>
   );
-}
+};
 
 const Filter = () => {
   return (
@@ -115,7 +137,7 @@ const Filter = () => {
       </TouchableOpacity>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -160,13 +182,32 @@ const styles = StyleSheet.create({
     width: 20,
     height: 20,
   },
-  searchAndFilterContainer: {
-    position: 'absolute',
-    top: 10,
-    left: 10,
-    right: 10,
-    flexDirection: 'row',
+  modalContainer: {
+    flex: 1,
+    justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+  },
+  modalContent: {
+    width: '90%',
+    backgroundColor: 'white',
+    borderRadius: 10,
+    padding: 20,
+    alignItems: 'center',
+  },
+  modalTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 10,
+  },
+  modalDescription: {
+    fontSize: 16,
+    marginBottom: 20,
+  },
+  modalImage: {
+    width: '100%',
+    height: 150,
+    marginBottom: 10,
   },
 });
 
