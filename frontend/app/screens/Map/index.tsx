@@ -61,8 +61,8 @@ function Map() {
   const handleLocationSelect = (location: Place) => {
     setSelectedLocation(location);
     setModalVisible(true);
-    setSearchInput(''); // Clear search input after selection
-    setFilteredLocations([]); // Clear filtered locations after selection
+    setSearchInput(''); 
+    setFilteredLocations([]); 
   };
 
   const handleSearchInputChange = (text: string) => {
