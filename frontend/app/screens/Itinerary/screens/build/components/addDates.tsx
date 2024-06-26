@@ -3,7 +3,7 @@ import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { useState, ReactNode } from 'react';
 import DateTimePicker from '@react-native-community/datetimepicker';
-import places from '../../../../../data/Places';
+import { places } from '../../../../../data/Places';
 import { Timestamp, addDoc, getDocs, query, where } from 'firebase/firestore';
 import { itineraryRef } from '@/config/firebase';
 import { useAuth } from '../../../../../contexts/AuthContext';
