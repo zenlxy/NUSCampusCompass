@@ -39,9 +39,9 @@ function Map() {
     return locationsOfInterest.map((item, index) => (
       <Marker
         key={index}
-        coordinate={item.location || { latitude: 0, longitude: 0 }} // Default value for the coordinate prop
+        coordinate={item.location || { latitude: 0, longitude: 0 }} 
         onPress={() => {
-          setSelectedLocation({ ...item, placeId: index}); // Add the missing imageKeys property
+          setSelectedLocation({ ...item, placeId: index}); 
           setModalVisible(true);
         }}
       >
