@@ -5,6 +5,11 @@ export type Coordinates = {
     longitude: number,
 };
 
+export type Image = {
+    source: any;
+};
+
+
 export type Itinerary = {
     id: string,
     itinerary: Place[],
@@ -15,11 +20,12 @@ export type Itinerary = {
 export type Place = {
     placeId: number;
     name: string;
-    description: string;
-    history: string;
-    funFacts: string;
-    address: string;
-    coordinates: Coordinates;
+    description?: string;
+    history?: string;
+    funFacts?: string;
+    address?: string;
+    coordinates?: Coordinates;
+    images: Image[];
 };
 
 export type RootStackParamList = {
