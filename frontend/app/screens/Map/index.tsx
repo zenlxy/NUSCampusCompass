@@ -3,7 +3,7 @@ import { TextInput, Text, Image, TouchableOpacity, StyleSheet, View, Modal, Scro
 import * as Location from 'expo-location';
 import { UserLocationContext } from '../../contexts/UserLocationContext';
 import { Coordinates, Place } from '@/app/types/types';
-import places from '@/app/data/Places';
+import { places, images } from '@/app/data/Places';
 import MapView, { Marker, Callout } from 'react-native-maps';
 import Icon from '@expo/vector-icons/FontAwesome6';
 
@@ -39,7 +39,7 @@ function Map() {
         key={index}
         coordinate={item.location || { latitude: 0, longitude: 0 }} // Default value for the coordinate prop
         onPress={() => {
-          setSelectedLocation({ ...item, placeId: index }); // Add the missing placeId property
+          setSelectedLocation({ ...item, placeId: index}); // Add the missing imageKeys property
           setModalVisible(true);
         }}
       >
@@ -94,9 +94,7 @@ function Map() {
                 <ScrollView>
                   <Text style={styles.modalTitle}>{selectedLocation.name}</Text>
                   <Text style={styles.modalDescription}>{selectedLocation.description}</Text>
-                  {(selectedLocation.images ?? []).map((image, index) => {
-                    return <Image key={index} source={{ uri: image.source }} style={styles.modalImage} />;
-                  })}
+                  <Image source={selectedLocation.images[0].source} style={styles.modalImage} />
                   <Button title="Get Directions" onPress={() => selectedLocation.coordinates && handleDirections(selectedLocation.coordinates)}/>
                   <Button title="Close" onPress={() => setModalVisible(false)} />
                 </ScrollView>

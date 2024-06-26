@@ -1,3 +1,13 @@
+
+const images = {
+    'LKCNHM': require('../../assets/images/LKCNHM.png'),
+    'UCC': require('../../assets/images/UCC.png'),
+    'Museum': require('../../assets/images/Museum.png'),
+    'Museum2': require('../../assets/images/Museum2.png'),
+    'YSTCM': require('../../assets/images/YSTCM.png'),
+    'Flavours': require('../../assets/images/Flavours.png')
+  };
+  
 const places = [
     {
         placeId: 1,
@@ -77,4 +87,4 @@ const places = [
     }
 ];
 
-export default places;
+export { images, places };
