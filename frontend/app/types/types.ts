@@ -25,7 +25,7 @@ export type Place = {
     funFacts?: string;
     address?: string;
     coordinates?: Coordinates;
-    images?: Image[]; 
+    images: Image[];
 };
 
 export type RootStackParamList = {
