@@ -1,7 +1,7 @@
 import { Button, Text, View, StyleSheet, TextInput, FlatList, ListRenderItem, TouchableOpacity, ScrollView } from 'react-native';
 import React, { useState, ReactNode, useEffect } from 'react';
 import DateTimePicker from '@react-native-community/datetimepicker';
-import places from '../../../../data/Places';
+import { places } from '../../../../data/Places';
 import { addDoc, doc, getDocs, onSnapshot, query, setDoc, where, Timestamp } from 'firebase/firestore';
 import { itineraryRef } from '@/config/firebase';
 import { useAuth } from '../../../../contexts/AuthContext';

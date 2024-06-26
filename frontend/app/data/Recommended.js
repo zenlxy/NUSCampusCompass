@@ -1,4 +1,4 @@
-import places from './Places';
+import { places } from './Places';
 
 const historical = {
     itinerary: [
