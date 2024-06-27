@@ -19,6 +19,8 @@ function Map() {
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
   const [selectedLocation, setSelectedLocation] = useState<Place | null>(null);
   const [modalVisible, setModalVisible] = useState(false);
+  const [searchInput, setSearchInput] = useState<string>('');
+  const [filteredLocations, setFilteredLocations] = useState<Place[]>([]);
 
   useEffect(() => {
     (async () => {
@@ -37,9 +39,9 @@ function Map() {
     return locationsOfInterest.map((item, index) => (
       <Marker
         key={index}
-        coordinate={item.location || { latitude: 0, longitude: 0 }} // Default value for the coordinate prop
+        coordinate={item.location || { latitude: 0, longitude: 0 }} 
         onPress={() => {
-          setSelectedLocation({ ...item, placeId: index}); // Add the missing imageKeys property
+          setSelectedLocation({ ...item, placeId: index}); 
           setModalVisible(true);
         }}
       >
@@ -55,7 +57,25 @@ function Map() {
     console.log('URL:', url);
     Linking.openURL(url);
   };
-  
+
+  const handleLocationSelect = (location: Place) => {
+    setSelectedLocation(location);
+    setModalVisible(true);
+    setSearchInput(''); 
+    setFilteredLocations([]); 
+  };
+
+  const handleSearchInputChange = (text: string) => {
+    setSearchInput(text);
+    if (text) {
+      const filtered = places.filter(place =>
+        place.name.toLowerCase().includes(text.toLowerCase())
+      );
+      setFilteredLocations(filtered);
+    } else {
+      setFilteredLocations(places);
+    }
+  };
 
   return (
     <UserLocationContext.Provider value={{ location, setLocation } as any}>
@@ -79,7 +99,15 @@ function Map() {
           </Marker>
           {showLocationsOfInterest()}
         </MapView>
-        <Search />
+        <Search 
+          searchInput={searchInput} 
+          onSearchInputChange={handleSearchInputChange} 
+          filteredLocations={filteredLocations} 
+          onLocationSelect={(location) => {
+            setSelectedLocation(location);
+            setModalVisible(true);
+          }} 
+        />
         <Filter />
 
         {selectedLocation && (
@@ -107,21 +135,32 @@ function Map() {
   );
 }
 
-const Search = () => {
+
+const Search = ({ searchInput, onSearchInputChange, filteredLocations, onLocationSelect }: 
+  { searchInput: string, onSearchInputChange: (text: string) => void, filteredLocations: Place[], onLocationSelect: (location: Place) => void }) => {
   return (
     <View style={styles.searchContainer}>
       <TextInput
         style={styles.searchInput}
         placeholder="Search"
+        value={searchInput}
+        onChangeText={onSearchInputChange}
       />
-      <TouchableOpacity
-        style={styles.searchButton}
-      >
+      <TouchableOpacity style={styles.searchButton}>
         <Image
           source={require('../../../assets/images/search.png')}
           style={styles.searchButton}
         />
       </TouchableOpacity>
+      {searchInput !== '' && (
+        <ScrollView style={styles.searchResultsContainer}>
+          {filteredLocations.map((location, index) => (
+            <TouchableOpacity key={index} onPress={() => onLocationSelect(location)}>
+              <Text style={styles.searchResultItem}>{location.name}</Text>
+            </TouchableOpacity>
+          ))}
+        </ScrollView>
+      )}
     </View>
   );
 };
@@ -169,6 +208,21 @@ const styles = StyleSheet.create({
     paddingRight: 10,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  searchResultsContainer: {
+    maxHeight: 200,
+    backgroundColor: 'white',
+    borderRadius: 5,
+    position: 'absolute',
+    top: 45,
+    left: 10,
+    right: 10,
+    zIndex: 1000,
+  },
+  searchResultItem: {
+    padding: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: '#ccc',
   },
   filterContainer: {
     position: 'absolute',
