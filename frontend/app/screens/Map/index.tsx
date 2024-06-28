@@ -9,7 +9,7 @@ import Icon from '@expo/vector-icons/FontAwesome6';
 
 const locationsOfInterest = places.map((place: Place) => ({
   name: place.name,
-  location: place.coordinates,
+  coordinates: place.coordinates,
   description: place.description,
   images: place.images,
 }));
@@ -39,9 +39,10 @@ function Map() {
     return locationsOfInterest.map((item, index) => (
       <Marker
         key={index}
-        coordinate={item.location || { latitude: 0, longitude: 0 }} 
+        coordinate={item.coordinates || { latitude: 0, longitude: 0 }} 
         onPress={() => {
           setSelectedLocation({ ...item, placeId: index}); 
+          console.log('Selected location:', item);
           setModalVisible(true);
         }}
       >
