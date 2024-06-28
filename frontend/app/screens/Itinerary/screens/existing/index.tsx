@@ -96,8 +96,8 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         height: 30,
         width: 50,
-        marginRight: 20,
         marginTop: 10,
+        marginRight: 30,
     },
     text: {
         fontSize: 20,
@@ -109,7 +109,6 @@ const styles = StyleSheet.create({
     delete: {
         justifyContent: 'center',
         alignItems: 'center',
-        width: '10%',
     },
     messageBox: {
         justifyContent: 'center',
