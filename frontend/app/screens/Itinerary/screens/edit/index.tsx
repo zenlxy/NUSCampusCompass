@@ -1,4 +1,4 @@
-import { Button, Text, View, StyleSheet, TextInput, FlatList, ListRenderItem, TouchableOpacity, ScrollView } from 'react-native';
+import { Button, Text, View, StyleSheet, TextInput, FlatList, ListRenderItem, TouchableOpacity, Platform } from 'react-native';
 import React, { useState, ReactNode, useEffect } from 'react';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { places } from '../../../../data/Places';
@@ -20,7 +20,7 @@ const Edit = () => {
     const initialStartDate = iti?.startDate ? new Date(iti.startDate.toDate()) : new Date();
     console.log(initialStartDate);
     const [start, setStart] = useState<Date>(isNaN(initialStartDate.getTime()) ? new Date() : initialStartDate);
-    const [showStartPicker, setShowStartPicker] = useState(true);
+    const [showStartPicker, setShowStartPicker] = useState(false);
     const [userInput, setUserInput] = useState("");
     const [toAdd, setToAdd] = useState<Place>(places[1]);
     const [itinerary, setItinerary] = useState<Place[]>(iti?.itinerary || []);
@@ -61,6 +61,52 @@ const Edit = () => {
     };
     const handleDeletePlace = (placeId: number) => {
         setItinerary(itinerary.filter(place => place.placeId !== placeId));
+    };
+    const calendar = () => {
+        if (Platform.OS === 'android') {
+            return (
+                <View>
+                    <View style={styles.container}>
+                        <Text>Select Date:</Text>
+                        <Button
+                            title={start.toDateString()}
+                            onPress={() => setShowStartPicker(true)}
+                        />
+                    </View>
+                    {showStartPicker && (
+                        <DateTimePicker
+                            value={start}
+                            mode="date"
+                            onChange={(event, selectedDate) => {
+                                setShowStartPicker(false);
+                                if (selectedDate) {
+                                    setStart(selectedDate);
+                                }
+                            }}
+                            style={styles.date}
+                        />
+                    )}
+                </View>
+            )
+        } else {
+            return (
+                <View style={styles.container}>
+                    <Text>Select Date:</Text>
+                    <DateTimePicker
+                        value={start}
+                        mode="date"
+                        display="default"
+                        onChange={(event, selectedDate) => {
+                            setShowStartPicker(true);
+                            if (selectedDate) {
+                                setStart(selectedDate);
+                            }
+                        }}
+                        style={styles.date}
+                    />
+                </View>
+            )
+        }
     };
     const filterData: ListRenderItem<Place> = ({ item }) => {
         if (userInput === "") {
@@ -117,20 +163,8 @@ const Edit = () => {
                     )}
                 </View>
             </View>
-            <View style={styles.container}>
-                <Text>Select Date:</Text>
-                <DateTimePicker
-                    value={start}
-                    mode="date"
-                    display="default"
-                    onChange={(event, selecteddate) => {
-                        setShowStartPicker(false);
-                        if (selecteddate) {
-                            setStart(selecteddate);
-                        }
-                    }}
-                    style={styles.date}
-                />
+            <View>
+                {calendar()}
             </View>
             <View style={styles.datePickerContainer}>
                 <View style={styles.basic}>

@@ -1,4 +1,4 @@
-import { Button, Text, View, StyleSheet, TextInput, FlatList, ListRenderItem, TouchableOpacity, ScrollView } from 'react-native';
+import { Button, Text, View, StyleSheet, TextInput, FlatList, ListRenderItem, TouchableOpacity, Platform } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { useState, ReactNode } from 'react';
@@ -13,7 +13,7 @@ import { Place, RootStackParamList, Coordinates, Itinerary } from '@/app/types/t
 const AddDatesButton = () => {
     const navigation = useNavigation<StackNavigationProp<any>>();
     const [startDate, setStartDate] = useState(new Date());
-    const [showStartPicker, setShowStartPicker] = useState(true);
+    const [showStartPicker, setShowStartPicker] = useState(false); // Initial visibility is false
     const [userInput, setUserInput] = useState("");
     const [toAdd, setToAdd] = useState<Place>(places[1]);
     const [itinerary, setItinerary] = useState<Place[]>([]);
@@ -21,10 +21,12 @@ const AddDatesButton = () => {
     const [isEditing, setIsEditing] = useState(false);
     const [text, setText] = useState('Rename with Title');
     const [inputValue, setInputValue] = useState(text);
+
     const handleBlur = () => {
         setIsEditing(false);
         setText(inputValue);
     };
+
     const handleSave = async () => {
         if (itinerary.length > 0) {
             const q = query(itineraryRef, where("text", "==", text));
@@ -46,23 +48,70 @@ const AddDatesButton = () => {
             alert("Itinerary cannot be empty. Please add at least one item.");
         }
     };
-    const itineraryList: ListRenderItem<Place> = ({ item, index }) => {
-        return (
-            <View style={styles.itineraryItem}>
-                <View style={styles.rankContainer}>
-                    <Text style={styles.rank}>{index + 1}</Text>
+
+    const calendar = () => {
+        if (Platform.OS === 'android') {
+            return (
+                <View>
+                    <View style={styles.container}>
+                        <Text>Select Date:</Text>
+                        <Button
+                            title={startDate.toDateString()}
+                            onPress={() => setShowStartPicker(true)}
+                        />
+                    </View>
+                    {showStartPicker && (
+                        <DateTimePicker
+                            value={startDate}
+                            mode="date"
+                            onChange={(event, selectedDate) => {
+                                setShowStartPicker(false);
+                                if (selectedDate) {
+                                    setStartDate(selectedDate);
+                                }
+                            }}
+                            style={styles.date}
+                        />
+                    )}
                 </View>
-                <Text style={styles.itemText}>{item.name}</Text>
-                <Button title="Delete" color="red" onPress={() => handleDeletePlace(item.placeId)} />
-            </View>
-        );
-        return null;
+            )
+        } else {
+            return (
+                <View style={styles.container}>
+                    <Text>Select Date:</Text>
+                    <DateTimePicker
+                        value={startDate}
+                        mode="date"
+                        display="default"
+                        onChange={(event, selectedDate) => {
+                            setShowStartPicker(true);
+                            if (selectedDate) {
+                                setStartDate(selectedDate);
+                            }
+                        }}
+                        style={styles.date}
+                    />
+                </View>
+            )
+        }
     };
+
+    const itineraryList: ListRenderItem<Place> = ({ item, index }) => (
+        <View style={styles.itineraryItem}>
+            <View style={styles.rankContainer}>
+                <Text style={styles.rank}>{index + 1}</Text>
+            </View>
+            <Text style={styles.itemText}>{item.name}</Text>
+            <Button title="Delete" color="red" onPress={() => handleDeletePlace(item.placeId)} />
+        </View>
+    );
+
     const handleDeletePlace = (placeId: number) => {
         setItinerary(itinerary.filter(place => place.placeId !== placeId));
     };
+
     const filterData: ListRenderItem<Place> = ({ item }) => {
-        if (userInput === "") {
+        if (userInput === "" || item.name.toLowerCase().includes(userInput.toLowerCase())) {
             return (
                 <View style={styles.place}>
                     <TouchableOpacity onPress={() => {
@@ -74,20 +123,9 @@ const AddDatesButton = () => {
                 </View>
             );
         }
-        if (item.name.toLowerCase().includes(userInput.toLowerCase())) {
-            return (
-                <View style={styles.place}>
-                    <TouchableOpacity onPress={() => {
-                        setUserInput(item.name);
-                        setToAdd(item);
-                    }}>
-                        <Text>{item.name}</Text>
-                    </TouchableOpacity>
-                </View>
-            )
-        }
         return null;
     };
+
     return (
         <View style={styles.bigContainer}>
             <View style={styles.headercontainer}>
@@ -116,20 +154,8 @@ const AddDatesButton = () => {
                     )}
                 </View>
             </View>
-            <View style={styles.container}>
-                <Text>Select Date:</Text>
-                <DateTimePicker
-                    value={startDate}
-                    mode="date"
-                    display="default"
-                    onChange={(event, selectedDate) => {
-                        setShowStartPicker(true);
-                        if (selectedDate) { // Ensure the selectedDate is valid
-                            setStartDate(selectedDate);
-                        }
-                    }}
-                    style={styles.date}
-                />
+            <View>
+                {calendar()}
             </View>
             <View style={styles.datePickerContainer}>
                 <View style={styles.basic}>
@@ -143,8 +169,10 @@ const AddDatesButton = () => {
                         value={userInput}
                     />
                     <Button title="Add" onPress={() => {
-                        setItinerary([...itinerary, toAdd]);
-                        setUserInput("");
+                        if (toAdd) {
+                            setItinerary([...itinerary, toAdd]);
+                            setUserInput("");
+                        }
                     }} />
                 </View>
                 <View style={styles.basic}>
@@ -158,8 +186,8 @@ const AddDatesButton = () => {
                         <Text style={styles.saveText}>Save</Text>
                         <Icon name="arrow-down" size={20} color="white" />
                     </View>
-                </ TouchableOpacity>
-            </View >
+                </TouchableOpacity>
+            </View>
         </View>
     )
 }
@@ -292,7 +320,7 @@ const styles = StyleSheet.create({
     backcontainer: {
         paddingLeft: 10,
         paddingTop: 10,
-    }
+    },
 })
 
 export default AddDatesButton;
