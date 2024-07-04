@@ -36,4 +36,7 @@ export type RootStackParamList = {
     'Edit Itinerary': {
         iti: Itinerary,
     };
+    'Start Itinerary': {
+        iti: Itinerary,
+    }
 };

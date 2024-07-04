@@ -29,10 +29,6 @@ const Existing = () => {
         }, [])
     );
 
-    const handleStart = () => {
-        console.log('Start Trip');
-    };
-
     const handleDelete = async (id: string) => {
         try {
             const docRef = doc(itineraryRef, id);
@@ -48,7 +44,10 @@ const Existing = () => {
             <View style={styles.container}>
                 <Text style={styles.text}>{item.text}</Text>
                 <View>
-                    <TouchableOpacity style={styles.button} onPress={handleStart}>
+                    <TouchableOpacity style={styles.button} onPress={() => {
+                        const iti = item;
+                        navigation.navigate("Start Itinerary", { iti });
+                    }}>
                         <Text>Start</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={[styles.button, { marginBottom: 10 }]} onPress={() => {
