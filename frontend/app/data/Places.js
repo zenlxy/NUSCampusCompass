@@ -6,8 +6,8 @@ const images = {
     'Museum2': require('../../assets/images/Museum2.png'),
     'YSTCM': require('../../assets/images/YSTCM.png'),
     'Flavours': require('../../assets/images/Flavours.png')
-  };
-  
+};
+
 const places = [
     {
         placeId: 1,
@@ -46,7 +46,7 @@ const places = [
         history: "The NUS Museum, originating as the University Art Museum in 1955 at the University of Malaya, predates Singapore's independence. It has evolved through various campus locations to establish a permanent home at the University Cultural Centre in 2000. Today, it houses over 8,000 artifacts and artworks, including significant collections like South & Southeast Asian art and the Straits Chinese Collection at the NUS Baba House, reflecting Singapore's cultural and historical evolution.",
         funFacts: "1) Virtual Exhibitions: The NUS Museum has developed virtual exhibitions and digital resources that allow global audiences to access its collections and learn about Southeast Asian art and culture remotely. 2) Artist-in-Residence Program: The museum hosts an Artist-in-Residence program, inviting contemporary artists to create and exhibit new works that engage with its collections and themes, fostering creative dialogue between traditional and contemporary art practices.",
         address: "50 Kent Ridge Crescent, National University of Singapore, Singapore 119279",
-        coordinates:{
+        coordinates: {
             latitude: 1.3017,
             longitude: 103.7722
         },
