@@ -1,11 +1,6 @@
-import { Button, Text, View, StyleSheet, TextInput, FlatList, ListRenderItem, TouchableOpacity, Platform } from 'react-native';
+import { Button, Text, View, StyleSheet, TextInput, FlatList, ListRenderItem, TouchableOpacity } from 'react-native';
 import React, { useState, ReactNode, useEffect } from 'react';
-import DateTimePicker from '@react-native-community/datetimepicker';
-import { places } from '../../../../data/Places';
-import { addDoc, doc, getDocs, onSnapshot, query, setDoc, where, Timestamp } from 'firebase/firestore';
-import { itineraryRef } from '@/config/firebase';
 import { useAuth } from '../../../../contexts/AuthContext';
-import Icon from '@expo/vector-icons/FontAwesome6';
 import { useNavigation } from 'expo-router';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RouteProp, useRoute } from '@react-navigation/native';
@@ -43,7 +38,7 @@ const Start = () => {
                 <Text>{text}</Text>
             </View>
             <FlatList data={itinerary} renderItem={itineraryList} />
-            <View style={styles.saveContainer}>
+            <View style={styles.endContainer}>
                 <TouchableOpacity onPress={handleSave} >
                     <Text>End Trip</Text>
                 </ TouchableOpacity>
@@ -78,21 +73,10 @@ const styles = StyleSheet.create({
         width: 250,
         paddingLeft: 5,
     },
-    basic: {
-        marginLeft: 20,
-    },
-    saveContainer: {
+    endContainer: {
         justifyContent: 'center',
         alignItems: 'center',
         marginTop: 30,
-    },
-    saveText: {
-        color: 'white',
-        fontSize: 17,
-        fontFamily: 'Arial',
-        backgroundColor: '#6495ed',
-        paddingHorizontal: 10,
-        paddingVertical: 5,
     },
     headercontainer: {
         flexDirection: "row",
@@ -100,9 +84,6 @@ const styles = StyleSheet.create({
         alignContent: 'center',
         justifyContent: 'center',
     },
-    backcontainer: {
-        paddingLeft: 10,
-    }
 })
 
 export default Start;
