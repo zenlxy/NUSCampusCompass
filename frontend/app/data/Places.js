@@ -5,7 +5,8 @@ const images = {
     'Museum': require('../../assets/images/Museum.png'),
     'Museum2': require('../../assets/images/Museum2.png'),
     'YSTCM': require('../../assets/images/YSTCM.png'),
-    'Flavours': require('../../assets/images/Flavours.png')
+    'Flavours': require('../../assets/images/Flavours.png'),
+    'ERC': require('../../assets/images/ERC.png'),
 };
 
 const places = [
@@ -83,6 +84,21 @@ const places = [
         },
         images: [
             { source: require('../../assets/images/Flavours.png') }
+        ]
+    },
+    {
+        placeId: 6,
+        name: "Education Resource Centre",
+        description: "The Education Resource Centre (ERC) at University Town (UTown), NUS, is a state-of-the-art facility designed to support student learning and collaboration. It houses a variety of flexible study spaces, including quiet reading rooms, group discussion areas, and multimedia-equipped classrooms. With its modern architecture, the ERC provides an inspiring environment for both individual study and group projects, reflecting NUS's commitment to innovative and holistic education.",
+        history: "The Education Resource Centre (ERC) at University Town (UTown), NUS, was officially opened in 2011 as part of the expansive development of UTown. The vision behind the ERC was to create a central hub for learning and collaboration, supporting NUS’s goal of fostering a dynamic and engaging educational environment. As one of the key components of UTown, the ERC was designed to integrate cutting-edge technology with versatile learning spaces, promoting a modern approach to education. Over the years, it has become a cornerstone of student life at NUS, serving as a vibrant space for academic and extracurricular activities.",
+        funFacts: "1) 24/7 Access: The ERC is accessible 24/7, making it a go-to spot for students pulling late-night study sessions or working on group projects around the clock. This round-the-clock access is particularly valued during exam periods, providing a reliable space for study anytime. 2) Green Building Design: The ERC is celebrated for its sustainable architecture, incorporating numerous green features such as energy-efficient lighting, natural ventilation, and abundant use of natural light. These eco-friendly designs not only reduce the building’s environmental impact but also create a pleasant and conducive atmosphere for learning. 3) Interactive Learning Spaces: The ERC includes innovative “Learning Pods” equipped with advanced multimedia tools that support interactive and collaborative learning. These pods are popular for group discussions and presentations, enabling students to connect their devices and share content seamlessly on large screens, fostering a tech-savvy learning environment.",
+        address: "8 College Ave West, Buona Vista, Singapore 138608",
+        coordinates: {
+            latitude: 1.30574,
+            longitude: 103.77268,
+        },
+        images: [
+            { source: require('../../assets/images/ERC.png') }
         ]
     }
 ];

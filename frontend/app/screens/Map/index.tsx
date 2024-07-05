@@ -12,6 +12,9 @@ const locationsOfInterest = places.map((place: Place) => ({
   coordinates: place.coordinates,
   description: place.description,
   images: place.images,
+  history: place.history,
+  funFacts: place.funFacts,
+  address: place.address,
 }));
 
 function Map() {
@@ -39,9 +42,9 @@ function Map() {
     return locationsOfInterest.map((item, index) => (
       <Marker
         key={index}
-        coordinate={item.coordinates || { latitude: 0, longitude: 0 }} 
+        coordinate={item.coordinates || { latitude: 0, longitude: 0 }}
         onPress={() => {
-          setSelectedLocation({ ...item, placeId: index}); 
+          setSelectedLocation({ ...item, placeId: index });
           console.log('Selected location:', item);
           setModalVisible(true);
         }}
@@ -62,8 +65,8 @@ function Map() {
   const handleLocationSelect = (location: Place) => {
     setSelectedLocation(location);
     setModalVisible(true);
-    setSearchInput(''); 
-    setFilteredLocations([]); 
+    setSearchInput('');
+    setFilteredLocations([]);
   };
 
   const handleSearchInputChange = (text: string) => {
@@ -100,14 +103,14 @@ function Map() {
           </Marker>
           {showLocationsOfInterest()}
         </MapView>
-        <Search 
-          searchInput={searchInput} 
-          onSearchInputChange={handleSearchInputChange} 
-          filteredLocations={filteredLocations} 
+        <Search
+          searchInput={searchInput}
+          onSearchInputChange={handleSearchInputChange}
+          filteredLocations={filteredLocations}
           onLocationSelect={(location) => {
             setSelectedLocation(location);
             setModalVisible(true);
-          }} 
+          }}
         />
         <Filter />
 
@@ -124,7 +127,7 @@ function Map() {
                   <Text style={styles.modalTitle}>{selectedLocation.name}</Text>
                   <Text style={styles.modalDescription}>{selectedLocation.description}</Text>
                   <Image source={selectedLocation.images[0].source} style={styles.modalImage} />
-                  <Button title="Get Directions" onPress={() => selectedLocation.coordinates && handleDirections(selectedLocation.coordinates)}/>
+                  <Button title="Get Directions" onPress={() => selectedLocation.coordinates && handleDirections(selectedLocation.coordinates)} />
                   <Button title="Close" onPress={() => setModalVisible(false)} />
                 </ScrollView>
               </View>
@@ -137,7 +140,7 @@ function Map() {
 }
 
 
-const Search = ({ searchInput, onSearchInputChange, filteredLocations, onLocationSelect }: 
+const Search = ({ searchInput, onSearchInputChange, filteredLocations, onLocationSelect }:
   { searchInput: string, onSearchInputChange: (text: string) => void, filteredLocations: Place[], onLocationSelect: (location: Place) => void }) => {
   return (
     <View style={styles.searchContainer}>

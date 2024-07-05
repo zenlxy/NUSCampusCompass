@@ -1,11 +1,10 @@
-import { Button, Text, View, StyleSheet, TextInput, FlatList, ListRenderItem, TouchableOpacity, Dimensions } from 'react-native';
+import { ScrollView, Text, View, StyleSheet, TextInput, FlatList, ListRenderItem, TouchableOpacity, Dimensions, Linking } from 'react-native';
 import React, { useState, ReactNode, useEffect } from 'react';
 import { useAuth } from '../../../../contexts/AuthContext';
 import { useNavigation } from 'expo-router';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RouteProp, useRoute } from '@react-navigation/native';
 import { Place, RootStackParamList, Coordinates, Itinerary } from '@/app/types/types';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import Icon from '@expo/vector-icons/FontAwesome6';
 
 type StartItineraryScreenRouteProp = RouteProp<RootStackParamList, 'Start Itinerary'>;
@@ -14,8 +13,6 @@ const Start = () => {
     const navigation = useNavigation<StackNavigationProp<any>>();
     const route = useRoute<StartItineraryScreenRouteProp>();
     const { iti } = route.params;
-    const initialStartDate = iti?.startDate ? new Date(iti.startDate.toDate()) : new Date();
-    const [start, setStart] = useState<Date>(isNaN(initialStartDate.getTime()) ? new Date() : initialStartDate);
     const [itinerary, setItinerary] = useState<Place[]>(iti?.itinerary || []);
     const { user } = useAuth();
     const [text, setText] = useState(iti?.text || "");
@@ -28,31 +25,33 @@ const Start = () => {
         console.log("Find Out More");
     };
 
-    const getDirections = () => {
-        console.log("Get Directions");
+    const getDirections = (destination: Coordinates) => {
+        console.log('Opening directions to:', destination);
+        const { latitude, longitude } = destination;
+        const url = `http://maps.apple.com/?daddr=${latitude},${longitude}`;
+        console.log('URL:', url);
+        Linking.openURL(url);
     };
 
-    const dottedLine = (index: number) => {
-        if (index != 0) {
-            return (
-                <View style={styles.directionsContainer}>
-                    <View style={styles.dottedLine} />
-                    <TouchableOpacity >
-                        <Text style={styles.directions}>Get Directions</Text>
-                    </TouchableOpacity>
-                </View>
-            )
-        }
+    const dottedLine = (item: Place) => {
+        return (
+            <View style={styles.directionsContainer}>
+                <View style={styles.dottedLine} />
+                <TouchableOpacity onPress={() => getDirections(item.coordinates)}>
+                    <Text style={styles.directions}>Get Directions</Text>
+                </TouchableOpacity>
+            </View>
+        )
     }
 
     const itineraryList: ListRenderItem<Place> = ({ item, index }) => {
         return (
             <View>
-                {dottedLine(index)}
+                {dottedLine(item)}
                 <View style={styles.itineraryItem}>
                     <View style={styles.rankContainer}>
                         <Icon name="location-pin" size='35' color='#8daba8' />
-                        <Text style={styles.rank}>{index + 1}</Text>
+                        <Text style={styles.rank}>{index + 2}</Text>
                     </View>
                     <Text style={styles.itemText}>{item.name}</Text>
                     <TouchableOpacity style={styles.findButton} onPress={handleFind}>
@@ -64,10 +63,17 @@ const Start = () => {
     };
 
     return (
-        <SafeAreaView>
+        <ScrollView>
             <View style={styles.bigContainer}>
                 <View style={styles.headercontainer}>
                     <Text style={styles.title}>{text}</Text>
+                </View>
+                <View style={styles.locationItem}>
+                    <View style={styles.rankContainer}>
+                        <Icon name="location-pin" size='35' color='#8daba8' />
+                        <Text style={styles.rank}>1</Text>
+                    </View>
+                    <Text style={styles.itemText}>Your Location</Text>
                 </View>
                 <FlatList data={itinerary} renderItem={itineraryList} />
                 <View style={styles.endContainer}>
@@ -76,7 +82,7 @@ const Start = () => {
                     </ TouchableOpacity>
                 </View >
             </View>
-        </SafeAreaView>
+        </ScrollView>
     )
 }
 
@@ -85,6 +91,7 @@ const { width: screenWidth } = Dimensions.get('window');
 const styles = StyleSheet.create({
     bigContainer: {
         justifyContent: 'center',
+        marginBottom: 95,
     },
     itineraryItem: {
         flexDirection: 'row',
@@ -92,6 +99,13 @@ const styles = StyleSheet.create({
         paddingLeft: 10,
         paddingRight: 10,
         justifyContent: 'center',
+        width: screenWidth,
+    },
+    locationItem: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        paddingLeft: 10,
+        paddingRight: 10,
         width: screenWidth,
     },
     rankContainer: {

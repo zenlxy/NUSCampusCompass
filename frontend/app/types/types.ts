@@ -20,11 +20,11 @@ export type Itinerary = {
 export type Place = {
     placeId: number;
     name: string;
-    description?: string;
-    history?: string;
-    funFacts?: string;
-    address?: string;
-    coordinates?: Coordinates;
+    description: string;
+    history: string;
+    funFacts: string;
+    address: string;
+    coordinates: Coordinates;
     images: Image[];
 };
 
