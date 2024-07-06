@@ -1,4 +1,4 @@
-import { ScrollView, Text, View, StyleSheet, TextInput, FlatList, ListRenderItem, TouchableOpacity, Dimensions, Linking } from 'react-native';
+import { ScrollView, Text, View, StyleSheet, Button, FlatList, ListRenderItem, TouchableOpacity, Dimensions, Linking, Modal } from 'react-native';
 import React, { useState, ReactNode, useEffect } from 'react';
 import { useAuth } from '../../../../contexts/AuthContext';
 import { useNavigation } from 'expo-router';
@@ -16,13 +16,11 @@ const Start = () => {
     const [itinerary, setItinerary] = useState<Place[]>(iti?.itinerary || []);
     const { user } = useAuth();
     const [text, setText] = useState(iti?.text || "");
+    const [modalVisible, setModalVisible] = useState(false);
+    const [selectedPlace, setSelectedPlace] = useState<Place | null>(null);
 
     const handleSave = async () => {
         console.log("end trip");
-    };
-
-    const handleFind = () => {
-        console.log("Find Out More");
     };
 
     const getDirections = (destination: Coordinates) => {
@@ -54,7 +52,10 @@ const Start = () => {
                         <Text style={styles.rank}>{index + 2}</Text>
                     </View>
                     <Text style={styles.itemText}>{item.name}</Text>
-                    <TouchableOpacity style={styles.findButton} onPress={handleFind}>
+                    <TouchableOpacity style={styles.findButton} onPress={() => {
+                        setModalVisible(true);
+                        setSelectedPlace(item)
+                    }}>
                         <Text style={styles.findText}>Find Out More</Text>
                     </TouchableOpacity>
                 </View>
@@ -63,27 +64,61 @@ const Start = () => {
     };
 
     return (
-        <ScrollView>
-            <View style={styles.bigContainer}>
-                <View style={styles.headercontainer}>
-                    <Text style={styles.title}>{text}</Text>
-                </View>
-                <View style={styles.locationItem}>
-                    <View style={styles.rankContainer}>
-                        <Icon name="location-pin" size='35' color='#8daba8' />
-                        <Text style={styles.rank}>1</Text>
+        <View>
+            <FlatList
+                data={itinerary}
+                renderItem={itineraryList}
+                ListHeaderComponent={() => (
+                    <View >
+                        <View style={styles.headercontainer}>
+                            <Text style={styles.title}>{text}</Text>
+                        </View>
+                        <View style={styles.locationItem}>
+                            <View style={styles.rankContainer}>
+                                <Icon name="location-pin" size={35} color='#8daba8' />
+                                <Text style={styles.rank}>1</Text>
+                            </View>
+                            <Text style={styles.itemText}>Your Location</Text>
+                        </View>
                     </View>
-                    <Text style={styles.itemText}>Your Location</Text>
+                )}
+                ListFooterComponent={() => (
+                    <View style={styles.endContainer}>
+                        <TouchableOpacity style={styles.endButton} onPress={handleSave}>
+                            <Text>End Trip</Text>
+                        </TouchableOpacity>
+                    </View>
+                )}
+                keyExtractor={(item, index) => index.toString()}
+                contentContainerStyle={styles.bigContainer}
+            />
+            <Modal animationType='slide' transparent={true} visible={modalVisible} onRequestClose={() => setModalVisible(false)}>
+                <View style={styles.modal}>
+                    <View style={styles.modalContent}>
+                        <ScrollView>
+                            <View style={styles.border}>
+                                <Text style={styles.title}>{selectedPlace?.name}</Text>
+                            </View>
+                            <Text style={styles.headerText}>Description</Text>
+                            <Text style={styles.bodyText}>{selectedPlace?.description}</Text>
+                            <Text style={styles.headerText}>History</Text>
+                            <Text style={styles.bodyText}>{selectedPlace?.history}</Text>
+                            <Text style={styles.headerText}>Fun Facts</Text>
+                            {selectedPlace?.funFacts
+                                .split('/')
+                                .map(fact => fact.trim())
+                                .filter(fact => fact.length > 0)
+                                .map((fact, index) => (
+                                    <Text key={index} style={styles.bodyText}>{fact}</Text>))}
+                        </ScrollView>
+                        <View style={{ paddingTop: 10 }}>
+                            <Button title='Close' onPress={() => setModalVisible(false)} />
+                        </View>
+                    </View>
                 </View>
-                <FlatList data={itinerary} renderItem={itineraryList} />
-                <View style={styles.endContainer}>
-                    <TouchableOpacity style={styles.endButton} onPress={handleSave} >
-                        <Text>End Trip</Text>
-                    </ TouchableOpacity>
-                </View >
-            </View>
-        </ScrollView>
-    )
+            </Modal>
+        </View>
+    );
 }
 
 const { width: screenWidth } = Dimensions.get('window');
@@ -125,6 +160,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         marginTop: 30,
+        marginBottom: 95,
     },
     endButton: {
         backgroundColor: '#8daba8',
@@ -170,6 +206,38 @@ const styles = StyleSheet.create({
     directions: {
         color: '#047bff',
         paddingLeft: 20,
+    },
+    modal: {
+        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    headerText: {
+        fontSize: 14,
+        fontWeight: '600',
+        marginTop: 10,
+        marginBottom: 5,
+        paddingLeft: 10,
+    },
+    bodyText: {
+        fontSize: 13,
+        backgroundColor: '#fff6e1',
+        padding: 10,
+    },
+    border: {
+        borderBottomWidth: 2,
+        borderBottomColor: 'grey',
+        paddingBottom: 5,
+    },
+    modalContent: {
+        width: '90%',
+        height: '90%',
+        backgroundColor: 'white',
+        paddingTop: 20,
+        paddingBottom: 10,
+        paddingHorizontal: 20,
+        borderRadius: 20,
     }
 })
 
