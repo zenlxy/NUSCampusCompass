@@ -13,7 +13,7 @@ import { Place, RootStackParamList, Coordinates, Itinerary } from '@/app/types/t
 const AddDatesButton = () => {
     const navigation = useNavigation<StackNavigationProp<any>>();
     const [startDate, setStartDate] = useState(new Date());
-    const [showStartPicker, setShowStartPicker] = useState(false); // Initial visibility is false
+    const [showStartPicker, setShowStartPicker] = useState(false);
     const [userInput, setUserInput] = useState("");
     const [toAdd, setToAdd] = useState<Place>(places[1]);
     const [itinerary, setItinerary] = useState<Place[]>([]);
@@ -29,7 +29,7 @@ const AddDatesButton = () => {
 
     const handleSave = async () => {
         if (itinerary.length > 0) {
-            const q = query(itineraryRef, where("text", "==", text));
+            const q = query(itineraryRef, where("text", "==", text), where("userId", "==", user.uid));
             const querySnapshot = await getDocs(q);
             if (querySnapshot.empty) {
                 let doc = await addDoc(itineraryRef, {

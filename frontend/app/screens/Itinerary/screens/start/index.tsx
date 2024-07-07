@@ -1,4 +1,4 @@
-import { ScrollView, Text, View, StyleSheet, Button, FlatList, ListRenderItem, TouchableOpacity, Dimensions, Linking, Modal } from 'react-native';
+import { ScrollView, Text, View, StyleSheet, Button, FlatList, ListRenderItem, TouchableOpacity, Dimensions, Linking, Modal, Alert } from 'react-native';
 import React, { useState, ReactNode, useEffect } from 'react';
 import { useAuth } from '../../../../contexts/AuthContext';
 import { useNavigation } from 'expo-router';
@@ -6,6 +6,8 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { RouteProp, useRoute } from '@react-navigation/native';
 import { Place, RootStackParamList, Coordinates, Itinerary } from '@/app/types/types';
 import Icon from '@expo/vector-icons/FontAwesome6';
+import { itineraryRef } from '@/config/firebase';
+import { deleteDoc, doc } from 'firebase/firestore';
 
 type StartItineraryScreenRouteProp = RouteProp<RootStackParamList, 'Start Itinerary'>;
 
@@ -19,8 +21,24 @@ const Start = () => {
     const [modalVisible, setModalVisible] = useState(false);
     const [selectedPlace, setSelectedPlace] = useState<Place | null>(null);
 
-    const handleSave = async () => {
-        console.log("end trip");
+    const handleDelete = async (id: string) => {
+        try {
+            const docRef = doc(itineraryRef, id);
+            await deleteDoc(docRef);
+            alert('Itinerary Deleted');
+            navigation.navigate('Existing Itineraries');
+        } catch (error) {
+            console.error("Error:", error)
+        }
+    };
+
+    const handleSave = () => {
+        Alert.alert('End Trip', 'Do you want to delete this itinerary?', [{
+            text: 'Yes',
+            onPress: () => handleDelete(iti.id),
+        },
+        { text: 'No', onPress: () => navigation.navigate('Existing Itineraries') },
+        ]);
     };
 
     const getDirections = (destination: Coordinates) => {
