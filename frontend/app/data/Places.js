@@ -1,12 +1,21 @@
 
 const images = {
     'LKCNHM': require('../../assets/images/LKCNHM.png'),
+    'LKCNHM2': require('../../assets/images/LKCNHM2.png'),
+    'LKCNHM3': require('../../assets/images/LKCNHM3.png'),
     'UCC': require('../../assets/images/UCC.png'),
+    'UCC2': require('../../assets/images/UCC2.png'),
+    'UCC3': require('../../assets/images/UCC3.png'),
     'Museum': require('../../assets/images/Museum.png'),
     'Museum2': require('../../assets/images/Museum2.png'),
     'YSTCM': require('../../assets/images/YSTCM.png'),
+    'YSTCM2': require('../../assets/images/YSTCM2.png'),
+    'YSTCM3': require('../../assets/images/YSTCM3.png'),
     'Flavours': require('../../assets/images/Flavours.png'),
+    'Flavours2': require('../../assets/images/Flavours2.png'),
     'ERC': require('../../assets/images/ERC.png'),
+    'ERC2': require('../../assets/images/ERC2.png'),
+    'ERC3': require('../../assets/images/ERC3.png'),
 };
 
 const places = [
@@ -22,7 +31,9 @@ const places = [
             longitude: 103.773611
         },
         images: [
-            { source: require('../../assets/images/LKCNHM.png') }
+            { source: require('../../assets/images/LKCNHM.png') },
+            { source: require('../../assets/images/LKCNHM2.png') },
+            { source: require('../../assets/images/LKCNHM3.png') }
         ]
     },
     {
@@ -37,7 +48,9 @@ const places = [
             longitude: 103.7718
         },
         images: [
-            { source: require('../../assets/images/UCC.png') }
+            { source: require('../../assets/images/UCC.png') },
+            { source: require('../../assets/images/UCC2.png') },
+            { source: require('../../assets/images/UCC3.png') }
         ]
     },
     {
@@ -68,7 +81,9 @@ const places = [
             longitude: 103.7730
         },
         images: [
-            { source: require('../../assets/images/YSTCM.png') }
+            { source: require('../../assets/images/YSTCM.png') },
+            { source: require('../../assets/images/YSTCM2.png') },
+            { source: require('../../assets/images/YSTCM3.png') }
         ]
     },
     {
@@ -83,7 +98,8 @@ const places = [
             longitude: 103.7727
         },
         images: [
-            { source: require('../../assets/images/Flavours.png') }
+            { source: require('../../assets/images/Flavours.png') },
+            { source: require('../../assets/images/Flavours2.png') }
         ]
     },
     {
@@ -98,7 +114,9 @@ const places = [
             longitude: 103.77268,
         },
         images: [
-            { source: require('../../assets/images/ERC.png') }
+            { source: require('../../assets/images/ERC.png') },
+            { source: require('../../assets/images/ERC2.png') },
+            { source: require('../../assets/images/ERC3.png') }
         ]
     }
 ];

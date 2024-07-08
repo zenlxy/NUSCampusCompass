@@ -1,4 +1,4 @@
-import { ScrollView, Text, View, StyleSheet, Button, FlatList, ListRenderItem, TouchableOpacity, Dimensions, Linking, Modal, Alert } from 'react-native';
+import { ScrollView, Text, View, StyleSheet, Button, FlatList, ListRenderItem, TouchableOpacity, Dimensions, Linking, Modal, Alert, Image } from 'react-native';
 import React, { useState, ReactNode, useEffect } from 'react';
 import { useAuth } from '../../../../contexts/AuthContext';
 import { useNavigation } from 'expo-router';
@@ -113,9 +113,16 @@ const Start = () => {
             <Modal animationType='slide' transparent={true} visible={modalVisible} onRequestClose={() => setModalVisible(false)}>
                 <View style={styles.modal}>
                     <View style={styles.modalContent}>
-                        <ScrollView>
+                        <ScrollView showsVerticalScrollIndicator={false}>
                             <View style={styles.border}>
                                 <Text style={styles.title}>{selectedPlace?.name}</Text>
+                            </View>
+                            <View style={{ height: 170 }}>
+                                <ScrollView style={styles.scrollView} horizontal>
+                                    {selectedPlace?.images.map((image, index) => (
+                                        <Image key={index} source={image.source} style={styles.image}></Image>
+                                    ))}
+                                </ScrollView>
                             </View>
                             <Text style={styles.headerText}>Description</Text>
                             <Text style={styles.bodyText}>{selectedPlace?.description}</Text>
@@ -256,6 +263,16 @@ const styles = StyleSheet.create({
         paddingBottom: 10,
         paddingHorizontal: 20,
         borderRadius: 20,
+    },
+    image: {
+        height: 150,
+        width: 250,
+        marginTop: 10,
+        marginRight: 10,
+        resizeMode: 'cover',
+    },
+    scrollView: {
+        flexDirection: 'row',
     }
 })
 

@@ -5,7 +5,7 @@ export type Coordinates = {
     longitude: number,
 };
 
-export type Image = {
+export type ImageType = {
     source: any;
 };
 
@@ -25,7 +25,7 @@ export type Place = {
     funFacts: string;
     address: string;
     coordinates: Coordinates;
-    images: Image[];
+    images: ImageType[];
 };
 
 export type RootStackParamList = {
