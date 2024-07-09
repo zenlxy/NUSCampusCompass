@@ -15,6 +15,7 @@ import Build from './screens/Itinerary/screens/build';
 import Recommended from './screens/Itinerary/screens/recommended';
 import Edit from './screens/Itinerary/screens/edit';
 import Start from './screens/Itinerary/screens/start';
+import StartReco from './screens/Itinerary/screens/startreco';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -28,6 +29,7 @@ const ItineraryStackScreen = () => (
         <ItineraryStack.Screen name="Recommended Tours" component={Recommended} />
         <ItineraryStack.Screen name="Edit Itinerary" component={Edit} options={{ headerShown: false }} />
         <ItineraryStack.Screen name="Start Itinerary" component={Start} options={{ headerShown: false }} />
+        <ItineraryStack.Screen name="Start Recommended" component={StartReco} options={{ headerShown: false }} />
     </ItineraryStack.Navigator>
 );
 

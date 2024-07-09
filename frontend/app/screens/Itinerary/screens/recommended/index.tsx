@@ -1,16 +1,19 @@
 import { View, Text, ListRenderItem, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
 import recommended from '../../../../data/Recommended';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { useNavigation } from 'expo-router';
 
 const Recommended = () => {
-    const handleStart = () => {
-        console.log('Start Trip');
-    };
+    const navigation = useNavigation<StackNavigationProp<any>>();
     const itineraryList: ListRenderItem<any> = ({ item, index }) => {
         return (
             <View style={styles.container}>
                 <Text style={styles.text}>{item.text}</Text>
                 <View>
-                    <TouchableOpacity style={styles.button} onPress={handleStart}>
+                    <TouchableOpacity style={styles.button} onPress={() => {
+                        const iti = item;
+                        navigation.navigate("Start Recommended", { iti });
+                    }}>
                         <Text>Start</Text>
                     </TouchableOpacity>
                 </View>
