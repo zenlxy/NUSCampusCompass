@@ -16,6 +16,16 @@ const images = {
     'ERC': require('../../assets/images/ERC.png'),
     'ERC2': require('../../assets/images/ERC2.png'),
     'ERC3': require('../../assets/images/ERC3.png'),
+    'Deck': require('../../assets/images/Deck.png'),
+    'Deck2': require('../../assets/images/Deck2.png'),
+    'Deck3': require('../../assets/images/Deck3.png'),
+    'Frontier': require('../../assets/images/Frontier.png'),
+    'Frontier2': require('../../assets/images/Frontier2.png'),
+    'Frontier3': require('../../assets/images/Frontier3.png'),
+    'Frontier4': require('../../assets/images/Frontier4.png'),
+    'Techno': require('../../assets/images/Techno.png'),
+    'Techno2': require('../../assets/images/Techno2.png'),
+    'Techno3': require('../../assets/images/Techno3.png'),
 };
 
 const places = [
@@ -118,7 +128,59 @@ const places = [
             { source: require('../../assets/images/ERC2.png') },
             { source: require('../../assets/images/ERC3.png') }
         ]
-    }
+    },
+    {
+        placeId: 7,
+        name: "The Deck",
+        description: "The Deck is a prominent dining facility located within the Faculty of Arts and Social Sciences (FASS) at the National University of Singapore (NUS). It features a variety of food stalls offering a diverse range of cuisines, including local Singaporean dishes and international options, catering to the tastes of students, staff, and visitors. With its open-air design and spacious seating areas, The Deck provides a vibrant and casual atmosphere ideal for meals, socializing, and taking breaks between classes.",
+        history: "The Deck was  was established to provide a convenient and diverse dining experience for students, faculty, and visitors. Over the years, The Deck has evolved to accommodate a growing campus population and changing culinary trends. It has undergone several renovations to modernize its facilities, improve seating capacity, and enhance the variety of food offerings. Today, it remains a popular spot on campus, known for its lively atmosphere and wide selection of affordable and delicious food options.",
+        funFacts: "1) Culinary Variety: The Deck is renowned for its diverse array of food stalls, offering everything from traditional Singaporean dishes like laksa and chicken rice to international cuisines such as Japanese, Western, and Indian. This variety caters to the multicultural student body and ensures there's something for everyone's taste. / 2) Student-Centric Design: The Deck's open-air and spacious design is specifically tailored to create a comfortable and relaxed dining environment. The seating areas are designed to accommodate large groups, making it a popular spot for students to gather, socialize, and even study together over meals. / 3) Green Initiatives: The Deck has embraced several eco-friendly practices, including waste reduction and recycling programs. Some food stalls participate in efforts to minimize plastic usage by offering reusable dining ware and encouraging students to bring their own containers, contributing to the university's broader sustainability goals.",
+        address: "Computing Drive, The Deck, NUS, Singapore 117417",
+        coordinates: {
+            latitude: 1.29514,
+            longitude: 103.77254,
+        },
+        images: [
+            { source: require('../../assets/images/Deck.png') },
+            { source: require('../../assets/images/Deck2.png') },
+            { source: require('../../assets/images/Deck3.png') }
+        ]
+    },
+    {
+        placeId: 8,
+        name: "Frontier",
+        description: "Frontier is a bustling dining hall located within the Faculty of Science at the National University of Singapore (NUS). It offers a wide range of food options, including local and international cuisines, making it a popular spot for students, faculty, and visitors to grab a meal. With its spacious seating areas and convenient location, Frontier serves as a vibrant hub for socializing, studying, and taking breaks between classes.",
+        history: "Frontier at the National University of Singapore (NUS) is a key dining facility situated within the Faculty of Science. Established to meet the dining needs of the growing campus population, Frontier has been serving students, faculty, and staff with a diverse range of food options for many years. Over time, it has undergone various upgrades and renovations to improve its facilities, expand its seating capacity, and enhance the variety and quality of food offerings. Today, Frontier remains a popular and bustling hub, reflecting the dynamic and multicultural nature of the NUS community.",
+        funFacts: "1) Themed Food Stalls: Frontier features themed food stalls that rotate periodically, offering students a chance to enjoy different culinary experiences without leaving campus. These stalls provide a variety of cuisines, from Asian to Western dishes, ensuring a fresh and exciting dining experience. / 2) Popular Study Spot: Besides being a dining hall, Frontier is also a favored spot for students to study and work on group projects. Its spacious seating area and convenient location within the Faculty of Science make it an ideal place for students to gather, making it a lively and productive environment throughout the day.",
+        address: "12 Science Drive 2, Singapore 117549",
+        coordinates: {
+            latitude: 1.29651,
+            longitude: 103.78031,
+        },
+        images: [
+            { source: require('../../assets/images/Frontier.png') },
+            { source: require('../../assets/images/Frontier2.png') },
+            { source: require('../../assets/images/Frontier3.png') },
+            { source: require('../../assets/images/Frontier4.png') }
+        ]
+    },
+    {
+        placeId: 9,
+        name: "Techno Edge Canteen",
+        description: "Techno Edge is a popular canteen located in the School of Engineering at the National University of Singapore (NUS). Known for its wide range of food options, it caters to the diverse tastes of students, faculty, and staff with stalls offering local delights, international cuisines, and vegetarian choices. The canteen's modern design, spacious seating, and convenient location make it a bustling hub for dining and socializing within the engineering faculty.",
+        history: "Techno Edge was established to serve the dining needs of the School of Engineering at NUS. Over the years, it has undergone several renovations and upgrades to enhance its facilities and expand its food offerings. These changes were aimed at accommodating the growing population of the engineering school and ensuring a comfortable and enjoyable dining experience. Today, Techno Edge is a well-loved canteen known for its variety, affordability, and vibrant atmosphere.",
+        funFacts: "1) Robot Cleaners: Techno Edge has integrated technology into its operations by employing robot cleaners to maintain cleanliness in the dining area. These robots are a nod to the innovative spirit of the School of Engineering and add a futuristic touch to the canteen environment. / 2) Vegetarian-Friendly: Techno Edge is particularly known for its vegetarian food options, with several stalls dedicated to serving delicious and nutritious vegetarian meals. This makes it a popular spot for students and staff who prefer vegetarian diets or are looking for healthy eating choices. / 3) Lively Events: The canteen occasionally hosts events and food fairs, where special stalls are set up, and unique dishes are offered. These events are often accompanied by music and activities, creating a festive atmosphere that adds to the communal and lively spirit of Techno Edge.",
+        address: "2 Engineering Drive 4, Singapore 117584",
+        coordinates: {
+            latitude: 1.298167,
+            longitude: 103.771786,
+        },
+        images: [
+            { source: require('../../assets/images/Techno.png') },
+            { source: require('../../assets/images/Techno2.png') },
+            { source: require('../../assets/images/Techno3.png') }
+        ]
+    },
 ];
 
 export { images, places };
