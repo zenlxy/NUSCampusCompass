@@ -38,5 +38,8 @@ export type RootStackParamList = {
     };
     'Start Itinerary': {
         iti: Itinerary,
+    };
+    'Start Recommended': {
+        iti: Itinerary,
     }
 };
