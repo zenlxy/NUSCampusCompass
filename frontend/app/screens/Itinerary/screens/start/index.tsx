@@ -1,4 +1,4 @@
-import { ScrollView, Text, View, StyleSheet, Button, FlatList, ListRenderItem, TouchableOpacity, Dimensions, Linking, Modal, Alert, Image } from 'react-native';
+import { ScrollView, Text, View, StyleSheet, Button, FlatList, ListRenderItem, TouchableOpacity, Dimensions, Linking, Modal, Alert, Image, Platform } from 'react-native';
 import React, { useState, ReactNode, useEffect } from 'react';
 import { useAuth } from '../../../../contexts/AuthContext';
 import { useNavigation } from 'expo-router';
@@ -66,8 +66,8 @@ const Start = () => {
                 {dottedLine(item)}
                 <View style={styles.itineraryItem}>
                     <View style={styles.rankContainer}>
-                        <Icon name="location-pin" size='35' color='#8daba8' />
-                        <Text style={styles.rank}>{index + 2}</Text>
+                        <Icon name="location-pin" size={35} color='#8daba8' />
+                        <Text style={styles.rank}>{(index + 2).toString()}</Text>
                     </View>
                     <Text style={styles.itemText}>{item.name}</Text>
                     <TouchableOpacity style={styles.findButton} onPress={() => {
@@ -171,7 +171,6 @@ const styles = StyleSheet.create({
     rankContainer: {
         alignItems: 'center',
         justifyContent: 'center',
-        position: 'relative',
     },
     rank: {
         fontSize: 15,
