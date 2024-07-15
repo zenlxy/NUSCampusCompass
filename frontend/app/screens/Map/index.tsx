@@ -17,6 +17,12 @@ const locationsOfInterest = places.map((place: Place) => ({
   address: place.address,
 }));
 
+const filterLocations = (category: string) => {
+  if (!category) return places;
+  return places.filter(place => place.type === category);
+};
+
+
 function Map() {
   const [location, setLocation] = useState<Location.LocationObject | null>(null);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
@@ -24,6 +30,7 @@ function Map() {
   const [modalVisible, setModalVisible] = useState(false);
   const [searchInput, setSearchInput] = useState<string>('');
   const [filteredLocations, setFilteredLocations] = useState<Place[]>([]);
+  const [filterModalVisible, setFilterModalVisible] = useState(false);
 
   useEffect(() => {
     (async () => {
@@ -39,7 +46,7 @@ function Map() {
   }, []);
 
   const showLocationsOfInterest = () => {
-    return locationsOfInterest.map((item, index) => (
+    return filteredLocations.map((item, index) => (
       <Marker
         key={index}
         coordinate={item.coordinates || { latitude: 0, longitude: 0 }}
@@ -67,6 +74,10 @@ function Map() {
     setModalVisible(true);
     setSearchInput('');
     setFilteredLocations([]);
+  };
+
+  const handleFilter = (category: string) => {
+    setFilteredLocations(filterLocations(category));
   };
 
   const handleSearchInputChange = (text: string) => {
@@ -112,7 +123,7 @@ function Map() {
             setModalVisible(true);
           }}
         />
-        <Filter />
+        <Filter onFilter={handleFilter} setFilterModalVisible={setFilterModalVisible} />
 
         {selectedLocation && (
           <Modal
@@ -130,6 +141,25 @@ function Map() {
                   <Button title="Get Directions" onPress={() => selectedLocation.coordinates && handleDirections(selectedLocation.coordinates)} />
                   <Button title="Close" onPress={() => setModalVisible(false)} />
                 </ScrollView>
+              </View>
+            </View>
+          </Modal>
+        )}
+
+        {filterModalVisible && (
+          <Modal
+            animationType="slide"
+            transparent={true}
+            visible={filterModalVisible}
+            onRequestClose={() => setFilterModalVisible(false)}
+          >
+            <View style={styles.filterModalContainer}>
+              <View style={styles.filterModalContent}>
+                <Text style={styles.filterModalTitle}>Filter Locations</Text>
+                <Button title="Show All" onPress={() => { handleFilter(''); setFilterModalVisible(false); }} />
+                <Button title="Food" onPress={() => { handleFilter('food'); setFilterModalVisible(false); }} />
+                <Button title="Popular Attractions" onPress={() => { handleFilter('attraction'); setFilterModalVisible(false); }} />
+                <Button title="Close" onPress={() => setFilterModalVisible(false)} />
               </View>
             </View>
           </Modal>
@@ -169,10 +199,10 @@ const Search = ({ searchInput, onSearchInputChange, filteredLocations, onLocatio
   );
 };
 
-const Filter = () => {
+const Filter = ({ onFilter, setFilterModalVisible }: { onFilter: (category: string) => void, setFilterModalVisible: (visible: boolean) => void }) => {
   return (
     <View style={styles.filterContainer}>
-      <TouchableOpacity style={styles.filterButton}>
+      <TouchableOpacity style={styles.filterButton} onPress={() => setFilterModalVisible(true)}>
         <Image
           source={require('../../../assets/images/filter.png')}
           style={styles.filterIcon}
@@ -265,6 +295,24 @@ const styles = StyleSheet.create({
   modalImage: {
     width: '100%',
     height: 150,
+    marginBottom: 10,
+  },
+  filterModalContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+  },
+  filterModalContent: {
+    width: '80%',
+    backgroundColor: 'white',
+    borderRadius: 10,
+    padding: 20,
+    alignItems: 'center',
+  },
+  filterModalTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
     marginBottom: 10,
   },
 });
