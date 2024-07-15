@@ -26,6 +26,9 @@ const images = {
     'Techno': require('../../assets/images/Techno.png'),
     'Techno2': require('../../assets/images/Techno2.png'),
     'Techno3': require('../../assets/images/Techno3.png'),
+    'CDE': require('../../assets/images/CDE.png'),
+    'SoC': require('../../assets/images/SoC.png'),
+    'Dentistry': require('../../assets/images/Dentistry.png')
 };
 
 const places = [
@@ -93,7 +96,7 @@ const places = [
             latitude: 1.3024,
             longitude: 103.7730
         },
-        type: "attraction",
+        type: "faculty",
         images: [
             { source: require('../../assets/images/YSTCM.png') },
             { source: require('../../assets/images/YSTCM2.png') },
@@ -143,7 +146,7 @@ const places = [
         funFacts: "1) Culinary Variety: The Deck is renowned for its diverse array of food stalls, offering everything from traditional Singaporean dishes like laksa and chicken rice to international cuisines such as Japanese, Western, and Indian. This variety caters to the multicultural student body and ensures there's something for everyone's taste. / 2) Student-Centric Design: The Deck's open-air and spacious design is specifically tailored to create a comfortable and relaxed dining environment. The seating areas are designed to accommodate large groups, making it a popular spot for students to gather, socialize, and even study together over meals. / 3) Green Initiatives: The Deck has embraced several eco-friendly practices, including waste reduction and recycling programs. Some food stalls participate in efforts to minimize plastic usage by offering reusable dining ware and encouraging students to bring their own containers, contributing to the university's broader sustainability goals.",
         address: "Computing Drive, The Deck, NUS, Singapore 117417",
         coordinates: {
-            latitude: 1.29514,
+            latitude: 1.2948,
             longitude: 103.77254,
         },
         type: "food",
@@ -161,8 +164,8 @@ const places = [
         funFacts: "1) Themed Food Stalls: Frontier features themed food stalls that rotate periodically, offering students a chance to enjoy different culinary experiences without leaving campus. These stalls provide a variety of cuisines, from Asian to Western dishes, ensuring a fresh and exciting dining experience. / 2) Popular Study Spot: Besides being a dining hall, Frontier is also a favored spot for students to study and work on group projects. Its spacious seating area and convenient location within the Faculty of Science make it an ideal place for students to gather, making it a lively and productive environment throughout the day.",
         address: "12 Science Drive 2, Singapore 117549",
         coordinates: {
-            latitude: 1.29651,
-            longitude: 103.78031,
+            latitude: 1.29658,
+            longitude: 103.78040,
         },
         type: "food",
         images: [
@@ -188,6 +191,54 @@ const places = [
             { source: require('../../assets/images/Techno.png') },
             { source: require('../../assets/images/Techno2.png') },
             { source: require('../../assets/images/Techno3.png') }
+        ]
+    },
+    {
+        placeId: 10,
+        name: "NUS College of Design and Engineering",
+        description: "The NUS College of Design and Engineering (CDE) is a leading academic institution within the National University of Singapore, combining the disciplines of design and engineering to foster innovation and interdisciplinary learning. The college offers a broad range of programs in fields such as architecture, industrial design, civil engineering, electrical engineering, and more. Its state-of-the-art facilities, world-class faculty, and collaborative environment provide students with the skills and knowledge to address complex global challenges.",
+        history: "The NUS College of Design and Engineering was formed by merging the Faculty of Engineering and the School of Design and Environment. This strategic integration was aimed at fostering interdisciplinary education and research, aligning with global trends that increasingly blur the lines between design and engineering. / 2. Innovative Research Centers: CDE hosts numerous research centers that focus on cutting-edge areas such as smart cities, sustainable urban solutions, and advanced manufacturing technologies. These centers provide students and faculty with opportunities to engage in groundbreaking research and development projects.",
+        funFacts: "1) Green Building Initiatives: The college is home to several green buildings that showcase sustainable architecture and engineering practices. These buildings serve as living laboratories where students can study and observe sustainable design principles in action.",
+        address: "4 Architecture Drive, Singapore 117566",
+        coordinates: {
+            latitude: 1.30025,
+            longitude: 103.77065,
+        },
+        type: "faculty",
+        images: [
+            { source: require('../../assets/images/CDE.png') }
+        ]
+    },
+    {
+        placeId: 11,
+        name: "NUS School of Computing",
+        description: "The NUS School of Computing (SoC) is a leading institution for computer science and information systems education and research in Asia. Located within NUS, the SoC is renowned for its comprehensive curriculum, cutting-edge research, and vibrant student community. It offers a wide range of undergraduate and graduate programs, catering to students interested in areas such as artificial intelligence, data science, software engineering, cybersecurity, and interactive media.",
+        history: "Established in 1998, the School of Computing was formed by merging the Department of Information Systems and Computer Science and the Department of Computer Science at NUS. Since its inception, the SoC has grown rapidly in reputation and scale, becoming a hub for innovation and technological advancement.",
+        funFacts: "1) Hackathons and Competitions: The SoC hosts various hackathons and coding competitions throughout the year, providing students with opportunities to showcase their skills and creativity. These events often attract participation from students across the globe, fostering a competitive and collaborative spirit within the computing community. / 2) Research Excellence: The School of Computing is home to several research centers and institutes dedicated to advancing knowledge in areas such as artificial intelligence, cybersecurity, and computational biology. Its faculty and researchers are actively engaged in groundbreaking research projects, pushing the boundaries of technological innovation. / 3) Industry Partnerships: SoC maintains strong partnerships with industry leaders, facilitating internships, research collaborations, and career opportunities for its students. These partnerships ensure that SoC graduates are well-prepared to excel in the fast-paced and competitive tech industry.",
+        address: "13 Computing Drive, Singapore 117417",
+        coordinates: {
+            latitude: 1.29323,
+            longitude: 103.77439,
+        },
+        type: "faculty",
+        images: [
+            { source: require('../../assets/images/SoC.png') }
+        ]
+    },
+    {
+        placeId: 12,
+        name: "NUS Faculty of Dentistry",
+        description: "The NUS Faculty of Dentistry is a leading dental institution in Asia, renowned for its excellence in dental education, research, and clinical practice. Situated in the heart of the NUS campus, the faculty plays a pivotal role in training future dental professionals and advancing dental healthcare. It offers a comprehensive range of undergraduate and postgraduate programs, preparing students with cutting-edge knowledge and practical skills in dentistry.",
+        history: "Established to meet the growing demand for dental education and services in Singapore, the NUS Faculty of Dentistry has evolved into a center of excellence since its inception. Over the years, it has expanded its academic offerings and clinical facilities, attracting students and faculty members from diverse backgrounds. The faculty's journey has been marked by continuous innovation and adaptation to emerging trends in dental science and healthcare delivery.",
+        funFacts: "1) Research Innovations: The faculty is at the forefront of dental research, pioneering breakthroughs in areas such as dental biomaterials, oral cancer prevention, and digital dentistry. / 2) Global Collaborations: It maintains strategic partnerships with international dental schools and organizations, enriching academic exchanges and collaborative research endeavors. / 3) Community Outreach: The faculty actively participates in community outreach programs, providing dental care to underserved populations and promoting oral health awareness through public education initiatives.",
+        address: "11 Lower Kent Ridge Rd, Singapore 119083",
+        coordinates: {
+            latitude: 1.297196,
+            longitude: 103.77957,
+        },
+        type: "faculty",
+        images: [
+            { source: require('../../assets/images/Dentistry.png') }
         ]
     },
 ];

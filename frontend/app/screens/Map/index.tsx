@@ -29,7 +29,7 @@ function Map() {
   const [selectedLocation, setSelectedLocation] = useState<Place | null>(null);
   const [modalVisible, setModalVisible] = useState(false);
   const [searchInput, setSearchInput] = useState<string>('');
-  const [filteredLocations, setFilteredLocations] = useState<Place[]>([]);
+  const [filteredLocations, setFilteredLocations] = useState<Place[]>(places);
   const [filterModalVisible, setFilterModalVisible] = useState(false);
 
   useEffect(() => {
@@ -157,6 +157,7 @@ function Map() {
               <View style={styles.filterModalContent}>
                 <Text style={styles.filterModalTitle}>Filter Locations</Text>
                 <Button title="Show All" onPress={() => { handleFilter(''); setFilterModalVisible(false); }} />
+                <Button title="Faculty" onPress={() => { handleFilter('faculty'); setFilterModalVisible(false); }} />
                 <Button title="Food" onPress={() => { handleFilter('food'); setFilterModalVisible(false); }} />
                 <Button title="Popular Attractions" onPress={() => { handleFilter('attraction'); setFilterModalVisible(false); }} />
                 <Button title="Close" onPress={() => setFilterModalVisible(false)} />
