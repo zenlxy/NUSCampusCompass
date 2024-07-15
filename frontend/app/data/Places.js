@@ -40,6 +40,7 @@ const places = [
             latitude: 1.301667,
             longitude: 103.773611
         },
+        type: "attraction",
         images: [
             { source: require('../../assets/images/LKCNHM.png') },
             { source: require('../../assets/images/LKCNHM2.png') },
@@ -57,6 +58,7 @@ const places = [
             latitude: 1.3018,
             longitude: 103.7718
         },
+        type: "attraction",
         images: [
             { source: require('../../assets/images/UCC.png') },
             { source: require('../../assets/images/UCC2.png') },
@@ -74,6 +76,7 @@ const places = [
             latitude: 1.3017,
             longitude: 103.7722
         },
+        type: "attraction",
         images: [
             { source: require('../../assets/images/Museum.png') },
             { source: require('../../assets/images/Museum2.png') }
@@ -90,6 +93,7 @@ const places = [
             latitude: 1.3024,
             longitude: 103.7730
         },
+        type: "attraction",
         images: [
             { source: require('../../assets/images/YSTCM.png') },
             { source: require('../../assets/images/YSTCM2.png') },
@@ -107,6 +111,7 @@ const places = [
             latitude: 1.3046,
             longitude: 103.7727
         },
+        type: "food",
         images: [
             { source: require('../../assets/images/Flavours.png') },
             { source: require('../../assets/images/Flavours2.png') }
@@ -123,6 +128,7 @@ const places = [
             latitude: 1.30574,
             longitude: 103.77268,
         },
+        type: "attraction",
         images: [
             { source: require('../../assets/images/ERC.png') },
             { source: require('../../assets/images/ERC2.png') },
@@ -140,6 +146,7 @@ const places = [
             latitude: 1.29514,
             longitude: 103.77254,
         },
+        type: "food",
         images: [
             { source: require('../../assets/images/Deck.png') },
             { source: require('../../assets/images/Deck2.png') },
@@ -157,6 +164,7 @@ const places = [
             latitude: 1.29651,
             longitude: 103.78031,
         },
+        type: "food",
         images: [
             { source: require('../../assets/images/Frontier.png') },
             { source: require('../../assets/images/Frontier2.png') },
@@ -175,6 +183,7 @@ const places = [
             latitude: 1.298167,
             longitude: 103.771786,
         },
+        type: "food",
         images: [
             { source: require('../../assets/images/Techno.png') },
             { source: require('../../assets/images/Techno2.png') },
