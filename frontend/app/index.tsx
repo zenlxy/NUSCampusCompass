@@ -18,6 +18,10 @@ import Start from './screens/Itinerary/screens/start';
 import StartReco from './screens/Itinerary/screens/startreco';
 import LanguagePreference from './screens/Settings/screens/language';
 import { LanguageProvider } from './contexts/LanguageContext';
+import 'intl';
+import 'intl/locale-data/jsonp/en';
+import 'intl/locale-data/jsonp/es';
+import 'intl/locale-data/jsonp/fr';
 import i18n from '../i18n';
 
 
