@@ -26,6 +26,12 @@ const images = {
     'Techno': require('../../assets/images/Techno.png'),
     'Techno2': require('../../assets/images/Techno2.png'),
     'Techno3': require('../../assets/images/Techno3.png'),
+    'CDE': require('../../assets/images/CDE.png'),
+    'SoC': require('../../assets/images/SoC.png'),
+    'Dentistry': require('../../assets/images/Dentistry.png'),
+    'Science': require('../../assets/images/Science.png'),
+    'FineFood': require('../../assets/images/FineFood.png'),
+    'Medicine': require('../../assets/images/Medicine.png')
 };
 
 const places = [
@@ -40,6 +46,7 @@ const places = [
             latitude: 1.301667,
             longitude: 103.773611
         },
+        type: "attraction",
         images: [
             { source: require('../../assets/images/LKCNHM.png') },
             { source: require('../../assets/images/LKCNHM2.png') },
@@ -57,6 +64,7 @@ const places = [
             latitude: 1.3018,
             longitude: 103.7718
         },
+        type: "attraction",
         images: [
             { source: require('../../assets/images/UCC.png') },
             { source: require('../../assets/images/UCC2.png') },
@@ -74,6 +82,7 @@ const places = [
             latitude: 1.3017,
             longitude: 103.7722
         },
+        type: "attraction",
         images: [
             { source: require('../../assets/images/Museum.png') },
             { source: require('../../assets/images/Museum2.png') }
@@ -90,6 +99,7 @@ const places = [
             latitude: 1.3024,
             longitude: 103.7730
         },
+        type: "faculty",
         images: [
             { source: require('../../assets/images/YSTCM.png') },
             { source: require('../../assets/images/YSTCM2.png') },
@@ -107,6 +117,7 @@ const places = [
             latitude: 1.3046,
             longitude: 103.7727
         },
+        type: "food",
         images: [
             { source: require('../../assets/images/Flavours.png') },
             { source: require('../../assets/images/Flavours2.png') }
@@ -123,6 +134,7 @@ const places = [
             latitude: 1.30574,
             longitude: 103.77268,
         },
+        type: "attraction",
         images: [
             { source: require('../../assets/images/ERC.png') },
             { source: require('../../assets/images/ERC2.png') },
@@ -137,9 +149,10 @@ const places = [
         funFacts: "1) Culinary Variety: The Deck is renowned for its diverse array of food stalls, offering everything from traditional Singaporean dishes like laksa and chicken rice to international cuisines such as Japanese, Western, and Indian. This variety caters to the multicultural student body and ensures there's something for everyone's taste. / 2) Student-Centric Design: The Deck's open-air and spacious design is specifically tailored to create a comfortable and relaxed dining environment. The seating areas are designed to accommodate large groups, making it a popular spot for students to gather, socialize, and even study together over meals. / 3) Green Initiatives: The Deck has embraced several eco-friendly practices, including waste reduction and recycling programs. Some food stalls participate in efforts to minimize plastic usage by offering reusable dining ware and encouraging students to bring their own containers, contributing to the university's broader sustainability goals.",
         address: "Computing Drive, The Deck, NUS, Singapore 117417",
         coordinates: {
-            latitude: 1.29514,
+            latitude: 1.2948,
             longitude: 103.77254,
         },
+        type: "food",
         images: [
             { source: require('../../assets/images/Deck.png') },
             { source: require('../../assets/images/Deck2.png') },
@@ -154,9 +167,10 @@ const places = [
         funFacts: "1) Themed Food Stalls: Frontier features themed food stalls that rotate periodically, offering students a chance to enjoy different culinary experiences without leaving campus. These stalls provide a variety of cuisines, from Asian to Western dishes, ensuring a fresh and exciting dining experience. / 2) Popular Study Spot: Besides being a dining hall, Frontier is also a favored spot for students to study and work on group projects. Its spacious seating area and convenient location within the Faculty of Science make it an ideal place for students to gather, making it a lively and productive environment throughout the day.",
         address: "12 Science Drive 2, Singapore 117549",
         coordinates: {
-            latitude: 1.29651,
-            longitude: 103.78031,
+            latitude: 1.29658,
+            longitude: 103.78040,
         },
+        type: "food",
         images: [
             { source: require('../../assets/images/Frontier.png') },
             { source: require('../../assets/images/Frontier2.png') },
@@ -172,13 +186,126 @@ const places = [
         funFacts: "1) Robot Cleaners: Techno Edge has integrated technology into its operations by employing robot cleaners to maintain cleanliness in the dining area. These robots are a nod to the innovative spirit of the School of Engineering and add a futuristic touch to the canteen environment. / 2) Vegetarian-Friendly: Techno Edge is particularly known for its vegetarian food options, with several stalls dedicated to serving delicious and nutritious vegetarian meals. This makes it a popular spot for students and staff who prefer vegetarian diets or are looking for healthy eating choices. / 3) Lively Events: The canteen occasionally hosts events and food fairs, where special stalls are set up, and unique dishes are offered. These events are often accompanied by music and activities, creating a festive atmosphere that adds to the communal and lively spirit of Techno Edge.",
         address: "2 Engineering Drive 4, Singapore 117584",
         coordinates: {
-            latitude: 1.298167,
+            latitude: 1.297901,
             longitude: 103.771786,
         },
+        type: "food",
         images: [
             { source: require('../../assets/images/Techno.png') },
             { source: require('../../assets/images/Techno2.png') },
             { source: require('../../assets/images/Techno3.png') }
+        ]
+    },
+    {
+        placeId: 10,
+        name: "NUS College of Design and Engineering",
+        description: "The NUS College of Design and Engineering (CDE) is a leading academic institution within NUS, combining the disciplines of design and engineering to foster innovation and interdisciplinary learning. The college offers a broad range of programs in fields such as architecture, industrial design, civil engineering, electrical engineering, and more. Its state-of-the-art facilities, world-class faculty, and collaborative environment provide students with the skills and knowledge to address complex global challenges.",
+        history: "The NUS College of Design and Engineering was formed by merging the Faculty of Engineering and the School of Design and Environment. This strategic integration was aimed at fostering interdisciplinary education and research, aligning with global trends that increasingly blur the lines between design and engineering. / 2. Innovative Research Centers: CDE hosts numerous research centers that focus on cutting-edge areas such as smart cities, sustainable urban solutions, and advanced manufacturing technologies. These centers provide students and faculty with opportunities to engage in groundbreaking research and development projects.",
+        funFacts: "1) Green Building Initiatives: The college is home to several green buildings that showcase sustainable architecture and engineering practices. These buildings serve as living laboratories where students can study and observe sustainable design principles in action.",
+        address: "4 Architecture Drive, Singapore 117566",
+        coordinates: {
+            latitude: 1.30025,
+            longitude: 103.77065,
+        },
+        type: "faculty",
+        images: [
+            { source: require('../../assets/images/CDE.png') }
+        ]
+    },
+    {
+        placeId: 11,
+        name: "NUS School of Computing",
+        description: "The NUS School of Computing (SoC) is a leading institution for computer science and information systems education and research in Asia. Located within NUS, the SoC is renowned for its comprehensive curriculum, cutting-edge research, and vibrant student community. It offers a wide range of undergraduate and graduate programs, catering to students interested in areas such as artificial intelligence, data science, software engineering, cybersecurity, and interactive media.",
+        history: "Established in 1998, the School of Computing was formed by merging the Department of Information Systems and Computer Science and the Department of Computer Science at NUS. Since its inception, the SoC has grown rapidly in reputation and scale, becoming a hub for innovation and technological advancement.",
+        funFacts: "1) Hackathons and Competitions: The SoC hosts various hackathons and coding competitions throughout the year, providing students with opportunities to showcase their skills and creativity. These events often attract participation from students across the globe, fostering a competitive and collaborative spirit within the computing community. / 2) Research Excellence: The School of Computing is home to several research centers and institutes dedicated to advancing knowledge in areas such as artificial intelligence, cybersecurity, and computational biology. Its faculty and researchers are actively engaged in groundbreaking research projects, pushing the boundaries of technological innovation. / 3) Industry Partnerships: SoC maintains strong partnerships with industry leaders, facilitating internships, research collaborations, and career opportunities for its students. These partnerships ensure that SoC graduates are well-prepared to excel in the fast-paced and competitive tech industry.",
+        address: "13 Computing Drive, Singapore 117417",
+        coordinates: {
+            latitude: 1.29319,
+            longitude: 103.77442,
+        },
+        type: "faculty",
+        images: [
+            { source: require('../../assets/images/SoC.png') }
+        ]
+    },
+    {
+        placeId: 12,
+        name: "NUS Faculty of Dentistry",
+        description: "The NUS Faculty of Dentistry is a leading dental institution in Asia, renowned for its excellence in dental education, research, and clinical practice. Situated in the heart of the NUS campus, the faculty plays a pivotal role in training future dental professionals and advancing dental healthcare. It offers a comprehensive range of undergraduate and postgraduate programs, preparing students with cutting-edge knowledge and practical skills in dentistry.",
+        history: "Established to meet the growing demand for dental education and services in Singapore, the NUS Faculty of Dentistry has evolved into a center of excellence since its inception. Over the years, it has expanded its academic offerings and clinical facilities, attracting students and faculty members from diverse backgrounds. The faculty's journey has been marked by continuous innovation and adaptation to emerging trends in dental science and healthcare delivery.",
+        funFacts: "1) Research Innovations: The faculty is at the forefront of dental research, pioneering breakthroughs in areas such as dental biomaterials, oral cancer prevention, and digital dentistry. / 2) Global Collaborations: It maintains strategic partnerships with international dental schools and organizations, enriching academic exchanges and collaborative research endeavors. / 3) Community Outreach: The faculty actively participates in community outreach programs, providing dental care to underserved populations and promoting oral health awareness through public education initiatives.",
+        address: "9 Lower Kent Ridge Rd, Level 10, Singapore 119085",
+        coordinates: {
+            latitude: 1.297196,
+            longitude: 103.77957,
+        },
+        type: "faculty",
+        images: [
+            { source: require('../../assets/images/Dentistry.png') }
+        ]
+    },
+    {
+        placeId: 13,
+        name: "NUS Faculty of Science",
+        description: "The NUS Faculty of Science is one of the largest and most diverse faculties at NUS. It is renowned for its excellence in teaching and research across a broad spectrum of scientific disciplines. Offering a wide range of undergraduate and postgraduate programs, the faculty provides students with a rigorous and comprehensive education, fostering critical thinking and innovative problem-solving skills. The faculty is home to state-of-the-art laboratories, research centers, and facilities that support cutting-edge scientific inquiry and discovery.",
+        history: "The NUS Faculty of Science has a rich history dating back to its establishment in 1929. Over the decades, it has grown and evolved, expanding its academic offerings and research capabilities. The faculty has played a pivotal role in the development of scientific education and research in Singapore, contributing significantly to the nation's progress in science and technology.",
+        funFacts: "1) Nobel Laureate Connections: The faculty has had the privilege of hosting Nobel Laureates for lectures and collaborations, enriching the academic environment and inspiring students and researchers. / 2) Biodiversity Research: The faculty is a leader in biodiversity research, with initiatives aimed at understanding and preserving the rich natural heritage of Southeast Asia. / 3) Science Outreach: The faculty actively engages in science outreach programs, promoting science education and literacy among the public and inspiring the next generation of scientists.",
+        address: "6 Science Drive 2, Singapore 117546",
+        coordinates: {
+            latitude: 1.29631,
+            longitude: 103.78025,
+        },
+        type: "faculty",
+        images: [
+            { source: require('../../assets/images/Science.png') }
+        ]
+    },
+    {
+        placeId: 14,
+        name: "Fine Food",
+        description: "Fine Food is a dining establishment located within NUS. It offers a refined culinary experience, featuring a diverse menu that includes both local and international dishes prepared with the finest ingredients. The dining venue's elegant setting, attentive service, and commitment to quality make it a popular choice for faculty, students, and visitors seeking a premium dining experience on campus.",
+        history: "Fine Food was established to provide a high-quality dining option within the university. Since its inception, it has become known for its exceptional food and sophisticated ambiance. The dining venue has continually evolved, incorporating new culinary trends and expanding its menu to cater to a wide range of tastes and preferences.",
+        funFacts: "1) Chef's Specials: Fine Food frequently features special dishes curated by renowned chefs, providing diners with a unique and memorable gastronomic experience. / 2) Sustainable Dining: Fine Food is committed to sustainability, using locally sourced and environmentally friendly ingredients wherever possible.",
+        address: "National University Of Singapore, 1 Create Way, Town Plaza, 138602",
+        coordinates: {
+            latitude: 1.30401,
+            longitude: 103.7736,
+        },
+        type: "food",
+        images: [
+            { source: require('../../assets/images/FineFood.png') }
+        ]
+    },
+    {
+        placeId: 15,
+        name: "Yong Loo Lin School of Medicine",
+        description: "The Yong Loo Lin School of Medicine is one of Asia's leading medical schools, located within NUS. It offers a comprehensive range of undergraduate and postgraduate programs in medicine, nursing, and other health sciences. The school's commitment to excellence in education, research, and clinical practice ensures that students receive a well-rounded and rigorous medical training. The modern facilities, experienced faculty, and strong clinical partnerships provide an enriching environment for aspiring healthcare professionals.",
+        history: "Established in 1905, the Yong Loo Lin School of Medicine is the oldest medical school in Singapore and has a rich history of shaping the medical landscape in the region. Over the years, it has evolved to become a premier institution known for its innovative curriculum, cutting-edge research, and significant contributions to healthcare. The school was renamed in 2005 in honor of Mr. Yong Loo Lin, a prominent philanthropist whose generous donations have supported its development.",
+        funFacts: "1) Simulation-Based Learning: The school boasts state-of-the-art simulation facilities where students can practice clinical skills in a realistic yet controlled environment, enhancing their hands-on experience. / 2) Global Health Initiatives: NUS Yong Loo Lin School of Medicine is actively involved in global health projects, providing students with opportunities to participate in international health missions and research. / 3) Nobel Laureate Connections: The school has hosted lectures and collaborations with Nobel laureates, offering students exposure to world-class medical research and discoveries.",
+        address: "10 Medical Drive, Singapore 117597",
+        coordinates: {
+            latitude: 1.29575,
+            longitude: 103.7815,
+        },
+        type: "faculty",
+        images: [
+            { source: require('../../assets/images/Medicine.png') }
+        ]
+    },
+    {
+        placeId: 16,
+        name: "NUS Business School",
+        description: "NUS Business School is a prestigious business school within the National University of Singapore (NUS). Renowned for its rigorous academic programs, cutting-edge research, and strong industry connections, the school offers undergraduate, graduate, and executive education programmes. The school's holistic approach to business education, which combines theoretical knowledge with practical skills, prepares students to excel in the global business landscape. Its strategic location in Singapore, a major financial hub, further enhances the learning experience.",
+        history: "Founded in 1965, NUS Business School has grown to become a leading business education institution in Asia. Over the decades, it has built a reputation for excellence in teaching, research, and thought leadership. The school's faculty comprises distinguished scholars and industry experts who contribute to its dynamic and forward-thinking academic environment. Through continuous innovation and adaptation to global business trends, NUS Business School remains at the forefront of business education.",
+        funFacts: "1) Global Rankings: NUS Business School consistently ranks among the top business schools globally, recognized for its outstanding MBA and executive education programs. / 2) Entrepreneurial Ecosystem: The school fosters an entrepreneurial spirit among students through initiatives like the NUS Enterprise and the NUS Overseas Colleges program, providing opportunities for students to gain international startup experience. / 3) Distinguished Alumni: The school boasts a strong network of successful alumni who hold leadership positions in various industries worldwide, reflecting the quality and impact of its education.",
+        address: "15 Kent Ridge Drive, Singapore 119245",
+        coordinates: {
+            latitude: 1.29264,
+            longitude: 103.77417,
+        },
+        type: "faculty",
+        images: [
+            { source: require('../../assets/images/Business.png') }
         ]
     },
 ];
