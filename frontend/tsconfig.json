@@ -14,5 +14,5 @@
     "frontend/.expo/types/**/*.ts",
     ".expo/types/**/*.ts",
     "expo-env.d.ts"
-  ]
+, "app/contexts/LanguageContext.tsx"  ]
 }

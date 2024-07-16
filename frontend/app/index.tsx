@@ -16,10 +16,15 @@ import Recommended from './screens/Itinerary/screens/recommended';
 import Edit from './screens/Itinerary/screens/edit';
 import Start from './screens/Itinerary/screens/start';
 import StartReco from './screens/Itinerary/screens/startreco';
+import LanguagePreference from './screens/Settings/screens/language';
+import { LanguageProvider } from './contexts/LanguageContext';
+import i18n from '../i18n';
+
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 const ItineraryStack = createStackNavigator();
+const LanguageStack = createStackNavigator();
 
 const ItineraryStackScreen = () => (
     <ItineraryStack.Navigator>
@@ -32,6 +37,18 @@ const ItineraryStackScreen = () => (
         <ItineraryStack.Screen name="Start Recommended" component={StartReco} options={{ headerShown: false }} />
     </ItineraryStack.Navigator>
 );
+
+const LanguageStackNavigator = () => {
+    return (
+      <LanguageStack.Navigator>
+        <LanguageStack.Screen 
+          name="Language Preference Screen" 
+          component={LanguagePreference} 
+          options={{ headerTitle: 'Language Preference' }} 
+        />
+      </LanguageStack.Navigator>
+    );
+  };
 
 const BottomTabNavigator = () => {
     return (
@@ -134,6 +151,11 @@ const StackNavigator = () => {
                 component={BottomTabNavigator}
                 options={{ headerShown: false }}
             />
+            <Stack.Screen
+                name="Language Preference Stack"
+                component={LanguageStackNavigator} 
+                options={{ headerShown: false }} 
+            />
         </Stack.Navigator>
     );
 };
@@ -142,7 +164,9 @@ export default function Index() {
     return (
         <NavigationContainer independent={true}>
             <AuthProvider>
-                <StackNavigator />
+                <LanguageProvider>
+                    <StackNavigator />
+                </LanguageProvider>
             </AuthProvider>
         </NavigationContainer>
     );
