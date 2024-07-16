@@ -3,6 +3,7 @@ import { useAuth } from '../../../contexts/AuthContext';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React from 'react';
+import i18n from '../../../../i18n'
 
 
 const LogoutButton = () => {
@@ -21,7 +22,7 @@ const LogoutButton = () => {
 
     return (
         <View>
-            <Button title="Logout" onPress={handleLogout} />
+            <Button title={i18n.t('logout')} onPress={handleLogout} />
         </View>
     );
 }
