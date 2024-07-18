@@ -48,8 +48,8 @@ const Chatbot = () => {
                 renderAvatarOnTop
                 renderAvatar={(props) => renderAvatar()}
             />
-        </View>
-    );
-};
+        </ View>
+    )
+}
 
 export default Chatbot;
