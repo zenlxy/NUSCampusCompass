@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
-import { View } from 'react-native';
-import { GiftedChat, IMessage } from 'react-native-gifted-chat';
-import { Avatar } from 'react-native-elements';
+import { Linking, View, Button } from 'react-native';
 
 const botAvatar = require('../../../assets/images/avatar.png');
 
@@ -12,42 +10,15 @@ const BOT = {
 };
 
 const Chatbot = () => {
-    const [messages, setMessages] = useState<IMessage[]>([
-        {
-            _id: 1,
-            text: 'Welcome to the NUSCampusCompass Chatbot. Ask away!',
-            createdAt: new Date(),
-            user: BOT,
-        },
-    ]);
 
-    const renderAvatar = () => {
-        return (
-            <Avatar
-                rounded
-                size={40}
-                source={BOT.avatar}
-            />
-        );
-    };
-
-    const onSend = (newMessages: IMessage[]) => {
-        setMessages((previousMessages) =>
-            GiftedChat.append(previousMessages, newMessages)
-        );
-        // Handle sending messages to backend or Dialogflow here
+    const handlePress = () => {
+        const url = `https://mediafiles.botpress.cloud/934f4951-5a2d-4b99-954e-b4d5419f28dd/webchat/bot.html`;
+        Linking.openURL(url);
     };
 
     return (
-        <View style={{ flex: 1, marginBottom: 90, backgroundColor: 'white' }}>
-            <GiftedChat
-                messages={messages}
-                onSend={(newMessages) => onSend(newMessages)}
-                onQuickReply={(quickReply) => console.log(quickReply)}
-                user={{ _id: 1 }}
-                renderAvatarOnTop
-                renderAvatar={(props) => renderAvatar()}
-            />
+        <View style={{ flex: 1, marginBottom: 90, alignItems: 'center', justifyContent: 'center' }}>
+            <Button title='Use it on the web' onPress={handlePress} />
         </ View>
     )
 }
