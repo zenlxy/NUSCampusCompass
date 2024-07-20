@@ -1,5 +1,8 @@
 import { View, Text, Image, Button, TouchableOpacity, StyleSheet } from "react-native";
 import { auth } from "../../../config/firebase";
+import i18n from "../../../i18n";
+import { useLanguage } from "@/app/contexts/LanguageContext";
+
 
 const Home = () => {
     return (
@@ -10,13 +13,14 @@ const Home = () => {
 }
 
 const Welcome = () => {
+    useLanguage();
     return (
         <View style={styles.welcome}>
             <Image
                 source={require('../../../assets/images/logo.png')}
                 style={{ width: 150, height: 150 }}
             />
-            <Text style={styles.welcometext}>Welcome back, {auth.currentUser?.email}!</Text>
+            <Text style={styles.welcometext}>{i18n.t('welcomeBack')}, {auth.currentUser?.email}!</Text>
         </View>
     );
 }

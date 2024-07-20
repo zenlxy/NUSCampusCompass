@@ -17,13 +17,12 @@ import Edit from './screens/Itinerary/screens/edit';
 import Start from './screens/Itinerary/screens/start';
 import StartReco from './screens/Itinerary/screens/startreco';
 import LanguagePreference from './screens/Settings/screens/language';
-import { LanguageProvider } from './contexts/LanguageContext';
+import { LanguageProvider, useLanguage } from './contexts/LanguageContext';
 import 'intl';
 import 'intl/locale-data/jsonp/en';
 import 'intl/locale-data/jsonp/es';
 import 'intl/locale-data/jsonp/fr';
 import i18n from '../i18n';
-
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -43,18 +42,20 @@ const ItineraryStackScreen = () => (
 );
 
 const LanguageStackNavigator = () => {
+    useLanguage();
     return (
-      <LanguageStack.Navigator>
-        <LanguageStack.Screen 
-          name="Language Preference Screen" 
-          component={LanguagePreference} 
-          options={{ headerTitle: 'Language Preference' }} 
-        />
-      </LanguageStack.Navigator>
+        <LanguageStack.Navigator>
+            <LanguageStack.Screen 
+                name="Language Preference Screen" 
+                component={LanguagePreference} 
+                options={{ headerTitle: i18n.t('languagePreference') }} 
+            />
+        </LanguageStack.Navigator>
     );
   };
 
 const BottomTabNavigator = () => {
+    useLanguage();
     return (
         <Tab.Navigator screenOptions={{
             ...Bar,
@@ -63,29 +64,29 @@ const BottomTabNavigator = () => {
                 position: 'absolute',
             },
         }}>
-            <Tab.Screen name="Home Page" component={Home} options={{
+            <Tab.Screen name={i18n.t('home')} component={Home} options={{
                 tabBarIcon: ({ focused }) => (
-                    <TabIcon focused={focused} source={require('../assets/images/home.png')} label="Home" />
+                    <TabIcon focused={focused} source={require('../assets/images/home.png')} label={i18n.t('home')} />
                 ),
             }} />
-            <Tab.Screen name="Map" component={Map} options={{
+            <Tab.Screen name={i18n.t('map')} component={Map} options={{
                 tabBarIcon: ({ focused }) => (
-                    <TabIcon focused={focused} source={require('../assets/images/map.png')} label="Map" />
+                    <TabIcon focused={focused} source={require('../assets/images/map.png')} label={i18n.t('map')} />
                 ),
             }} />
-            <Tab.Screen name="Itinerary" component={ItineraryStackScreen} options={{
+            <Tab.Screen name={i18n.t('itinerary')} component={ItineraryStackScreen} options={{
                 tabBarIcon: ({ focused }) => (
-                    <TabIcon focused={focused} source={require('../assets/images/itinerary.png')} label="Itinerary" />
+                    <TabIcon focused={focused} source={require('../assets/images/itinerary.png')} label={i18n.t('itinerary')} />
                 ),
             }} />
-            <Tab.Screen name="Chatbot" component={Chatbot} options={{
+            <Tab.Screen name={i18n.t('chatbot')} component={Chatbot} options={{
                 tabBarIcon: ({ focused }) => (
-                    <TabIcon focused={focused} source={require('../assets/images/chatbot.png')} label="Chatbot" />
+                    <TabIcon focused={focused} source={require('../assets/images/chatbot.png')} label={i18n.t('chatbot')} />
                 ),
             }} />
-            <Tab.Screen name="Settings" component={Settings} options={{
+            <Tab.Screen name={i18n.t('settings')} component={Settings} options={{
                 tabBarIcon: ({ focused }) => (
-                    <TabIcon focused={focused} source={require('../assets/images/settings.png')} label="Settings" />
+                    <TabIcon focused={focused} source={require('../assets/images/settings.png')} label={i18n.t('settings')} />
                 ),
             }} />
         </Tab.Navigator>
@@ -138,6 +139,7 @@ const styles = StyleSheet.create({
 });
 
 const StackNavigator = () => {
+    useLanguage();
     return (
         <Stack.Navigator initialRouteName="Login">
             <Stack.Screen
