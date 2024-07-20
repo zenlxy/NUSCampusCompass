@@ -16,8 +16,7 @@ i18n
     interpolation: {
       escapeValue: false
     },
-    pluralSeparator: '_', // Adjust as per your needs
-    // Define pluralRules if necessary
+    pluralSeparator: '_', 
   });
 
 export default i18n;
