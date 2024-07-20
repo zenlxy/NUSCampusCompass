@@ -1,10 +1,15 @@
 {
-    "settings": "Settings",
-    "languagePreference": "Language Preference",
-    "feedbackAndRating": "Feedback and Rating",
-    "logout": "Logout",
-    "selectLanguage": "Select Language",
-    "english": "English",
-    "spanish": "Spanish",
-    "french": "French"
-  }
+  "settings": "Settings",
+  "languagePreference": "Language Preference",
+  "feedbackAndRating": "Feedback and Rating",
+  "logout": "Logout",
+  "selectLanguage": "Select Language",
+  "english": "English",
+  "spanish": "Spanish",
+  "french": "French",
+  "home": "Home",
+  "map": "Map",
+  "itinerary": "Itinerary",
+  "chatbot": "Chatbot",
+  "welcomeBack": "Welcome back"
+}
