@@ -5,9 +5,7 @@ import i18n from '../../../../../i18n';
 
 const LanguagePreference = () => {
     const { changeLanguage } = useLanguage();
-
     const handleLanguageChange = (lang: string) => {
-        console.log(`Language preference changed to: ${lang}`);
         changeLanguage(lang);
 };
 

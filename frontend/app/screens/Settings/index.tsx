@@ -3,9 +3,12 @@ import LogoutButton from './components/logoutButton';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import i18n from '../../../i18n'
+import { useLanguage } from '../../contexts/LanguageContext';
+
 
 const Settings = () => {
     const navigation = useNavigation<StackNavigationProp<any>>();
+    useLanguage();
     return (
       <View style={styles.container}>
         <Button title={i18n.t('languagePreference')} onPress={() => navigation.navigate("Language Preference Stack")} />

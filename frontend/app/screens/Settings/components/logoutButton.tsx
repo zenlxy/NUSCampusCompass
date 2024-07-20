@@ -4,11 +4,13 @@ import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React from 'react';
 import i18n from '../../../../i18n'
+import { useLanguage } from '../../../contexts/LanguageContext';
 
 
 const LogoutButton = () => {
     const { logout } = useAuth();
     const navigation = useNavigation<StackNavigationProp<any>>();
+    useLanguage()
 
     const handleLogout = async () => {
         try {
