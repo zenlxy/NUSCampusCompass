@@ -79,7 +79,7 @@ const BottomTabNavigator = () => {
                 position: 'absolute',
             },
         }}>
-            <Tab.Screen name={i18n.t('home')} component={Home} options={{
+            <Tab.Screen name={i18n.t('homePage')} component={Home} options={{
                 tabBarIcon: ({ focused }) => (
                     <TabIcon focused={focused} source={require('../assets/images/home.png')} label={i18n.t('home')} />
                 ),

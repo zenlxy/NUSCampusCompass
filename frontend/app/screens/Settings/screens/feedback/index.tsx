@@ -1,7 +1,10 @@
+import { useLanguage } from '@/app/contexts/LanguageContext';
 import React, { useState } from 'react';
 import { SafeAreaView, View, StyleSheet, Text, TouchableOpacity, Image, TextInput, Button, Alert } from 'react-native';
+import i18n from '@/i18n';
 
 const Feedback = () => {
+    useLanguage();
     const [defaultRating, setDefaultRating] = useState(3);
     const [maxRating, setMaxRating] = useState([1, 2, 3, 4, 5]);
     const [feedback, setFeedback] = useState('');
@@ -42,11 +45,11 @@ const Feedback = () => {
 
     return (
         <SafeAreaView style={styles.container}>
-            <Text style={styles.title}>Please Rate Us</Text>
+            <Text style={styles.title}>{i18n.t('pleaseRateUs')}</Text>
             <CustomRatingBar />
             <TextInput
                 style={styles.textInput}
-                placeholder="Write your feedback here..."
+                placeholder={i18n.t('writeYourFeedbackHere')}
                 value={feedback}
                 onChangeText={setFeedback}
                 multiline

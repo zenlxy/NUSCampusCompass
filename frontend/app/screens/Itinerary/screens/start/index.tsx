@@ -8,10 +8,13 @@ import { Place, RootStackParamList, Coordinates, Itinerary } from '@/app/types/t
 import Icon from '@expo/vector-icons/FontAwesome6';
 import { itineraryRef } from '@/config/firebase';
 import { deleteDoc, doc } from 'firebase/firestore';
+import { useLanguage } from '@/app/contexts/LanguageContext';
+import i18n from '@/i18n';
 
 type StartItineraryScreenRouteProp = RouteProp<RootStackParamList, 'Start Itinerary'>;
 
 const Start = () => {
+    useLanguage();
     const navigation = useNavigation<StackNavigationProp<any>>();
     const route = useRoute<StartItineraryScreenRouteProp>();
     const { iti } = route.params;

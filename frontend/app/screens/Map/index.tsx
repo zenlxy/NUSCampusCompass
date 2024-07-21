@@ -6,6 +6,8 @@ import { Coordinates, Place } from '@/app/types/types';
 import { places, images } from '@/app/data/Places';
 import MapView, { Marker, Callout } from 'react-native-maps';
 import Icon from '@expo/vector-icons/FontAwesome6';
+import { useLanguage } from '@/app/contexts/LanguageContext';
+import i18n from '@/i18n';
 
 const locationsOfInterest = places.map((place: Place) => ({
   name: place.name,
@@ -156,11 +158,11 @@ function Map() {
             <View style={styles.filterModalContainer}>
               <View style={styles.filterModalContent}>
                 <Text style={styles.filterModalTitle}>Filter Locations</Text>
-                <Button title="Show All" onPress={() => { handleFilter(''); setFilterModalVisible(false); }} />
-                <Button title="Faculty" onPress={() => { handleFilter('faculty'); setFilterModalVisible(false); }} />
-                <Button title="Food" onPress={() => { handleFilter('food'); setFilterModalVisible(false); }} />
-                <Button title="Popular Attractions" onPress={() => { handleFilter('attraction'); setFilterModalVisible(false); }} />
-                <Button title="Close" onPress={() => setFilterModalVisible(false)} />
+                <Button title={i18n.t('showAll')} onPress={() => { handleFilter(''); setFilterModalVisible(false); }} />
+                <Button title={i18n.t('faculty')} onPress={() => { handleFilter('faculty'); setFilterModalVisible(false); }} />
+                <Button title={i18n.t('food')} onPress={() => { handleFilter('food'); setFilterModalVisible(false); }} />
+                <Button title={i18n.t('popularAttractions')} onPress={() => { handleFilter('attraction'); setFilterModalVisible(false); }} />
+                <Button title={i18n.t('close')} onPress={() => setFilterModalVisible(false)} />
               </View>
             </View>
           </Modal>
@@ -173,11 +175,12 @@ function Map() {
 
 const Search = ({ searchInput, onSearchInputChange, filteredLocations, onLocationSelect }:
   { searchInput: string, onSearchInputChange: (text: string) => void, filteredLocations: Place[], onLocationSelect: (location: Place) => void }) => {
+  useLanguage();
   return (
     <View style={styles.searchContainer}>
       <TextInput
         style={styles.searchInput}
-        placeholder="Search"
+        placeholder={i18n.t('search')}
         value={searchInput}
         onChangeText={onSearchInputChange}
       />
