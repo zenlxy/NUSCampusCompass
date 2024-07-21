@@ -23,11 +23,13 @@ import 'intl/locale-data/jsonp/en';
 import 'intl/locale-data/jsonp/es';
 import 'intl/locale-data/jsonp/fr';
 import i18n from '../i18n';
+import Feedback from './screens/Settings/screens/feedback';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 const ItineraryStack = createStackNavigator();
 const LanguageStack = createStackNavigator();
+const FeedbackStack = createStackNavigator();
 
 const ItineraryStackScreen = () => (
     <ItineraryStack.Navigator>
@@ -53,6 +55,19 @@ const LanguageStackNavigator = () => {
         </LanguageStack.Navigator>
     );
   };
+
+const FeedbackStackNavigator = () => {
+    useLanguage();
+    return (
+        <FeedbackStack.Navigator>
+            <FeedbackStack.Screen 
+                name="Feedback Screen" 
+                component={Feedback} 
+                options={{ headerTitle: i18n.t('feedbackAndRating') }} 
+            />
+        </FeedbackStack.Navigator>
+    );
+}
 
 const BottomTabNavigator = () => {
     useLanguage();
@@ -161,6 +176,11 @@ const StackNavigator = () => {
                 name="Language Preference Stack"
                 component={LanguageStackNavigator} 
                 options={{ headerShown: false }} 
+            />
+            <Stack.Screen
+                name="Feedback Stack"
+                component={FeedbackStackNavigator} 
+                options={{ headerShown: false }}
             />
         </Stack.Navigator>
     );

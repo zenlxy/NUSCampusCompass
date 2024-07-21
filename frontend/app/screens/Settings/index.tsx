@@ -1,29 +1,20 @@
-import { View, Text, Button, StyleSheet } from 'react-native';
+import React from 'react';
+import { View, StyleSheet } from 'react-native';
 import LogoutButton from './components/logoutButton';
-import { useNavigation } from '@react-navigation/native';
-import { StackNavigationProp } from '@react-navigation/stack';
-import i18n from '../../../i18n'
+import LanguageButton from './components/languageButton';
+import FeedbackButton from './components/feedbackButton';
 import { useLanguage } from '../../contexts/LanguageContext';
 
-
 const Settings = () => {
-    const navigation = useNavigation<StackNavigationProp<any>>();
     useLanguage();
     return (
-      <View style={styles.container}>
-        <Button title={i18n.t('languagePreference')} onPress={() => navigation.navigate("Language Preference Stack")} />
-        <Button title={i18n.t('feedbackAndRating')}/>
-        <LogoutButton />
-      </View>
+        <View>
+            <LanguageButton />
+            <FeedbackButton />
+            <LogoutButton />
+        </View>
     );
-  };
-  
-  const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-    },
-  });
+};
+
 
 export default Settings;
