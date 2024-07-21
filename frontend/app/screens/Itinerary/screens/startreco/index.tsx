@@ -68,7 +68,7 @@ const StartReco = () => {
                         setModalVisible(true);
                         setSelectedPlace(item)
                     }}>
-                        <Text style={styles.findText}> More</Text>
+                        <Text style={styles.findText}>{i18n.t('findOutMore')}</Text>
                     </TouchableOpacity>
                 </View>
             </View>
@@ -118,12 +118,12 @@ const StartReco = () => {
                                     ))}
                                 </ScrollView>
                             </View>
-                            <Text style={styles.headerText}>Description</Text>
-                            <Text style={styles.bodyText}>{selectedPlace?.description}</Text>
-                            <Text style={styles.headerText}>History</Text>
-                            <Text style={styles.bodyText}>{selectedPlace?.history}</Text>
-                            <Text style={styles.headerText}>Fun Facts</Text>
-                            {selectedPlace?.funFacts
+                            <Text style={styles.headerText}>{i18n.t('description')}</Text>
+                            <Text style={styles.bodyText}>{i18n.t(`placeDescription.${selectedPlace?.placeId}`)}</Text>
+                            <Text style={styles.headerText}>{i18n.t('history')}</Text>
+                            <Text style={styles.bodyText}>{i18n.t(`placeHistory.${selectedPlace?.placeId}`)}</Text>
+                            <Text style={styles.headerText}>{i18n.t('funFacts')}</Text>
+                            {i18n.t(`placeFunFacts.${selectedPlace?.placeId}`)
                                 .split('/')
                                 .map(fact => fact.trim())
                                 .filter(fact => fact.length > 0)

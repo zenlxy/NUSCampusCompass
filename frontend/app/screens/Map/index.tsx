@@ -138,10 +138,10 @@ function Map() {
               <View style={styles.modalContent}>
                 <ScrollView>
                   <Text style={styles.modalTitle}>{selectedLocation.name}</Text>
-                  <Text style={styles.modalDescription}>{selectedLocation.description}</Text>
+                  <Text style={styles.modalDescription}>{i18n.t(`placeDescription.${selectedLocation?.placeId}`)}</Text>
                   <Image source={selectedLocation.images[0].source} style={styles.modalImage} />
-                  <Button title="Get Directions" onPress={() => selectedLocation.coordinates && handleDirections(selectedLocation.coordinates)} />
-                  <Button title="Close" onPress={() => setModalVisible(false)} />
+                  <Button title={i18n.t('getDirections')} onPress={() => selectedLocation.coordinates && handleDirections(selectedLocation.coordinates)} />
+                  <Button title={i18n.t('close')} onPress={() => setModalVisible(false)} />
                 </ScrollView>
               </View>
             </View>
