@@ -7,9 +7,12 @@ import Icon from '@expo/vector-icons/FontAwesome6';
 import { useNavigation } from 'expo-router';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { Place, RootStackParamList, Coordinates, Itinerary } from '@/app/types/types';
-import { useFocusEffect } from '@react-navigation/native';
+import { useFocusEffect } from '@react-navigation/native'; 
+import { useLanguage } from '@/app/contexts/LanguageContext';
+import i18n from '@/i18n';
 
 const Existing = () => {
+    useLanguage();
     const [trips, setTrips] = useState([]);
     const { user } = useAuth();
     const navigation = useNavigation<StackNavigationProp<any>>();
@@ -48,13 +51,13 @@ const Existing = () => {
                         const iti = item;
                         navigation.navigate("Start Itinerary", { iti });
                     }}>
-                        <Text>Start</Text>
+                        <Text>{i18n.t('start')}</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={[styles.button, { marginBottom: 10 }]} onPress={() => {
                         const iti = item;
                         navigation.navigate("Edit Itinerary", { iti });
                     }}>
-                        <Text>Edit</Text>
+                        <Text>{i18n.t('edit')}</Text>
                     </TouchableOpacity>
                 </View>
                 <TouchableOpacity style={styles.delete} onPress={() => handleDelete(item.id)}>

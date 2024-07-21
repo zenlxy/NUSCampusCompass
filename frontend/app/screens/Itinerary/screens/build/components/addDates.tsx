@@ -9,8 +9,11 @@ import { itineraryRef } from '@/config/firebase';
 import { useAuth } from '../../../../../contexts/AuthContext';
 import Icon from '@expo/vector-icons/FontAwesome6';
 import { Place, RootStackParamList, Coordinates, Itinerary } from '@/app/types/types';
+import { useLanguage } from '@/app/contexts/LanguageContext';
+import i18n from '@/i18n';
 
 const AddDatesButton = () => {
+    useLanguage();
     const navigation = useNavigation<StackNavigationProp<any>>();
     const [startDate, setStartDate] = useState(new Date());
     const [showStartPicker, setShowStartPicker] = useState(false);
@@ -19,7 +22,7 @@ const AddDatesButton = () => {
     const [itinerary, setItinerary] = useState<Place[]>([]);
     const { user } = useAuth();
     const [isEditing, setIsEditing] = useState(false);
-    const [text, setText] = useState('Rename with Title');
+    const [text, setText] = useState(i18n.t('renameWithTitle'));
     const [inputValue, setInputValue] = useState(text);
 
     const handleBlur = () => {
@@ -42,10 +45,10 @@ const AddDatesButton = () => {
                     navigation.navigate("Main");
                 }
             } else {
-                alert("An itinerary with this title already exists. Please rename with a unique title.");
+                alert(i18n.t('itineraryExists'));
             }
         } else {
-            alert("Itinerary cannot be empty. Please add at least one item.");
+            alert(i18n.t('emptyItinerary'));
         }
     };
 
@@ -78,7 +81,7 @@ const AddDatesButton = () => {
         } else {
             return (
                 <View style={styles.container}>
-                    <Text>Select Date:</Text>
+                    <Text>{i18n.t('selectDate')}:</Text>
                     <DateTimePicker
                         value={startDate}
                         mode="date"
@@ -102,7 +105,7 @@ const AddDatesButton = () => {
                 <Text style={styles.rank}>{index + 1}</Text>
             </View>
             <Text style={styles.itemText}>{item.name}</Text>
-            <Button title="Delete" color="red" onPress={() => handleDeletePlace(item.placeId)} />
+            <Button title={i18n.t('delete')} color="red" onPress={() => handleDeletePlace(item.placeId)} />
         </View>
     );
 
@@ -159,16 +162,16 @@ const AddDatesButton = () => {
             </View>
             <View style={styles.datePickerContainer}>
                 <View style={styles.basic}>
-                    <Text>Add Place</Text>
+                    <Text>{i18n.t('addPlace')}</Text>
                 </View>
                 <View style={styles.container}>
                     <TextInput
-                        placeholder='Add Place'
+                        placeholder={i18n.t('addPlace')}
                         style={styles.input}
                         onChangeText={(text) => setUserInput(text)}
                         value={userInput}
                     />
-                    <Button title="Add" onPress={() => {
+                    <Button title={i18n.t('add')} onPress={() => {
                         if (toAdd) {
                             setItinerary([...itinerary, toAdd]);
                             setUserInput("");
@@ -183,7 +186,7 @@ const AddDatesButton = () => {
             <View style={styles.saveContainer}>
                 <TouchableOpacity onPress={handleSave} >
                     <View style={styles.saveButton}>
-                        <Text style={styles.saveText}>Save</Text>
+                        <Text style={styles.saveText}>{i18n.t('save')}</Text>
                         <Icon name="arrow-down" size={20} color="white" />
                     </View>
                 </TouchableOpacity>

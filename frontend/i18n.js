@@ -19,4 +19,6 @@ i18n
     pluralSeparator: '_', 
   });
 
+i18n.locale = 'en';
+
 export default i18n;

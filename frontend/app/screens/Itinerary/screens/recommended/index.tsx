@@ -2,8 +2,11 @@ import { View, Text, ListRenderItem, FlatList, TouchableOpacity, StyleSheet } fr
 import recommended from '../../../../data/Recommended';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { useNavigation } from 'expo-router';
+import { useLanguage } from '@/app/contexts/LanguageContext';
+import i18n from '@/i18n';
 
 const Recommended = () => {
+    useLanguage();
     const navigation = useNavigation<StackNavigationProp<any>>();
     const itineraryList: ListRenderItem<any> = ({ item, index }) => {
         return (
@@ -14,7 +17,7 @@ const Recommended = () => {
                         const iti = item;
                         navigation.navigate("Start Recommended", { iti });
                     }}>
-                        <Text>Start</Text>
+                        <Text>{i18n.t('start')}</Text>
                     </TouchableOpacity>
                 </View>
             </View>

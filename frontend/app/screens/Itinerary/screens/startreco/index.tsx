@@ -8,10 +8,13 @@ import { Place, RootStackParamList, Coordinates, Itinerary } from '@/app/types/t
 import Icon from '@expo/vector-icons/FontAwesome6';
 import { itineraryRef } from '@/config/firebase';
 import { deleteDoc, doc } from 'firebase/firestore';
+import { useLanguage } from '@/app/contexts/LanguageContext';
+import i18n from '@/i18n';
 
 type StartItineraryScreenRouteProp = RouteProp<RootStackParamList, 'Start Recommended'>;
 
 const StartReco = () => {
+    useLanguage();
     const navigation = useNavigation<StackNavigationProp<any>>();
     const route = useRoute<StartItineraryScreenRouteProp>();
     const { iti } = route.params;
@@ -45,7 +48,7 @@ const StartReco = () => {
             <View style={styles.directionsContainer}>
                 <View style={styles.dottedLine} />
                 <TouchableOpacity onPress={() => getDirections(item.coordinates)}>
-                    <Text style={styles.directions}>Get Directions</Text>
+                    <Text style={styles.directions}>{i18n.t('getDirections')}</Text>
                 </TouchableOpacity>
             </View>
         )
@@ -65,7 +68,7 @@ const StartReco = () => {
                         setModalVisible(true);
                         setSelectedPlace(item)
                     }}>
-                        <Text style={styles.findText}>Find Out More</Text>
+                        <Text style={styles.findText}>{i18n.t('findOutMore')}</Text>
                     </TouchableOpacity>
                 </View>
             </View>
@@ -87,14 +90,14 @@ const StartReco = () => {
                                 <Icon name="location-pin" size={35} color='#8daba8' />
                                 <Text style={styles.rank}>1</Text>
                             </View>
-                            <Text style={styles.itemText}>Your Location</Text>
+                            <Text style={styles.itemText}>{i18n.t('yourLocation')}</Text>
                         </View>
                     </View>
                 )}
                 ListFooterComponent={() => (
                     <View style={styles.endContainer}>
                         <TouchableOpacity style={styles.endButton} onPress={() => navigation.navigate('Recommended Tours')}>
-                            <Text>End Trip</Text>
+                            <Text>{i18n.t('endTrip')}</Text>
                         </TouchableOpacity>
                     </View>
                 )}
@@ -115,12 +118,12 @@ const StartReco = () => {
                                     ))}
                                 </ScrollView>
                             </View>
-                            <Text style={styles.headerText}>Description</Text>
-                            <Text style={styles.bodyText}>{selectedPlace?.description}</Text>
-                            <Text style={styles.headerText}>History</Text>
-                            <Text style={styles.bodyText}>{selectedPlace?.history}</Text>
-                            <Text style={styles.headerText}>Fun Facts</Text>
-                            {selectedPlace?.funFacts
+                            <Text style={styles.headerText}>{i18n.t('description')}</Text>
+                            <Text style={styles.bodyText}>{i18n.t(`placeDescription.${selectedPlace?.placeId}`)}</Text>
+                            <Text style={styles.headerText}>{i18n.t('history')}</Text>
+                            <Text style={styles.bodyText}>{i18n.t(`placeHistory.${selectedPlace?.placeId}`)}</Text>
+                            <Text style={styles.headerText}>{i18n.t('funFacts')}</Text>
+                            {i18n.t(`placeFunFacts.${selectedPlace?.placeId}`)
                                 .split('/')
                                 .map(fact => fact.trim())
                                 .filter(fact => fact.length > 0)
