@@ -23,5 +23,6 @@ const auth = initializeAuth(app, {
 });
 const db = getFirestore(app);
 const itineraryRef = collection(db, 'itineraries');
+const feedbackRef = collection(db, 'feedback');
 
-export { auth, db, itineraryRef };
+export { auth, db, itineraryRef, feedbackRef };

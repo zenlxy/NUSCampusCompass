@@ -2,6 +2,8 @@ import { useLanguage } from '@/app/contexts/LanguageContext';
 import React, { useState } from 'react';
 import { SafeAreaView, View, StyleSheet, Text, TouchableOpacity, Image, TextInput, Button, Alert } from 'react-native';
 import i18n from '@/i18n';
+import { addDoc } from 'firebase/firestore';
+import { feedbackRef } from '@/config/firebase';
 
 const Feedback = () => {
     useLanguage();
@@ -16,31 +18,34 @@ const Feedback = () => {
         return (
             <View style={styles.customRatingBarStyle}>
                 {
-                maxRating.map((item, key) => {
-                    return (
-                        <TouchableOpacity
-                            activeOpacity={0.7}
-                            key={item}
-                            onPress={() => setDefaultRating(item)}>
-                            <Image
-                                style={styles.starImageStyle}
-                                source={
-                                    item <= defaultRating
-                                        ? { uri: starImgFilled }
-                                        : { uri: starImgCorner }
-                                }
-                            />
-                        </TouchableOpacity>
-                    );
-                })}
+                    maxRating.map((item, key) => {
+                        return (
+                            <TouchableOpacity
+                                activeOpacity={0.7}
+                                key={item}
+                                onPress={() => setDefaultRating(item)}>
+                                <Image
+                                    style={styles.starImageStyle}
+                                    source={
+                                        item <= defaultRating
+                                            ? { uri: starImgFilled }
+                                            : { uri: starImgCorner }
+                                    }
+                                />
+                            </TouchableOpacity>
+                        );
+                    })}
             </View>
         );
     };
 
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
         // Handle the feedback submission
+        let doc = await addDoc(feedbackRef, {
+            defaultRating,
+            feedback
+        });
         Alert.alert("Feedback Submitted", `Rating: ${defaultRating}\nFeedback: ${feedback}`);
-        // You can also send this data to a server or store it locally
     };
 
     return (
@@ -90,7 +95,7 @@ const styles = StyleSheet.create({
         borderRadius: 15,
         padding: 10,
         marginTop: 40,
-        textAlignVertical: 'top', 
+        textAlignVertical: 'top',
     },
     submitButton: {
         backgroundColor: '#90B8B8',
