@@ -40,12 +40,15 @@ const Feedback = () => {
     };
 
     const handleSubmit = async () => {
-        // Handle the feedback submission
         let doc = await addDoc(feedbackRef, {
             defaultRating,
             feedback
         });
-        Alert.alert("Feedback Submitted", `Rating: ${defaultRating}\nFeedback: ${feedback}`);
+        Alert.alert(
+            i18n.t('feedbackSubmitted'),
+            `${i18n.t('rating')}: ${defaultRating}\n${i18n.t('feedback')}: ${feedback}`
+          );
+          
     };
 
     return (
@@ -60,7 +63,7 @@ const Feedback = () => {
                 multiline
             />
             <TouchableOpacity style={styles.submitButton} onPress={handleSubmit}>
-                <Text style={styles.submitButtonText}>Submit</Text>
+                <Text style={styles.submitButtonText}>{i18n.t('submit')}</Text>
             </TouchableOpacity>
         </SafeAreaView>
     );

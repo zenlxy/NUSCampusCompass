@@ -15,6 +15,8 @@ const LanguagePreference = () => {
       <Button title={i18n.t('english')} onPress={() => handleLanguageChange('en')} />
       <Button title={i18n.t('spanish')} onPress={() => handleLanguageChange('es')} />
       <Button title={i18n.t('french')} onPress={() => handleLanguageChange('fr')} />
+      <Button title={i18n.t('chinese')} onPress={() => handleLanguageChange('zh')} />
+      <Button title={i18n.t('korean')} onPress={() => handleLanguageChange('kr')} />
     </View>
   );
 };

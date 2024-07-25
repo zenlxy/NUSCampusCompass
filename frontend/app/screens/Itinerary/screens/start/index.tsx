@@ -36,11 +36,11 @@ const Start = () => {
     };
 
     const handleSave = () => {
-        Alert.alert('End Trip', 'Do you want to delete this itinerary?', [{
-            text: 'Yes',
+        Alert.alert(i18n.t('endTrip'), i18n.t('doYouWantToDeleteThisItinerary'), [{
+            text: i18n.t('yes'),
             onPress: () => handleDelete(iti.id),
         },
-        { text: 'No', onPress: () => navigation.navigate('Existing Itineraries') },
+        { text: i18n.t('no'), onPress: () => navigation.navigate('Existing Itineraries') },
         ]);
     };
 
@@ -140,7 +140,7 @@ const Start = () => {
                                     <Text key={index} style={styles.bodyText}>{fact}</Text>))}
                         </ScrollView>
                         <View style={{ paddingTop: 10 }}>
-                            <Button title='Close' onPress={() => setModalVisible(false)} />
+                            <Button title={i18n.t('close')} onPress={() => setModalVisible(false)} />
                         </View>
                     </View>
                 </View>

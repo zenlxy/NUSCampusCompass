@@ -10,10 +10,13 @@ import { useNavigation } from 'expo-router';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RouteProp, useRoute } from '@react-navigation/native';
 import { Place, RootStackParamList, Coordinates, Itinerary } from '@/app/types/types';
+import { useLanguage } from '@/app/contexts/LanguageContext';
+import i18n from '@/i18n';
 
 type EditItineraryScreenRouteProp = RouteProp<RootStackParamList, 'Edit Itinerary'>;
 
 const Edit = () => {
+    useLanguage();
     const navigation = useNavigation<StackNavigationProp<any>>();
     const route = useRoute<EditItineraryScreenRouteProp>();
     const { iti } = route.params;
@@ -54,7 +57,7 @@ const Edit = () => {
                     <Text style={styles.rank}>{index + 1}</Text>
                 </View>
                 <Text style={styles.itemText}>{item.name}</Text>
-                <Button title="Delete" color="red" onPress={() => handleDeletePlace(item.placeId)} />
+                <Button title={i18n.t('delete')} color="red" onPress={() => handleDeletePlace(item.placeId)} />
             </View>
         );
         return null;
@@ -67,7 +70,7 @@ const Edit = () => {
             return (
                 <View>
                     <View style={styles.container}>
-                        <Text>Select Date:</Text>
+                        <Text>{i18n.t('selectDate')}:</Text>
                         <Button
                             title={start.toDateString()}
                             onPress={() => setShowStartPicker(true)}
@@ -91,7 +94,7 @@ const Edit = () => {
         } else {
             return (
                 <View style={styles.container}>
-                    <Text>Select Date:</Text>
+                    <Text>{i18n.t('selectDate')}:</Text>
                     <DateTimePicker
                         value={start}
                         mode="date"
@@ -168,16 +171,16 @@ const Edit = () => {
             </View>
             <View style={styles.datePickerContainer}>
                 <View style={styles.basic}>
-                    <Text>Add Place</Text>
+                    <Text>{i18n.t('addPlace')}</Text>
                 </View>
                 <View style={styles.container}>
                     <TextInput
-                        placeholder='Add Place'
+                        placeholder={i18n.t('addPlace')}
                         style={styles.input}
                         onChangeText={(text) => setUserInput(text)}
                         value={userInput}
                     />
-                    <Button title="Add" onPress={() => {
+                    <Button title={i18n.t('add')} onPress={() => {
                         setItinerary([...itinerary, toAdd]);
                         setUserInput("");
                     }} />
@@ -190,7 +193,7 @@ const Edit = () => {
             <View style={styles.saveContainer}>
                 <TouchableOpacity onPress={handleSave} >
                     <View style={styles.saveButton}>
-                        <Text style={styles.saveText}>Save</Text>
+                        <Text style={styles.saveText}>{i18n.t('save')}</Text>
                         <Icon name="arrow-down" size={20} color="white" />
                     </View>
                 </ TouchableOpacity>
