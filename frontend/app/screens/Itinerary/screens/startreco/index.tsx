@@ -131,7 +131,7 @@ const StartReco = () => {
                                     <Text key={index} style={styles.bodyText}>{fact}</Text>))}
                         </ScrollView>
                         <View style={{ paddingTop: 10 }}>
-                            <Button title='Close' onPress={() => setModalVisible(false)} />
+                            <Button title={i18n.t('close')} onPress={() => setModalVisible(false)} />
                         </View>
                     </View>
                 </View>

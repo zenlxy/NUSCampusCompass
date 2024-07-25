@@ -157,7 +157,7 @@ function Map() {
           >
             <View style={styles.filterModalContainer}>
               <View style={styles.filterModalContent}>
-                <Text style={styles.filterModalTitle}>Filter Locations</Text>
+                <Text style={styles.filterModalTitle}>{i18n.t('filterLocations')}</Text>
                 <Button title={i18n.t('showAll')} onPress={() => { handleFilter(''); setFilterModalVisible(false); }} />
                 <Button title={i18n.t('faculty')} onPress={() => { handleFilter('faculty'); setFilterModalVisible(false); }} />
                 <Button title={i18n.t('food')} onPress={() => { handleFilter('food'); setFilterModalVisible(false); }} />

@@ -4,9 +4,11 @@ import i18n from 'i18n-js';
 import en from './translations/en.json';
 import es from './translations/es.json';
 import fr from './translations/fr.json';
+import zh from './translations/zh.json';
+import kr from './translations/kr.json';
 
 i18n.fallbacks = true;
-i18n.translations = { en, es, fr };
+i18n.translations = { en, es, fr, zh, kr };
 
 export const I18nContext = createContext();
 
