@@ -174,7 +174,7 @@ const AddDatesButton = () => {
                     <Button title={i18n.t('add')} onPress={() => {
                         if (toAdd && userInput.trim() !== "") {
                             if (itinerary.some(place => place.placeId === toAdd.placeId)) {
-                                alert("Place is already in the itinerary.");
+                                alert(i18n.t('placeAlreadyInItinerary'));
                             } else {
                                 setItinerary([...itinerary, toAdd]);
                                 setUserInput("");
@@ -182,9 +182,9 @@ const AddDatesButton = () => {
                             }
                         } else {
                             if (userInput.trim() == "") {
-                                alert("Empty place cannot be added.");
+                                alert(i18n.t('emptyPlaceCannotBeAdded'));
                             } else {
-                                alert("Invalid place cannot be added.");
+                                alert(i18n.t('invalidPlaceCannotBeAdded'));
                             }
                         }
                     }} />

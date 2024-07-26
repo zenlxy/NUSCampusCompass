@@ -56,6 +56,9 @@
   "history": "Histoire",
   "funFacts": "Faits Amusants",
   "address": "Adresse",
+  "placeAlreadyInItinerary": "Le lieu est déjà dans l'itinéraire.",
+  "emptyPlaceCannotBeAdded": "Un lieu vide ne peut pas être ajouté.",
+  "invalidPlaceCannotBeAdded": "Un lieu invalide ne peut pas être ajouté.",
   "placeDescription": {
     "1": "Le Musée d'Histoire Naturelle Lee Kong Chian à Singapour présente la biodiversité incroyable de l'Asie du Sud-Est, y compris des squelettes de dinosaures impressionnants et des créatures rares comme le calmar géant. En tant que partie de l'Université Nationale de Singapour, il sert de centre dynamique pour la recherche scientifique et l'éducation. Le musée offre des expositions interactives et des programmes qui inspirent une appréciation plus profonde du monde naturel. Avec son design écologique et son accent sur la conservation, c'est une destination clé pour l'apprentissage et l'exploration.",
     "2": "En tant que lieu de performance polyvalent et de haute qualité situé sur le campus d'une université de premier plan, le Centre Culturel Universitaire est un lieu très recherché. Il est ouvert toute l'année, accueillant des événements universitaires, des programmes artistiques et des réservations externes.",

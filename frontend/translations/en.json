@@ -56,6 +56,9 @@
   "history": "History",
   "funFacts": "Fun Facts",
   "address": "Address",
+  "placeAlreadyInItinerary": "Place is already in the itinerary.",
+  "emptyPlaceCannotBeAdded": "Empty place cannot be added.",
+  "invalidPlaceCannotBeAdded": "Invalid place cannot be added.",
   "placeDescription": {
     "1": "The Lee Kong Chian Natural History Museum in Singapore showcases the incredible biodiversity of Southeast Asia, including stunning dinosaur skeletons and rare creatures like the giant squid. As part of the National University of Singapore, it serves as a dynamic hub for scientific research and education. The museum offers engaging, interactive exhibits and programs that inspire a deeper appreciation of the natural world. With its eco-friendly design and focus on conservation, it is a key destination for both learning and exploration.",
     "2": "As a high-grade, flexible performance venue nestled in the grounds of a premier university, the University Cultural Centre is a consistently sought-after venue. It operates year-round, hosting University events, arts programmes and external bookings.",
