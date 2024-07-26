@@ -56,6 +56,9 @@
   "history": "Historia",
   "funFacts": "Datos Curiosos",
   "address": "Dirección",
+  "placeAlreadyInItinerary": "El lugar ya está en el itinerario.",
+  "emptyPlaceCannotBeAdded": "No se puede añadir un lugar vacío.",
+  "invalidPlaceCannotBeAdded": "No se puede añadir un lugar no válido.",
   "placeDescription": {
     "1": "El Museo de Historia Natural Lee Kong Chian en Singapur muestra la increíble biodiversidad del sudeste asiático, incluyendo impresionantes esqueletos de dinosaurios y criaturas raras como el calamar gigante. Como parte de la Universidad Nacional de Singapur, sirve como un centro dinámico para la investigación científica y la educación. El museo ofrece exhibiciones interactivas y programas que inspiran una apreciación más profunda del mundo natural. Con su diseño ecológico y enfoque en la conservación, es un destino clave tanto para el aprendizaje como para la exploración.",
     "2": "Como un lugar de alto nivel y flexible para presentaciones, el Centro Cultural Universitario está ubicado en los terrenos de una universidad de primer nivel y es un lugar muy solicitado. Opera durante todo el año, albergando eventos universitarios, programas artísticos y reservas externas.",

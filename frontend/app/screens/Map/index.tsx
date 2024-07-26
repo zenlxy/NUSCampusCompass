@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { TextInput, Text, Image, TouchableOpacity, StyleSheet, View, Modal, ScrollView, Button, Platform, Linking } from 'react-native';
+import { TextInput, Text, Image, TouchableOpacity, StyleSheet, View, Modal, ScrollView, Button, Platform, Linking, Keyboard, TouchableWithoutFeedback } from 'react-native';
 import * as Location from 'expo-location';
 import { UserLocationContext } from '../../contexts/UserLocationContext';
 import { Coordinates, Place } from '@/app/types/types';
@@ -33,6 +33,7 @@ function Map() {
   const [searchInput, setSearchInput] = useState<string>('');
   const [filteredLocations, setFilteredLocations] = useState<Place[]>(places);
   const [filterModalVisible, setFilterModalVisible] = useState(false);
+  const [isSearchActive, setIsSearchActive] = useState(false);
 
   useEffect(() => {
     (async () => {
@@ -48,12 +49,12 @@ function Map() {
   }, []);
 
   const showLocationsOfInterest = () => {
-    return filteredLocations.map((item, index) => (
+    return filteredLocations.map((item) => (
       <Marker
-        key={index}
+        key={item.placeId}
         coordinate={item.coordinates || { latitude: 0, longitude: 0 }}
         onPress={() => {
-          setSelectedLocation({ ...item, placeId: index });
+          setSelectedLocation(item);
           console.log('Selected location:', item);
           setModalVisible(true);
         }}
@@ -76,6 +77,7 @@ function Map() {
     setModalVisible(true);
     setSearchInput('');
     setFilteredLocations([]);
+    setIsSearchActive(false);
   };
 
   const handleFilter = (category: string) => {
@@ -89,13 +91,22 @@ function Map() {
         place.name.toLowerCase().includes(text.toLowerCase())
       );
       setFilteredLocations(filtered);
+      setIsSearchActive(true);
     } else {
       setFilteredLocations(places);
+      setIsSearchActive(false);
     }
+  };
+
+  const dismissSearch = () => {
+    setIsSearchActive(false);
+    setSearchInput('');
+    Keyboard.dismiss();
   };
 
   return (
     <UserLocationContext.Provider value={{ location, setLocation } as any}>
+      <TouchableWithoutFeedback onPress={dismissSearch}>
       <View style={styles.container}>
         <MapView
           style={styles.map}
@@ -139,7 +150,13 @@ function Map() {
                 <ScrollView>
                   <Text style={styles.modalTitle}>{selectedLocation.name}</Text>
                   <Text style={styles.modalDescription}>{i18n.t(`placeDescription.${selectedLocation?.placeId}`)}</Text>
-                  <Image source={selectedLocation.images[0].source} style={styles.modalImage} />
+                  <View style={{ height: 170 }}>
+                                <ScrollView style={styles.scrollView} horizontal>
+                                    {selectedLocation?.images.map((image, index) => (
+                                        <Image key={index} source={image.source} style={styles.image}></Image>
+                                    ))}
+                                </ScrollView>
+                            </View>
                   <Button title={i18n.t('getDirections')} onPress={() => selectedLocation.coordinates && handleDirections(selectedLocation.coordinates)} />
                   <Button title={i18n.t('close')} onPress={() => setModalVisible(false)} />
                 </ScrollView>
@@ -168,6 +185,7 @@ function Map() {
           </Modal>
         )}
       </View>
+      </TouchableWithoutFeedback>
     </UserLocationContext.Provider>
   );
 }
@@ -318,6 +336,16 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     marginBottom: 10,
+  },
+  image: {
+    height: 150,
+    width: 250,
+    marginTop: 10,
+    marginRight: 10,
+    resizeMode: 'cover',
+  },
+  scrollView: {
+    flexDirection: 'row',
   },
 });
 
