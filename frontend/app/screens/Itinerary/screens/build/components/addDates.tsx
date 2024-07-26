@@ -18,7 +18,7 @@ const AddDatesButton = () => {
     const [startDate, setStartDate] = useState(new Date());
     const [showStartPicker, setShowStartPicker] = useState(false);
     const [userInput, setUserInput] = useState("");
-    const [toAdd, setToAdd] = useState<Place>(places[1]);
+    const [toAdd, setToAdd] = useState<Place | null>(null);
     const [itinerary, setItinerary] = useState<Place[]>([]);
     const { user } = useAuth();
     const [isEditing, setIsEditing] = useState(false);
@@ -172,9 +172,20 @@ const AddDatesButton = () => {
                         value={userInput}
                     />
                     <Button title={i18n.t('add')} onPress={() => {
-                        if (toAdd) {
-                            setItinerary([...itinerary, toAdd]);
-                            setUserInput("");
+                        if (toAdd && userInput.trim() !== "") {
+                            if (itinerary.some(place => place.placeId === toAdd.placeId)) {
+                                alert("Place is already in the itinerary.");
+                            } else {
+                                setItinerary([...itinerary, toAdd]);
+                                setUserInput("");
+                                setToAdd(null);
+                            }
+                        } else {
+                            if (userInput.trim() == "") {
+                                alert("Empty place cannot be added.");
+                            } else {
+                                alert("Invalid place cannot be added.");
+                            }
                         }
                     }} />
                 </View>
