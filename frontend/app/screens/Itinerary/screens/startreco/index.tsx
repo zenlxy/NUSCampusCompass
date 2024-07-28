@@ -24,17 +24,6 @@ const StartReco = () => {
     const [modalVisible, setModalVisible] = useState(false);
     const [selectedPlace, setSelectedPlace] = useState<Place | null>(null);
 
-    const handleDelete = async (id: string) => {
-        try {
-            const docRef = doc(itineraryRef, id);
-            await deleteDoc(docRef);
-            alert('Itinerary Deleted');
-            navigation.navigate('Existing Itineraries');
-        } catch (error) {
-            console.error("Error:", error)
-        }
-    };
-
     const getDirections = (destination: Coordinates) => {
         console.log('Opening directions to:', destination);
         const { latitude, longitude } = destination;
@@ -60,7 +49,7 @@ const StartReco = () => {
                 {dottedLine(item)}
                 <View style={styles.itineraryItem}>
                     <View style={styles.rankContainer}>
-                        <Icon name="location-pin" size='35' color='#8daba8' />
+                        <Icon name="location-pin" size={35} color='#8daba8' />
                         <Text style={styles.rank}>{index + 2}</Text>
                     </View>
                     <Text style={styles.itemText}>{item.name}</Text>
