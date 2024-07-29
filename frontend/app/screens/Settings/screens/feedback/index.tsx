@@ -1,6 +1,6 @@
 import { useLanguage } from '@/app/contexts/LanguageContext';
 import React, { useState } from 'react';
-import { SafeAreaView, View, StyleSheet, Text, TouchableOpacity, Image, TextInput, Button, Alert } from 'react-native';
+import { SafeAreaView, View, StyleSheet, Text, TouchableOpacity, Image, TextInput, Button, Alert, KeyboardAvoidingView } from 'react-native';
 import i18n from '@/i18n';
 import { addDoc } from 'firebase/firestore';
 import { feedbackRef } from '@/config/firebase';
@@ -52,20 +52,20 @@ const Feedback = () => {
     };
 
     return (
-        <SafeAreaView style={styles.container}>
-            <Text style={styles.title}>{i18n.t('pleaseRateUs')}</Text>
-            <CustomRatingBar />
-            <TextInput
-                style={styles.textInput}
-                placeholder={i18n.t('writeYourFeedbackHere')}
-                value={feedback}
-                onChangeText={setFeedback}
-                multiline
-            />
-            <TouchableOpacity style={styles.submitButton} onPress={handleSubmit}>
-                <Text style={styles.submitButtonText}>{i18n.t('submit')}</Text>
-            </TouchableOpacity>
-        </SafeAreaView>
+        <KeyboardAvoidingView style={styles.container} behavior="padding">
+                <Text style={styles.title}>{i18n.t('pleaseRateUs')}</Text>
+                <CustomRatingBar />
+                <TextInput
+                    style={styles.textInput}
+                    placeholder={i18n.t('writeYourFeedbackHere')}
+                    value={feedback}
+                    onChangeText={setFeedback}
+                    multiline
+                />
+                <TouchableOpacity style={styles.submitButton} onPress={handleSubmit}>
+                    <Text style={styles.submitButtonText}>{i18n.t('submit')}</Text>
+                </TouchableOpacity>
+        </KeyboardAvoidingView>
     );
 };
 
