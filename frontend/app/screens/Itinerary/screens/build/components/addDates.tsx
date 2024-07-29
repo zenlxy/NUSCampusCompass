@@ -139,14 +139,17 @@ const AddDatesButton = () => {
                 </View>
                 <View style={styles.titleContainer}>
                     {isEditing ? (
-                        <TextInput
-                            style={styles.titleInput}
-                            value={inputValue}
-                            onChangeText={setInputValue}
-                            onBlur={handleBlur}
-                            onSubmitEditing={handleBlur}
-                            autoFocus
-                        />
+                        <View style={{ flexDirection: 'row' }}>
+                            <TextInput
+                                style={styles.titleInput}
+                                value={inputValue}
+                                onChangeText={setInputValue}
+                                onBlur={handleBlur}
+                                onSubmitEditing={handleBlur}
+                                autoFocus
+                            />
+                            <Button title={i18n.t('done')} onPress={handleBlur} />
+                        </View>
                     ) : (
                         <View style={styles.displayContainer}>
                             <Text style={styles.titleText}>{text}</Text>

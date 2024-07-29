@@ -59,6 +59,7 @@
   "placeAlreadyInItinerary": "Place is already in the itinerary.",
   "emptyPlaceCannotBeAdded": "Empty place cannot be added.",
   "invalidPlaceCannotBeAdded": "Invalid place cannot be added.",
+  "done": "Done",
   "placeDescription": {
     "1": "The Lee Kong Chian Natural History Museum in Singapore showcases the incredible biodiversity of Southeast Asia, including stunning dinosaur skeletons and rare creatures like the giant squid. As part of the National University of Singapore, it serves as a dynamic hub for scientific research and education. The museum offers engaging, interactive exhibits and programs that inspire a deeper appreciation of the natural world. With its eco-friendly design and focus on conservation, it is a key destination for both learning and exploration.",
     "2": "As a high-grade, flexible performance venue nestled in the grounds of a premier university, the University Cultural Centre is a consistently sought-after venue. It operates year-round, hosting University events, arts programmes and external bookings.",
@@ -112,5 +113,5 @@
     "14": "1) Chef's Specials: Fine Food frequently features special dishes curated by renowned chefs, providing diners with a unique and memorable gastronomic experience. / 2) Sustainable Dining: Fine Food is committed to sustainability, using locally sourced and environmentally friendly ingredients wherever possible.",
     "15": "1) Simulation-Based Learning: The school boasts state-of-the-art simulation facilities where students can practice clinical skills in a realistic yet controlled environment, enhancing their hands-on experience. / 2) Global Health Initiatives: NUS Yong Loo Lin School of Medicine is actively involved in global health projects, providing students with opportunities to participate in international health missions and research. / 3) Nobel Laureate Connections: The school has hosted lectures and collaborations with Nobel laureates, offering students exposure to world-class medical research and discoveries.",
     "16": "1) Global Rankings: NUS Business School consistently ranks among the top business schools globally, recognized for its outstanding MBA and executive education programs. / 2) Entrepreneurial Ecosystem: The school fosters an entrepreneurial spirit among students through initiatives like the NUS Enterprise and the NUS Overseas Colleges program, providing opportunities for students to gain international startup experience. / 3) Distinguished Alumni: The school boasts a strong network of successful alumni who hold leadership positions in various industries worldwide, reflecting the quality and impact of its education."
-    }
+  }
 }

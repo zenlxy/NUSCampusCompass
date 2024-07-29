@@ -59,6 +59,7 @@
   "placeAlreadyInItinerary": "El lugar ya está en el itinerario.",
   "emptyPlaceCannotBeAdded": "No se puede añadir un lugar vacío.",
   "invalidPlaceCannotBeAdded": "No se puede añadir un lugar no válido.",
+  "done": "Hecho",
   "placeDescription": {
     "1": "El Museo de Historia Natural Lee Kong Chian en Singapur muestra la increíble biodiversidad del sudeste asiático, incluyendo impresionantes esqueletos de dinosaurios y criaturas raras como el calamar gigante. Como parte de la Universidad Nacional de Singapur, sirve como un centro dinámico para la investigación científica y la educación. El museo ofrece exhibiciones interactivas y programas que inspiran una apreciación más profunda del mundo natural. Con su diseño ecológico y enfoque en la conservación, es un destino clave tanto para el aprendizaje como para la exploración.",
     "2": "Como un lugar de alto nivel y flexible para presentaciones, el Centro Cultural Universitario está ubicado en los terrenos de una universidad de primer nivel y es un lugar muy solicitado. Opera durante todo el año, albergando eventos universitarios, programas artísticos y reservas externas.",
@@ -113,5 +114,4 @@
     "15": "1) Aprendizaje Basado en Simulación: La escuela cuenta con instalaciones de simulación de última generación donde los estudiantes pueden practicar habilidades clínicas en un entorno realista pero controlado, mejorando su experiencia práctica. / 2) Iniciativas Globales en Salud: La Escuela de Medicina Yong Loo Lin de NUS está activamente involucrada en proyectos de salud global, proporcionando a los estudiantes oportunidades para participar en misiones de salud internacionales e investigaciones. / 3) Conexiones con Premios Nobel: La escuela ha recibido conferencias y colaboraciones con laureados con el Premio Nobel, ofreciendo a los estudiantes exposición a investigaciones médicas y descubrimientos de clase mundial.",
     "16": "1) Clasificaciones Globales: La Escuela de Negocios de NUS consistentemente se encuentra entre las principales escuelas de negocios a nivel mundial, reconocida por sus sobresalientes programas de MBA y educación ejecutiva. / 2) Ecosistema Emprendedor: La escuela fomenta un espíritu emprendedor entre los estudiantes a través de iniciativas como NUS Enterprise y el programa NUS Overseas Colleges, proporcionando oportunidades para que los estudiantes adquieran experiencia en startups internacionales. / 3) Alumni Distinguibles: La escuela cuenta con una sólida red de exalumnos exitosos que ocupan puestos de liderazgo en diversas industrias a nivel mundial, reflejando la calidad e impacto de su educación."
   }
-
 }
