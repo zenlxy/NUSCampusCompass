@@ -13,7 +13,8 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.jpowcm.NUSCampusCompass"
     },
     "android": {
       "adaptiveIcon": {
@@ -28,7 +29,13 @@
       "favicon": "./assets/images/favicon.png"
     },
     "plugins": [
-      "expo-router"
+      "expo-router",
+      [
+        "expo-location",
+        {
+          "locationAlwaysAndWhenInUsePermission": "Allow NUSCampusCompass to use your location."
+        }
+      ]
     ],
     "experiments": {
       "typedRoutes": true
@@ -42,9 +49,7 @@
       }
     },
     "owner": "jpowcm",
-    "runtimeVersion": {
-      "policy": "appVersion"
-    },
+    "runtimeVersion": "1.0.0",
     "updates": {
       "url": "https://u.expo.dev/68068a48-1ce8-4952-85cc-20060eea0834"
     }
